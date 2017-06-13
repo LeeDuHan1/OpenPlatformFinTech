@@ -8,63 +8,31 @@
     tools:layout_editor_absoluteX="0dp">
 
     <Button
-        android:id="@+id/btnSetting"
+        android:id="@+id/btnAuthNew"
         style="@style/MainButton"
-        android:layout_width="293dp"
-        android:layout_height="42dp"
+        android:layout_width="308dp"
+        android:layout_height="52dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="19dp"
-        android:text="설정"
-        app:layout_constraintHorizontal_bias="0.506"
+        android:layout_marginTop="41dp"
+        android:text="사용자인증 개선버전"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAPICall" />
-
-    <Button
-        android:id="@+id/btnAPICall"
-        style="@style/MainButton"
-        android:layout_width="293dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="API 거래 기능"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAuthOldWeb" />
-
-    <Button
-        android:id="@+id/btnAuthOldWeb"
-        style="@style/MainButton"
-        android:layout_width="293dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="19dp"
-        android:text="사용자인증 기존버전 (웹 방식)"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAuthOldApp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnAuthOldApp"
         style="@style/MainButton"
-        android:layout_width="293dp"
-        android:layout_height="42dp"
+        android:layout_width="308dp"
+        android:layout_height="52dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="15dp"
         android:text="사용자인증 기존버전 (앱 방식)"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -72,20 +40,51 @@
         app:layout_constraintTop_toBottomOf="@+id/btnAuthNew" />
 
     <Button
-        android:id="@+id/btnAuthNew"
+        android:id="@+id/btnAuthOldWeb"
         style="@style/MainButton"
-        android:layout_width="300dp"
-        android:layout_height="46dp"
+        android:layout_width="308dp"
+        android:layout_height="52dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="41dp"
-        android:text="사용자인증 개선버전"
-        app:layout_constraintHorizontal_bias="0.51"
+        android:layout_marginTop="15dp"
+        android:text="사용자인증 기존버전 (웹 방식)"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="52dp" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAuthOldApp" />
+
+    <Button
+        android:id="@+id/btnAPICall"
+        style="@style/MainButton"
+        android:layout_width="308dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:text="API 거래 기능"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAuthOldWeb" />
+
+    <Button
+        android:id="@+id/btnSetting"
+        style="@style/MainButton"
+        android:layout_width="308dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:text="설정"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAPICall" />
 
 </android.support.constraint.ConstraintLayout>
