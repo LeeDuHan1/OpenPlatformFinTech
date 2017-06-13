@@ -3,23 +3,24 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_authNew"
+            android:title="사용자인증 개선버전" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_authOldApp"
+            android:title="사용자인증 기존버전 (앱방식)" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_authOldWeb"
+            android:title="사용자인증 기존버전 (웹방식)" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_APICall"
+            android:title="API 거래기능" />
+        <item
+            android:id="@+id/nav_setting"
+            android:title="설정" />
     </group>
 
+    <!-- 소제목 있는 메뉴그룹 샘플 -->
+    <!--
     <item android:title="Communicate">
         <menu>
             <item
@@ -32,5 +33,6 @@
                 android:title="Send" />
         </menu>
     </item>
+    -->
 
 </menu>
