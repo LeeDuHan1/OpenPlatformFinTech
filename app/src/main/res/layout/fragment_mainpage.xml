@@ -40,8 +40,8 @@
         app:layout_constraintTop_toBottomOf="@+id/btnAuthNew" />
 
     <Button
-        android:id="@+id/btnAuthOldWeb"
         style="@style/MainButton"
+        android:id="@+id/btnAuthOldWeb"
         android:layout_width="308dp"
         android:layout_height="52dp"
         android:layout_marginEnd="8dp"
