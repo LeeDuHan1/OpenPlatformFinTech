@@ -14,12 +14,12 @@ import android.widget.Button;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MainPageFragment.OnFragmentInteractionListener} interface
+ * {@link AuthNewPageFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MainPageFragment#newInstance} factory method to
+ * Use the {@link AuthNewPageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainPageFragment extends Fragment implements Button.OnClickListener {
+public class AuthNewPageFragment extends Fragment implements Button.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +32,7 @@ public class MainPageFragment extends Fragment implements Button.OnClickListener
 
     private OnFragmentInteractionListener mListener;
 
-    public MainPageFragment() {
+    public AuthNewPageFragment() {
         // Required empty public constructor
     }
 
@@ -45,9 +45,9 @@ public class MainPageFragment extends Fragment implements Button.OnClickListener
      * @return A new instance of fragment MainPageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MainPageFragment newInstance(String param1, String param2) {
+    public static AuthNewPageFragment newInstance(String param1, String param2) {
 
-        MainPageFragment fragment = new MainPageFragment();
+        AuthNewPageFragment fragment = new AuthNewPageFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,7 +69,7 @@ public class MainPageFragment extends Fragment implements Button.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_authnew_page, container, false);
 
         // 버튼 이벤트핸들러 바인딩
         bindButtonClickEvents(view);
@@ -84,11 +84,8 @@ public class MainPageFragment extends Fragment implements Button.OnClickListener
      */
     public void bindButtonClickEvents(View view){
 
-        ((Button)view.findViewById(R.id.btnAuthNew)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAuthOldApp)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAuthOldWeb)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAPICall)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnSetting)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuth2)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthAcnt2)).setOnClickListener(this);
     }
 
     /**
@@ -99,29 +96,14 @@ public class MainPageFragment extends Fragment implements Button.OnClickListener
     @Override
     public void onClick(View v) {
 
-        Fragment fm = null;
-        String title = null;
-
-        int btnId = v.getId();
-        MainActivity mainActivity = ((MainActivity)getActivity());
-
-        switch(btnId){
-            case R.id.btnAuthNew:
+        switch(v.getId()){
+            case R.id.btnAuth2:
                 break;
-            case R.id.btnAuthOldApp:
-                break;
-            case R.id.btnAuthOldWeb:
-                break;
-            case R.id.btnAPICall:
-                break;
-            case R.id.btnSetting:
+            case R.id.btnAuthAcnt2:
                 break;
             default:
                 break;
         }
-
-        mainActivity.goPage(btnId);
-
     }
 
     @Override
@@ -157,13 +139,13 @@ public class MainPageFragment extends Fragment implements Button.OnClickListener
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction2(Uri uri);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction2(uri);
         }
     }
 

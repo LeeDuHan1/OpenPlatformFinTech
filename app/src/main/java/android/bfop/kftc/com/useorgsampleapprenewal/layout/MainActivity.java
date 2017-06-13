@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,7 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainPageFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainPageFragment.OnFragmentInteractionListener, AuthNewPageFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +112,48 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    public void goPage(int id){
+
+        Fragment fm = null;
+        String title = null;
+
+        switch(id){
+            case R.id.btnAuthNew:
+                fm = new AuthNewPageFragment();
+                title = "사용자인증 개선버전 제목";
+                break;
+            case R.id.btnAuthOldApp:
+                break;
+            case R.id.btnAuthOldWeb:
+                break;
+            case R.id.btnAPICall:
+                break;
+            case R.id.btnSetting:
+                break;
+            default:
+                break;
+        }
+
+        if(fm != null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container, fm);
+            ft.commit();
+        }
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle(title);
+        }
+
+    }
+
+
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction2(Uri uri) {
 
     }
 }
