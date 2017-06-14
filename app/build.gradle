@@ -30,7 +30,10 @@ android {
         debug {
         }
     }
-
+    // retrofit 라이브러리 도입 후 빌드시 “Duplicate lib file copied in APK-META-INF/” error 가 발생하여 해당 파일을 제외시켜 주었다.
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+    }
 }
 
 dependencies {
