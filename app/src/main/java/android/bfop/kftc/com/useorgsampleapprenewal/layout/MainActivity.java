@@ -118,17 +118,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String title = null;
 
         switch(id){
-            case R.id.btnAuthNew:
+            case R.id.btnAuthNewMenu:
                 fm = new AuthNewPageFragment();
-                title = "사용자인증 개선버전 제목";
+                title = "사용자인증 개선버전";
                 break;
-            case R.id.btnAuthOldApp:
+            case R.id.btnAuthOldAppMenu:
+                fm = new AuthOldAppPageFragment();
+                title = "사용자인증 기존버전 (앱 방식)";
                 break;
-            case R.id.btnAuthOldWeb:
+            case R.id.btnAuthOldWebMenu:
                 break;
-            case R.id.btnAPICall:
+            case R.id.btnAPICallMenu:
                 break;
-            case R.id.btnSetting:
+            case R.id.btnSettingMenu:
                 break;
             default:
                 break;
@@ -147,13 +149,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    //===================================== 각 Fragment 들과의 통신 접점 - start =====================================
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteractionMainPage(Uri uri) {
 
     }
 
     @Override
-    public void onFragmentInteraction2(Uri uri) {
+    public void onFragmentInteractionAuthNewPage(Uri uri) {
 
     }
+    //===================================== 각 Fragment 들과의 통신 접점 - end =======================================
+
 }

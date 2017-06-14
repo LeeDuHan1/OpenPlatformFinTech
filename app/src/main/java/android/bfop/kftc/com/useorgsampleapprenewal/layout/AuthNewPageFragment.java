@@ -142,13 +142,13 @@ public class AuthNewPageFragment extends Fragment implements Button.OnClickListe
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction2(Uri uri);
+        void onFragmentInteractionAuthNewPage(Uri uri);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction2(uri);
+            mListener.onFragmentInteractionAuthNewPage(uri);
         }
     }
 

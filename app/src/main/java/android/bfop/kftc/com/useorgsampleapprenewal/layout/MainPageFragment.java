@@ -84,11 +84,11 @@ public class MainPageFragment extends Fragment implements Button.OnClickListener
      */
     public void bindButtonClickEvents(View view){
 
-        ((Button)view.findViewById(R.id.btnAuthNew)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAuthOldApp)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAuthOldWeb)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAPICall)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnSetting)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthNewMenu)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthOldAppMenu)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthOldWebMenu)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAPICallMenu)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnSettingMenu)).setOnClickListener(this);
     }
 
     /**
@@ -106,15 +106,15 @@ public class MainPageFragment extends Fragment implements Button.OnClickListener
         MainActivity mainActivity = ((MainActivity)getActivity());
 
         switch(btnId){
-            case R.id.btnAuthNew:
+            case R.id.btnAuthNewMenu:
                 break;
-            case R.id.btnAuthOldApp:
+            case R.id.btnAuthOldAppMenu:
                 break;
-            case R.id.btnAuthOldWeb:
+            case R.id.btnAuthOldWebMenu:
                 break;
-            case R.id.btnAPICall:
+            case R.id.btnAPICallMenu:
                 break;
-            case R.id.btnSetting:
+            case R.id.btnSettingMenu:
                 break;
             default:
                 break;
@@ -157,13 +157,13 @@ public class MainPageFragment extends Fragment implements Button.OnClickListener
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteractionMainPage(Uri uri);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteractionMainPage(uri);
         }
     }
 
