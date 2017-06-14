@@ -16,7 +16,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainPageFragment.OnFragmentInteractionListener, AuthNewPageFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements
+        NavigationView.OnNavigationItemSelectedListener, MainPageFragment.OnFragmentInteractionListener,
+        AuthNewPageFragment.OnFragmentInteractionListener, AuthOldAppPageFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +159,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onFragmentInteractionAuthNewPage(Uri uri) {
+
+    }
+
+    @Override
+    public void onFragmentInteractionAuthOldAppPage(Uri uri) {
 
     }
     //===================================== 각 Fragment 들과의 통신 접점 - end =======================================
