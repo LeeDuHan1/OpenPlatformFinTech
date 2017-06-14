@@ -14,12 +14,12 @@ import android.widget.Button;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AuthNewPageFragment.OnFragmentInteractionListener} interface
+ * {@link AuthOldAppPageFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AuthNewPageFragment#newInstance} factory method to
+ * Use the {@link AuthOldAppPageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AuthNewPageFragment extends Fragment implements Button.OnClickListener {
+public class AuthOldAppPageFragment extends Fragment implements Button.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +32,7 @@ public class AuthNewPageFragment extends Fragment implements Button.OnClickListe
 
     private OnFragmentInteractionListener mListener;
 
-    public AuthNewPageFragment() {
+    public AuthOldAppPageFragment() {
         // Required empty public constructor
     }
 
@@ -45,9 +45,9 @@ public class AuthNewPageFragment extends Fragment implements Button.OnClickListe
      * @return A new instance of fragment MainPageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AuthNewPageFragment newInstance(String param1, String param2) {
+    public static AuthOldAppPageFragment newInstance(String param1, String param2) {
 
-        AuthNewPageFragment fragment = new AuthNewPageFragment();
+        AuthOldAppPageFragment fragment = new AuthOldAppPageFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,7 +69,7 @@ public class AuthNewPageFragment extends Fragment implements Button.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_authnew_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_autholdapp_page, container, false);
 
         // 버튼 이벤트핸들러 바인딩
         bindButtonClickEvents(view);
@@ -87,8 +87,9 @@ public class AuthNewPageFragment extends Fragment implements Button.OnClickListe
      */
     public void bindButtonClickEvents(View view){
 
-        ((Button)view.findViewById(R.id.btnAuth2)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAuthAcnt2)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthOldApp)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnRegAcntOldApp)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthAcntOldApp)).setOnClickListener(this);
     }
 
     /**
@@ -100,9 +101,11 @@ public class AuthNewPageFragment extends Fragment implements Button.OnClickListe
     public void onClick(View v) {
 
         switch(v.getId()){
-            case R.id.btnAuth2:
+            case R.id.btnAuthOldApp:
                 break;
-            case R.id.btnAuthAcnt2:
+            case R.id.btnRegAcntOldApp:
+                break;
+            case R.id.btnAuthAcntOldApp:
                 break;
             default:
                 break;
