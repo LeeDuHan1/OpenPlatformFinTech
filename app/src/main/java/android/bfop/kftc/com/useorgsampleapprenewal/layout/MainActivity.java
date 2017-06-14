@@ -17,7 +17,9 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener, MainPageFragment.OnFragmentInteractionListener,
-        AuthNewPageFragment.OnFragmentInteractionListener, AuthOldAppPageFragment.OnFragmentInteractionListener {
+        AuthNewPageFragment.OnFragmentInteractionListener, AuthOldAppPageFragment.OnFragmentInteractionListener,
+        AuthOldWebPageFragment.OnFragmentInteractionListener
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +128,8 @@ public class MainActivity extends AppCompatActivity implements
                 title = "사용자인증 기존버전 (앱 방식)";
                 break;
             case R.id.btnAuthOldWebMenu:
+                fm = new AuthOldWebPageFragment();
+                title = "사용자인증 기존버전 (웹 방식)";
                 break;
             case R.id.btnAPICallMenu:
                 break;
@@ -138,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements
         if(fm != null){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.fragment_container, fm);
+            ft.addToBackStack(null); // 뒤로가기 버튼 클릭시 이전 Fragment 스택을 불러올 수 있게 하기 위한 사전작업
             ft.commit();
         }
 
@@ -161,6 +166,11 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onFragmentInteractionAuthOldAppPage(Uri uri) {
+
+    }
+
+    @Override
+    public void onFragmentInteractionAuthOldWebPage(Uri uri) {
 
     }
     //===================================== 각 Fragment 들과의 통신 접점 - end =======================================
