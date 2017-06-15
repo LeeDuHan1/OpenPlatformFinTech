@@ -1,6 +1,9 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
+import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,7 +11,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 
 /**
@@ -29,6 +36,13 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RadioGroup rg_svr;
+    private EditText m_etAppKey;
+    private EditText m_etAppSecret;
+    private EditText m_etWebCallbackUrl;
+    private EditText m_etCallbackUrl;
+    private Spinner m_spScope;
 
     private OnFragmentInteractionListener mListener;
 
@@ -75,7 +89,21 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
         bindButtonClickEvents(view);
 
         // 액션바에 뒤로가기 버튼 노출하기
-//        ((MainActivity)this.getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((MainActivity)this.getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        rg_svr = (RadioGroup) view.findViewById(R.id.rgSvr);
+        m_etAppKey = (EditText) view.findViewById(R.id.etAppKey);
+        m_etAppSecret = (EditText) view.findViewById(R.id.etAppSecret);
+        m_etWebCallbackUrl = (EditText) view.findViewById(R.id.etWebCallbackUrl);
+        m_etCallbackUrl = (EditText) view.findViewById(R.id.etCallbackUrl);
+        m_spScope = (Spinner) view.findViewById(R.id.spScope);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(App.getAppContext(), R.array.sp_scope_items, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        m_spScope.setAdapter(adapter);
+
+        loadPreferences(App.getEnv());
+
 
         return view;
     }
@@ -87,9 +115,9 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
      */
     public void bindButtonClickEvents(View view){
 
-        ((Button)view.findViewById(R.id.btnAuthOldWeb)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnRegAcntOldWeb)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAuthAcntOldWeb)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnSaveSettings)).setOnClickListener(this); // 저장 버튼
+        ((Button)view.findViewById(R.id.btnResetSettings)).setOnClickListener(this); // 초기화 버튼
+        ((Button)view.findViewById(R.id.btnRemoveSession)).setOnClickListener(this); // 세션쿠키제거 버튼
     }
 
     /**
@@ -155,5 +183,34 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
         }
     }
 
+    /**
+     * input form 에 SharedPreferences 값 로딩
+     */
+    private void loadPreferences(String env) {
+
+        setRadioSvrCheckedFromPref(env);
+
+        String es = App.getEnvSuffix(env);
+
+        m_etAppKey.setText(StringUtil.getPropString("APP_KEY" + es));
+        m_etAppSecret.setText(StringUtil.getPropString("APP_SECRET" + es));
+        m_etWebCallbackUrl.setText(StringUtil.getPropString("WEB_CALLBACK_URL" + es));
+        m_etCallbackUrl.setText(StringUtil.getPropString("APP_CALLBACK_URL" + es));
+        m_spScope.setSelection(StringUtil.getPropString("SCOPE" + es).equals("inquiry") ? 0 : 1);
+    }
+
+    /**
+     * 매개변수로 호출서버 구분자를 받아서 라디오버튼 클릭상태 반영
+     */
+    private void setRadioSvrCheckedFromPref(String env){
+
+        int id = 0;
+//        String env = App.getEnv(); // 파라미터로 받는 걸로 변경
+        switch(env){
+            case Constants.ENV_TEST: id = R.id.radioSvr_TEST; break;
+            case Constants.ENV_PRD: id = R.id.radioSvr_PRD; break;
+        }
+        rg_svr.check(id);
+    }
 
 }

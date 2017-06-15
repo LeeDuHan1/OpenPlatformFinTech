@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnAuthOldWebMenu" />
 
     <Button
-        android:id="@+id/btnSettingMenu"
+        android:id="@+id/btnSettings"
         style="@style/MainButton"
         android:layout_width="308dp"
         android:layout_height="52dp"

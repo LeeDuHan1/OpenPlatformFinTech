@@ -88,7 +88,7 @@ public class MainFragment extends Fragment implements Button.OnClickListener {
         ((Button)view.findViewById(R.id.btnAuthOldAppMenu)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.btnAuthOldWebMenu)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.btnAPICallMenu)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnSettingMenu)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnSettings)).setOnClickListener(this);
     }
 
     /**
@@ -114,7 +114,7 @@ public class MainFragment extends Fragment implements Button.OnClickListener {
                 break;
             case R.id.btnAPICallMenu:
                 break;
-            case R.id.btnSettingMenu:
+            case R.id.btnSettings:
                 break;
             default:
                 break;

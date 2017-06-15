@@ -133,7 +133,9 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             case R.id.btnAPICallMenu:
                 break;
-            case R.id.btnSettingMenu:
+            case R.id.btnSettings:
+                fm = new SettingsFragment();
+                title = "설정";
                 break;
             default:
                 break;
