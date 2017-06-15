@@ -85,11 +85,13 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
+        MainActivity mainActivity = ((MainActivity)this.getActivity());
+
         // 버튼 이벤트핸들러 바인딩
         bindButtonClickEvents(view);
 
         // 액션바에 뒤로가기 버튼 노출하기
-        ((MainActivity)this.getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mainActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         rg_svr = (RadioGroup) view.findViewById(R.id.rgSvr);
         m_etAppKey = (EditText) view.findViewById(R.id.etAppKey);
@@ -98,7 +100,7 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
         m_etCallbackUrl = (EditText) view.findViewById(R.id.etCallbackUrl);
         m_spScope = (Spinner) view.findViewById(R.id.spScope);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(App.getAppContext(), R.array.sp_scope_items, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mainActivity, R.array.sp_scope_items, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         m_spScope.setAdapter(adapter);
 

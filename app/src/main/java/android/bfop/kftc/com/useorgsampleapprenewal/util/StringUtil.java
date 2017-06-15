@@ -1,8 +1,7 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.util;
 
+import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.util.Log;
-
-import com.kftc.bfop.useorgsampleapp.App;
 
 import java.lang.reflect.Field;
 import java.util.StringTokenizer;
