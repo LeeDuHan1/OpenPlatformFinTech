@@ -16,9 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements
-        NavigationView.OnNavigationItemSelectedListener, MainPageFragment.OnFragmentInteractionListener,
-        AuthNewPageFragment.OnFragmentInteractionListener, AuthOldAppPageFragment.OnFragmentInteractionListener,
-        AuthOldWebPageFragment.OnFragmentInteractionListener
+        NavigationView.OnNavigationItemSelectedListener, MainFragment.OnFragmentInteractionListener,
+        AuthNewMenuFragment.OnFragmentInteractionListener, AuthOldAppMenuFragment.OnFragmentInteractionListener,
+        AuthOldWebMenuFragment.OnFragmentInteractionListener
 {
 
     @Override
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if(fragment == null){
-            fragment = new MainPageFragment();
+            fragment = new MainFragment();
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
         }
         //================================ fragment 추가 - end ==================================
@@ -120,15 +120,15 @@ public class MainActivity extends AppCompatActivity implements
 
         switch(id){
             case R.id.btnAuthNewMenu:
-                fm = new AuthNewPageFragment();
+                fm = new AuthNewMenuFragment();
                 title = "사용자인증 개선버전";
                 break;
             case R.id.btnAuthOldAppMenu:
-                fm = new AuthOldAppPageFragment();
+                fm = new AuthOldAppMenuFragment();
                 title = "사용자인증 기존버전 (앱 방식)";
                 break;
             case R.id.btnAuthOldWebMenu:
-                fm = new AuthOldWebPageFragment();
+                fm = new AuthOldWebMenuFragment();
                 title = "사용자인증 기존버전 (웹 방식)";
                 break;
             case R.id.btnAPICallMenu:

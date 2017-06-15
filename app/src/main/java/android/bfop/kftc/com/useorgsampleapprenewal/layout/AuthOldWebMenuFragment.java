@@ -14,12 +14,12 @@ import android.widget.Button;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AuthOldAppPageFragment.OnFragmentInteractionListener} interface
+ * {@link AuthOldWebMenuFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AuthOldAppPageFragment#newInstance} factory method to
+ * Use the {@link AuthOldWebMenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AuthOldAppPageFragment extends Fragment implements Button.OnClickListener {
+public class AuthOldWebMenuFragment extends Fragment implements Button.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +32,7 @@ public class AuthOldAppPageFragment extends Fragment implements Button.OnClickLi
 
     private OnFragmentInteractionListener mListener;
 
-    public AuthOldAppPageFragment() {
+    public AuthOldWebMenuFragment() {
         // Required empty public constructor
     }
 
@@ -42,12 +42,12 @@ public class AuthOldAppPageFragment extends Fragment implements Button.OnClickLi
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MainPageFragment.
+     * @return A new instance of fragment MainFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AuthOldAppPageFragment newInstance(String param1, String param2) {
+    public static AuthOldWebMenuFragment newInstance(String param1, String param2) {
 
-        AuthOldAppPageFragment fragment = new AuthOldAppPageFragment();
+        AuthOldWebMenuFragment fragment = new AuthOldWebMenuFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,7 +69,7 @@ public class AuthOldAppPageFragment extends Fragment implements Button.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_autholdapp_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_autholdweb_menu, container, false);
 
         // 버튼 이벤트핸들러 바인딩
         bindButtonClickEvents(view);
@@ -87,9 +87,9 @@ public class AuthOldAppPageFragment extends Fragment implements Button.OnClickLi
      */
     public void bindButtonClickEvents(View view){
 
-        ((Button)view.findViewById(R.id.btnAuthOldApp)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnRegAcntOldApp)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAuthAcntOldApp)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthOldWeb)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnRegAcntOldWeb)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthAcntOldWeb)).setOnClickListener(this);
     }
 
     /**
@@ -101,11 +101,11 @@ public class AuthOldAppPageFragment extends Fragment implements Button.OnClickLi
     public void onClick(View v) {
 
         switch(v.getId()){
-            case R.id.btnAuthOldApp:
+            case R.id.btnAuthOldWeb:
                 break;
-            case R.id.btnRegAcntOldApp:
+            case R.id.btnRegAcntOldWeb:
                 break;
-            case R.id.btnAuthAcntOldApp:
+            case R.id.btnAuthAcntOldWeb:
                 break;
             default:
                 break;
@@ -145,13 +145,13 @@ public class AuthOldAppPageFragment extends Fragment implements Button.OnClickLi
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteractionAuthOldAppPage(Uri uri);
+        void onFragmentInteractionAuthOldWebPage(Uri uri);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteractionAuthOldAppPage(uri);
+            mListener.onFragmentInteractionAuthOldWebPage(uri);
         }
     }
 

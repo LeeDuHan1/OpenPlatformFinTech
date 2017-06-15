@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".layout.AuthNewPageFragment"
+    tools:context=".layout.AuthOldWebMenuFragment"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
     <Button
-        android:id="@+id/btnAuth2"
+        android:id="@+id/btnAuthOldWeb"
         style="@style/MainButton"
         android:layout_width="308dp"
         android:layout_height="52dp"
@@ -16,14 +16,29 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:text="사용자인증 개선버전"
+        android:text="사용자인증 기존버전 (웹 방식)"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegAcntOldWeb" />
+
+    <Button
+        android:id="@+id/btnRegAcntOldWeb"
+        style="@style/MainButton"
+        android:layout_width="308dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="계좌등록 기존버전 (웹 방식)"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="41dp" />
 
     <Button
-        android:id="@+id/btnAuthAcnt2"
+        android:id="@+id/btnAuthAcntOldWeb"
         style="@style/MainButton"
         android:layout_width="308dp"
         android:layout_height="52dp"
@@ -31,10 +46,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:text="계좌등록 확인 개선버전"
+        android:text="계좌등록확인 기존버전 (웹 방식)"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/btnAuth2" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAuthOldWeb" />
 
 </android.support.constraint.ConstraintLayout>
