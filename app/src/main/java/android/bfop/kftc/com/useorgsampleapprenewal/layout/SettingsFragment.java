@@ -199,7 +199,7 @@ public class SettingsFragment extends BaseFragment {
         String envName = App.getEnvName(env);
 
         // Dialog를 사용하여 confirm창 처럼 활용한다.
-        MessageUtil.getDialogBuilder("", envName + " 호출용 설정을 초기화 하시겠습니까?", true, App.getAppContext())
+        MessageUtil.getDialogBuilder("", envName + " 호출용 설정을 초기화 하시겠습니까?", true, mainActivity)
                 .setPositiveButton("초기화", new DialogInterface.OnClickListener() {
 
                     // 초기화 선택시
