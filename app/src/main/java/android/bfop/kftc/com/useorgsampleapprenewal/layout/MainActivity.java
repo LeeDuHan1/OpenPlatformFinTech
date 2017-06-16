@@ -1,6 +1,7 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,6 +22,11 @@ public class MainActivity extends AppCompatActivity implements
         AuthNewMenuFragment.OnFragmentInteractionListener, AuthOldAppMenuFragment.OnFragmentInteractionListener,
         AuthOldWebMenuFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener
 {
+
+    private BackPressCloseHandler backPressCloseHandler;
+    public BackPressCloseHandler getBackPressCloseHandler() {
+        return backPressCloseHandler;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,31 +43,51 @@ public class MainActivity extends AppCompatActivity implements
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        // 테스트
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // 뒤로가기 버튼 종료 관련 핸들러
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         //================================ fragment 추가 - start ================================
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-
         if(fragment == null){
             fragment = new MainFragment();
-            fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
+            fm.beginTransaction().add(R.id.fragment_container, fragment)
+              .addToBackStack(null)
+              .commit();
         }
         //================================ fragment 추가 - end ==================================
 
     }
 
+    /**
+     * 뒤로가기 버튼이 눌렸을 때 최초로 호출되는 메서드
+     */
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            // 현재 활성화된 fragment를 찾아서, 거기에 구현된 뒤로가기 핸들러를 호출해야 한다.
+            FragmentManager fm = getSupportFragmentManager();
+            BaseFragment fragment = (BaseFragment)fm.findFragmentById(R.id.fragment_container);
+            Log.d("", "## onBackPressed() > fragment:" + fragment.getClass().getName());
+            fragment.doBackBehavior();
         }
+    }
+
+    /**
+     * 일반적으로 호출되는 onBackPressed()에 Navigation Drawer로 인한 분기처리가 들어가 있으므로,
+     * 단순히 원래의 뒤로가기 행위를 각 Fragment에서 호출할 수 있도록 별도의 메서드로 분리하였음
+     */
+    public void back(){
+
+        super.onBackPressed();
     }
 
     @Override
@@ -153,7 +180,6 @@ public class MainActivity extends AppCompatActivity implements
         }
 
     }
-
 
     //===================================== 각 Fragment 들과의 통신 접점 - start =====================================
     @Override

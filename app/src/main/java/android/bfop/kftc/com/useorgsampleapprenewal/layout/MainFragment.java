@@ -19,7 +19,7 @@ import android.widget.Button;
  * Use the {@link MainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment implements Button.OnClickListener {
+public class MainFragment extends BaseFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,6 +70,7 @@ public class MainFragment extends Fragment implements Button.OnClickListener {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+        super.initBaseFragment(view); // BaseFragment 초기화 수행
 
         // 버튼 이벤트핸들러 바인딩
         bindButtonClickEvents(view);
@@ -140,6 +141,15 @@ public class MainFragment extends Fragment implements Button.OnClickListener {
 
         super.onDetach();
         mListener = null;
+    }
+
+    /**
+     * 뒤로가기 눌렀을 때 동작
+     */
+    @Override
+    public void doBackBehavior() {
+
+        mainActivity.getBackPressCloseHandler().onBackPressed();
     }
 
     /**

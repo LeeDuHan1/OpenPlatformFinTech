@@ -33,7 +33,8 @@ import android.widget.Spinner;
  * Use the {@link SettingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SettingsFragment extends Fragment implements Button.OnClickListener {
+//public class SettingsFragment extends Fragment implements Button.OnClickListener {
+public class SettingsFragment extends BaseFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,14 +73,13 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-
-        MainActivity mainActivity = ((MainActivity)this.getActivity());
+        super.initBaseFragment(view); // BaseFragment 초기화 수행
 
         // 버튼 이벤트핸들러 바인딩
         bindButtonClickEvents(view);
 
         // 액션바에 뒤로가기 버튼 노출하기
-        mainActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         rg_svr = (RadioGroup) view.findViewById(R.id.rgSvr);
         m_etAppKey = (EditText) view.findViewById(R.id.etAppKey);
@@ -93,7 +93,6 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
         m_spScope.setAdapter(adapter);
 
         loadPreferences(App.getEnv());
-
 
         return view;
     }
@@ -275,6 +274,12 @@ public class SettingsFragment extends Fragment implements Button.OnClickListener
         m_etWebCallbackUrl.setText(StringUtil.getPropString("WEB_CALLBACK_URL" + es));
         m_etCallbackUrl.setText(StringUtil.getPropString("APP_CALLBACK_URL" + es));
         m_spScope.setSelection(StringUtil.getPropString("SCOPE" + es).equals("inquiry") ? 0 : 1);
+    }
+
+    @Override
+    public void doBackBehavior() {
+
+        mainActivity.back();
     }
 
     /**
