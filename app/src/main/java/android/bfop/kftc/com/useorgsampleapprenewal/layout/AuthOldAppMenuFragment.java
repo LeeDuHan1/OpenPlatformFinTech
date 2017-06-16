@@ -19,7 +19,7 @@ import android.widget.Button;
  * Use the {@link AuthOldAppMenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AuthOldAppMenuFragment extends Fragment implements Button.OnClickListener {
+public class AuthOldAppMenuFragment extends BaseFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,6 +70,7 @@ public class AuthOldAppMenuFragment extends Fragment implements Button.OnClickLi
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_autholdapp_menu, container, false);
+        super.initBaseFragment(view); // BaseFragment 초기화 수행
 
         // 버튼 이벤트핸들러 바인딩
         bindButtonClickEvents(view);
@@ -128,6 +129,12 @@ public class AuthOldAppMenuFragment extends Fragment implements Button.OnClickLi
 
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void doBackBehavior() {
+
+        mainActivity.back();
     }
 
     /**
