@@ -71,6 +71,7 @@ public class MainFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         super.initBaseFragment(view); // BaseFragment 초기화 수행
+        mainActivity.showBackArrowOnActionBar(false);
 
         // 버튼 이벤트핸들러 바인딩
         bindButtonClickEvents(view);

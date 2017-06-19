@@ -2,6 +2,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitializedEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
@@ -23,6 +24,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+
+import org.greenrobot.eventbus.EventBus;
 
 
 /**
@@ -79,7 +82,16 @@ public class SettingsFragment extends BaseFragment {
         bindButtonClickEvents(view);
 
         // 액션바에 뒤로가기 버튼 노출하기
-        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        drawerToggle.setDrawerIndicatorEnabled(false); // 햄버거버튼 hide
+
+//        mainActivity.showBackArrowOnActionBar(true);
+
+        EventBus.getDefault().post(new FragmentInitializedEvent(this.getClass(), true));
+
+        final View.OnClickListener originalListener = drawerToggle.getToolbarNavigationClickListener();
+        Log.d("@@", "originalListener: "+originalListener);
+
 
         rg_svr = (RadioGroup) view.findViewById(R.id.rgSvr);
         m_etAppKey = (EditText) view.findViewById(R.id.etAppKey);

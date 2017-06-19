@@ -2,6 +2,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,6 +16,8 @@ public abstract class BaseFragment extends Fragment implements Button.OnClickLis
 
     protected ActionBar actionBar;
 
+    public ActionBarDrawerToggle drawerToggle;
+
     protected View thisFragmentView;
 
     /**
@@ -26,6 +29,7 @@ public abstract class BaseFragment extends Fragment implements Button.OnClickLis
 
         mainActivity = ((MainActivity)this.getActivity());
         actionBar = mainActivity.getSupportActionBar();
+        drawerToggle = mainActivity.getDrawerToggle();
         thisFragmentView = view;
     }
 

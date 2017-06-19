@@ -1,6 +1,7 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitializedEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener, MainFragment.OnFragmentInteractionListener,
@@ -23,10 +29,17 @@ public class MainActivity extends AppCompatActivity implements
         AuthOldWebMenuFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener
 {
 
+    private ActionBarDrawerToggle drawerToggle;
+    public ActionBarDrawerToggle getDrawerToggle() {
+        return drawerToggle;
+    }
+
     private BackPressCloseHandler backPressCloseHandler;
     public BackPressCloseHandler getBackPressCloseHandler() {
         return backPressCloseHandler;
     }
+
+    private boolean toolbarNavigationListenerRegistered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +49,13 @@ public class MainActivity extends AppCompatActivity implements
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // actionbar 좌측에 뒤로가기 화살표 표시
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(drawerToggle);
+        drawerToggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -57,9 +71,9 @@ public class MainActivity extends AppCompatActivity implements
             fm.beginTransaction().add(R.id.fragment_container, fragment)
               .addToBackStack(null)
               .commit();
+            getSupportActionBar().setTitle("이용기관 샘플앱 메인");
         }
         //================================ fragment 추가 - end ==================================
-
     }
 
     /**
@@ -97,8 +111,15 @@ public class MainActivity extends AppCompatActivity implements
         return true;
     }
 
+    /**
+     * 우상단 메뉴 항목 클릭시 호출
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -179,6 +200,50 @@ public class MainActivity extends AppCompatActivity implements
             getSupportActionBar().setTitle(title);
         }
 
+    }
+
+    public void showBackArrowOnActionBar(boolean enable){
+
+        if (enable) {
+            drawerToggle.setDrawerIndicatorEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            if (! toolbarNavigationListenerRegistered) {
+                drawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onBackPressed();
+                    }
+                });
+                toolbarNavigationListenerRegistered = true;
+            }
+
+        }else{
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            drawerToggle.setDrawerIndicatorEnabled(true);
+            drawerToggle.setToolbarNavigationClickListener(null);
+            toolbarNavigationListenerRegistered = false;
+
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onFragmentInitialized(FragmentInitializedEvent event){
+
+        Log.d("@@", "## onFragmentInitialized called!! : " + event);
+
+        showBackArrowOnActionBar(event.isBackArrowOnActionBar());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     //===================================== 각 Fragment 들과의 통신 접점 - start =====================================
