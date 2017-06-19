@@ -12,8 +12,6 @@ import android.widget.Button;
  */
 public abstract class BaseFragment extends Fragment implements Button.OnClickListener {
 
-    protected String actionBarTitle;
-
     protected MainActivity mainActivity;
 
     protected ActionBar actionBar;
