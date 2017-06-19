@@ -5,6 +5,8 @@ package android.bfop.kftc.com.useorgsampleapprenewal.util;
  */
 public interface Constants {
 
+    String ACTIONBAR_TITLE = "ACTIONBAR_TITLE";
+
     /**
      * SharedPreferences 설정 이름
      */

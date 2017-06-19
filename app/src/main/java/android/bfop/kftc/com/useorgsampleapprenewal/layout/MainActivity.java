@@ -3,6 +3,8 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitializedEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -67,11 +69,10 @@ public class MainActivity extends AppCompatActivity implements
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
         if(fragment == null){
-            fragment = new MainFragment();
+            fragment = MainFragment.newInstance("이용기관 샘플앱 메인");
             fm.beginTransaction().add(R.id.fragment_container, fragment)
               .addToBackStack(null)
               .commit();
-            getSupportActionBar().setTitle("이용기관 샘플앱 메인");
         }
         //================================ fragment 추가 - end ==================================
     }
@@ -168,22 +169,18 @@ public class MainActivity extends AppCompatActivity implements
 
         switch(id){
             case R.id.btnAuthNewMenu:
-                fm = new AuthNewMenuFragment();
-                title = "사용자인증 개선버전";
+                fm = AuthNewMenuFragment.newInstance("사용자인증 개선버전");
                 break;
             case R.id.btnAuthOldAppMenu:
-                fm = new AuthOldAppMenuFragment();
-                title = "사용자인증 기존버전 (앱 방식)";
+                fm = AuthOldAppMenuFragment.newInstance("사용자인증 기존버전 (앱 방식)");
                 break;
             case R.id.btnAuthOldWebMenu:
-                fm = new AuthOldWebMenuFragment();
-                title = "사용자인증 기존버전 (웹 방식)";
+                fm = AuthOldWebMenuFragment.newInstance("사용자인증 기존버전 (웹 방식)");
                 break;
             case R.id.btnAPICallMenu:
                 break;
             case R.id.btnSettings:
-                fm = new SettingsFragment();
-                title = "설정";
+                fm = SettingsFragment.newInstance("설정");
                 break;
             default:
                 break;
@@ -197,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         if(getSupportActionBar() != null){
-            getSupportActionBar().setTitle(title);
+            getSupportActionBar().setTitle(StringUtil.defaultString(fm.getArguments().get(Constants.ACTIONBAR_TITLE)));
         }
 
     }

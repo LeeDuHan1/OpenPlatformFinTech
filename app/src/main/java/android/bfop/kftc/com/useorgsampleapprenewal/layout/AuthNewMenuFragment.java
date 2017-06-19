@@ -1,6 +1,7 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,12 +46,11 @@ public class AuthNewMenuFragment extends BaseFragment {
      * @return A new instance of fragment MainFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AuthNewMenuFragment newInstance(String param1, String param2) {
+    public static AuthNewMenuFragment newInstance(String actionBarTitle) {
 
         AuthNewMenuFragment fragment = new AuthNewMenuFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
         fragment.setArguments(args);
         return fragment;
     }
