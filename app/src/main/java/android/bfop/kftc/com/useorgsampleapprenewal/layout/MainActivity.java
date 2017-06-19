@@ -75,7 +75,22 @@ public class MainActivity extends AppCompatActivity implements
               .commit();
         }
         //================================ fragment 추가 - end ==================================
+
+        // 뒤로가기시 액션바 타이틀도 같이 변경해 주도록 하는 작업
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);;
+                if(fragment != null){ // 이 조건을 넣지 않으면 초기 기동시 NPE가 발생한다.
+                    if(getSupportActionBar() != null){
+                        getSupportActionBar().setTitle(StringUtil.defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
+                    }
+                }
+            }
+        });
+
     }
+
 
     /**
      * 뒤로가기 버튼이 눌렸을 때 최초로 호출되는 메서드
@@ -164,37 +179,37 @@ public class MainActivity extends AppCompatActivity implements
 
     public void goPage(int id){
 
-        Fragment fm = null;
+        Fragment fragment = null;
         String title = null;
 
         switch(id){
             case R.id.btnAuthNewMenu:
-                fm = AuthNewMenuFragment.newInstance("사용자인증 개선버전");
+                fragment = AuthNewMenuFragment.newInstance("사용자인증 개선버전");
                 break;
             case R.id.btnAuthOldAppMenu:
-                fm = AuthOldAppMenuFragment.newInstance("사용자인증 기존버전 (앱 방식)");
+                fragment = AuthOldAppMenuFragment.newInstance("사용자인증 기존버전 (앱 방식)");
                 break;
             case R.id.btnAuthOldWebMenu:
-                fm = AuthOldWebMenuFragment.newInstance("사용자인증 기존버전 (웹 방식)");
+                fragment = AuthOldWebMenuFragment.newInstance("사용자인증 기존버전 (웹 방식)");
                 break;
             case R.id.btnAPICallMenu:
                 break;
             case R.id.btnSettings:
-                fm = SettingsFragment.newInstance("설정");
+                fragment = SettingsFragment.newInstance("설정");
                 break;
             default:
                 break;
         }
 
-        if(fm != null){
+        if(fragment != null){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, fm);
+            ft.replace(R.id.fragment_container, fragment);
             ft.addToBackStack(null); // 뒤로가기 버튼 클릭시 이전 Fragment 스택을 불러올 수 있게 하기 위한 사전작업
             ft.commit();
         }
 
         if(getSupportActionBar() != null){
-            getSupportActionBar().setTitle(StringUtil.defaultString(fm.getArguments().get(Constants.ACTIONBAR_TITLE)));
+            getSupportActionBar().setTitle(StringUtil.defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
         }
 
     }
