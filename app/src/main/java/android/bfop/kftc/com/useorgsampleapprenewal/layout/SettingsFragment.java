@@ -133,26 +133,19 @@ public class SettingsFragment extends BaseFragment {
     public void onClick(View v) {
 
         switch(v.getId()){
-
             case R.id.radioSvr_TEST:
             case R.id.radioSvr_PRD:
-                String env = getEnvFromRadioButton(); // 클릭된 호출서버 라디오버튼에서 선택한 환경값 획득
-                Log.d("!@#", "env: "+env);
-                loadPreferences(env);
+                loadPreferences(getEnvFromRadioButton());
                 break;
-
             case R.id.btnSaveSettings:
                 save();
                 break;
-
             case R.id.btnResetSettings:
                 reset();
                 break;
-
             case R.id.btnRemoveSession:
                 removeSessionCookie();
                 break;
-
             default:
                 break;
         }

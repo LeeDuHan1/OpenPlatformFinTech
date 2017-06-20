@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements
         }
         //================================ fragment 추가 - end ==================================
 
-        // 뒤로가기시 액션바 타이틀도 같이 변경해 주도록 하는 작업
+        // 뒤로가기시 액션바 타이틀도 같이 변경해 주도록 OnBackStackChangedListener 추가
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
@@ -159,48 +159,48 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
-        if (id == R.id.nav_authNew) {
-
-        } else if (id == R.id.nav_authOldApp) {
-
-        } else if (id == R.id.nav_authOldWeb) {
-
-        } else if (id == R.id.nav_APICall) {
-
-        } else if (id == R.id.nav_setting) {
-
-        }
+        goPage(item.getItemId());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    /**
+     * 페이지 이동
+     *
+     * @param id
+     */
     public void goPage(int id){
 
         Fragment fragment = null;
         String title = null;
 
         switch(id){
-            case R.id.btnAuthNewMenu:
+            case R.id.btnAuthNewMenu:   // 메인페이지 버튼
+            case R.id.nav_authNew:      // Navigation Drawer 메뉴
                 fragment = AuthNewMenuFragment.newInstance("사용자인증 개선버전");
                 break;
             case R.id.btnAuthOldAppMenu:
+            case R.id.nav_authOldApp:
                 fragment = AuthOldAppMenuFragment.newInstance("사용자인증 기존버전 (앱 방식)");
                 break;
             case R.id.btnAuthOldWebMenu:
+            case R.id.nav_authOldWeb:
                 fragment = AuthOldWebMenuFragment.newInstance("사용자인증 기존버전 (웹 방식)");
                 break;
             case R.id.btnAPICallMenu:
+            case R.id.nav_APICall:
                 break;
             case R.id.btnSettings:
+            case R.id.nav_setting:
                 fragment = SettingsFragment.newInstance("설정");
                 break;
             default:
                 break;
         }
 
+        // Fragment 교체
         if(fragment != null){
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.fragment_container, fragment);
@@ -208,12 +208,18 @@ public class MainActivity extends AppCompatActivity implements
             ft.commit();
         }
 
+        // 액션바 타이틀 교체
         if(getSupportActionBar() != null){
             getSupportActionBar().setTitle(StringUtil.defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
         }
 
     }
 
+    /**
+     * 액션바에 뒤로가기 화살표 표시 및 뒤로가기 기능 추가
+     *
+     * @param enable true일 경우에만 뒤로가기 기능 추가를 수행한다.
+     */
     public void showBackArrowOnActionBar(boolean enable){
 
         if (enable) {
@@ -238,11 +244,15 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     * FragmentInitializedEvent 에 대한 EventBus Subscriber
+     *
+     * @param event
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onFragmentInitialized(FragmentInitializedEvent event){
 
         Log.d("@@", "## onFragmentInitialized called!! : " + event);
-
         showBackArrowOnActionBar(event.isBackArrowOnActionBar());
     }
 
