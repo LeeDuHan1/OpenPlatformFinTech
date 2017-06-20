@@ -1,7 +1,7 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
-import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitializedEvent;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.content.Context;
 import android.os.Bundle;
@@ -57,8 +57,8 @@ public class AuthNewMenuFragment extends BaseFragment {
         // 버튼 이벤트핸들러 바인딩
         bindButtonClickEvents(view);
 
-        // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴를 뒤로가기 화살표버튼으로 교체하기 위해서 수행)
-        EventBus.getDefault().post(new FragmentInitializedEvent(this.getClass(), true));
+        // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
+        EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
         return view;
     }

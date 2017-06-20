@@ -1,9 +1,8 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
-import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitializedEvent;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -23,9 +22,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class MainActivity extends AppCompatActivity implements
-        NavigationView.OnNavigationItemSelectedListener, MainFragment.OnFragmentInteractionListener
-{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle drawerToggle;
     public ActionBarDrawerToggle getDrawerToggle() {
@@ -254,12 +251,12 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * FragmentInitializedEvent 에 대한 EventBus Subscriber
+     * FragmentInitEvent 에 대한 EventBus Subscriber
      *
      * @param event
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onFragmentInitialized(FragmentInitializedEvent event){
+    public void onFragmentInitialized(FragmentInitEvent event){
 
         Log.d("@@", "## onFragmentInitialized called!! : " + event);
         showBackArrowOnActionBar(event.isBackArrowOnActionBar());
@@ -276,13 +273,5 @@ public class MainActivity extends AppCompatActivity implements
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
-
-    //===================================== 각 Fragment 들과의 통신 접점 - start =====================================
-    @Override
-    public void onFragmentInteractionMainPage(Uri uri) {
-
-    }
-
-    //===================================== 각 Fragment 들과의 통신 접점 - end =======================================
 
 }

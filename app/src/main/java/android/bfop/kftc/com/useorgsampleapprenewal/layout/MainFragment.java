@@ -1,9 +1,9 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,30 +11,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import org.greenrobot.eventbus.EventBus;
+
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MainFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MainFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * 메인 메뉴 Fragment (최초 로딩 페이지)
  */
 public class MainFragment extends BaseFragment {
 
-    private OnFragmentInteractionListener mListener;
-
-    public MainFragment() {} // Required empty public constructor
+    /**
+     * 생성자
+     *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
+     */
+    public MainFragment() {
+       // Required empty public constructor
+    }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
+     * Fragment 생성 메서드
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MainFragment.
+     * @param actionBarTitle
+     * @return
      */
-    // TODO: Rename and change types and number of parameters
     public static MainFragment newInstance(String actionBarTitle) {
 
         MainFragment fragment = new MainFragment();
@@ -44,6 +42,7 @@ public class MainFragment extends BaseFragment {
         return fragment;
     }
 
+    //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -56,13 +55,28 @@ public class MainFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         super.initBaseFragment(view); // BaseFragment 초기화 수행
-        mainActivity.showBackArrowOnActionBar(false);
+
+        // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
+        EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), false)); // false
 
         // 버튼 이벤트핸들러 바인딩
         bindButtonClickEvents(view);
 
         return view;
     }
+
+    @Override
+    public void onAttach(Context context) {
+
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach() {
+
+        super.onDetach();
+    }
+    //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**
      * 버튼 이벤트핸들러 바인딩
@@ -110,49 +124,5 @@ public class MainFragment extends BaseFragment {
         mainActivity.goPage(btnId);
 
     }
-
-    @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     *
-     * TODO: 얘 꼭 필요해??
-     *
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteractionMainPage(Uri uri);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteractionMainPage(uri);
-        }
-    }
-
 
 }

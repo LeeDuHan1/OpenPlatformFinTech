@@ -5,13 +5,13 @@ package android.bfop.kftc.com.useorgsampleapprenewal.eventbus;
  *
  * Created by LeeHyeonJae on 2017-06-19.
  */
-public class FragmentInitializedEvent {
+public class FragmentInitEvent {
 
     private boolean backArrowOnActionBar;
 
     private Class clazz;
 
-    public FragmentInitializedEvent(Class clazz, boolean backArrowOnActionBar) {
+    public FragmentInitEvent(Class clazz, boolean backArrowOnActionBar) {
         this.clazz = clazz;
         this.backArrowOnActionBar = backArrowOnActionBar;
     }
@@ -26,7 +26,7 @@ public class FragmentInitializedEvent {
 
     @Override
     public String toString() {
-        return "FragmentInitializedEvent{" +
+        return "FragmentInitEvent{" +
                 "backArrowOnActionBar=" + backArrowOnActionBar +
                 ", clazz=" + clazz +
                 '}';
