@@ -87,10 +87,6 @@ public class SettingsFragment extends BaseFragment {
          */
         EventBus.getDefault().post(new FragmentInitializedEvent(this.getClass(), true));
 
-        final View.OnClickListener originalListener = drawerToggle.getToolbarNavigationClickListener();
-        Log.d("@@", "originalListener: "+originalListener);
-
-
         rg_svr = (RadioGroup) view.findViewById(R.id.rgSvr);
         m_etAppKey = (EditText) view.findViewById(R.id.etAppKey);
         m_etAppSecret = (EditText) view.findViewById(R.id.etAppSecret);
