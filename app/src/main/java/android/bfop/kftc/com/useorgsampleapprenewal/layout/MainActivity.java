@@ -24,9 +24,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 public class MainActivity extends AppCompatActivity implements
-        NavigationView.OnNavigationItemSelectedListener, MainFragment.OnFragmentInteractionListener,
-        AuthOldAppMenuFragment.OnFragmentInteractionListener,
-        AuthOldWebMenuFragment.OnFragmentInteractionListener
+        NavigationView.OnNavigationItemSelectedListener, MainFragment.OnFragmentInteractionListener
 {
 
     private ActionBarDrawerToggle drawerToggle;
@@ -285,15 +283,6 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    @Override
-    public void onFragmentInteractionAuthOldAppPage(Uri uri) {
-
-    }
-
-    @Override
-    public void onFragmentInteractionAuthOldWebPage(Uri uri) {
-
-    }
     //===================================== 각 Fragment 들과의 통신 접점 - end =======================================
 
 }
