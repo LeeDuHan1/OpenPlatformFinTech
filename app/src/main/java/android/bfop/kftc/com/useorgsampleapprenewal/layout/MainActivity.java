@@ -4,6 +4,7 @@ import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitializedEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements
                 Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);;
                 if(fragment != null){ // 이 조건을 넣지 않으면 초기 기동시 NPE가 발생한다.
                     if(getSupportActionBar() != null){
-                        getSupportActionBar().setTitle(defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
+                        getSupportActionBar().setTitle(StringUtil.defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
                     }
                 }
             }
