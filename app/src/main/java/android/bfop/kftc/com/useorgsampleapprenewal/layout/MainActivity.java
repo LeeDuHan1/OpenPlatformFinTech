@@ -115,15 +115,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    /**
-     * 일반적으로 호출되는 onBackPressed()에 Navigation Drawer로 인한 분기처리가 들어가 있으므로,
-     * 단순히 원래의 뒤로가기 행위를 각 Fragment에서 호출할 수 있도록 별도의 메서드로 분리하였음
-     */
-    public void back(){
-
-        super.onBackPressed();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
