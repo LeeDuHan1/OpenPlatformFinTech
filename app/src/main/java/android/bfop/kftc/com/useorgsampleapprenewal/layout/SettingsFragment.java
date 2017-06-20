@@ -61,7 +61,7 @@ public class SettingsFragment extends BaseFragment {
         return fragment;
     }
 
-
+    //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -111,7 +111,11 @@ public class SettingsFragment extends BaseFragment {
 
         super.onDetach();
     }
+    //===================================== Fragment Lifecycle Callbacks - end =======================================
 
+    /**
+     * 현재 Fragment 에서 뒤로가기 버튼을 눌렀을 때 수행할 작업 정의
+     */
     @Override
     public void doBackBehavior() {
 
