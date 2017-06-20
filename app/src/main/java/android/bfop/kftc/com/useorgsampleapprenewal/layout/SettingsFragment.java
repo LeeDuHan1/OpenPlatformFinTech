@@ -88,7 +88,7 @@ public class SettingsFragment extends BaseFragment {
         m_etCallbackUrl = (EditText) view.findViewById(R.id.etCallbackUrl);
         m_spScope = (Spinner) view.findViewById(R.id.spScope);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mainActivity, R.array.sp_scope_items, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(), R.array.sp_scope_items, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         m_spScope.setAdapter(adapter);
 
@@ -215,7 +215,7 @@ public class SettingsFragment extends BaseFragment {
         String envName = App.getEnvName(env);
 
         // Dialog를 사용하여 confirm창 처럼 활용한다.
-        MessageUtil.getDialogBuilder("", envName + " 호출용 설정을 초기화 하시겠습니까?", true, mainActivity)
+        MessageUtil.getDialogBuilder("", envName + " 호출용 설정을 초기화 하시겠습니까?", true, this.getActivity())
                 .setPositiveButton("초기화", new DialogInterface.OnClickListener() {
 
                     // 초기화 선택시
