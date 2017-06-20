@@ -26,8 +26,7 @@ import android.widget.Spinner;
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * 설정 Fragment
- *
+ * 설정 페이지 Fragment
  */
 public class SettingsFragment extends BaseFragment {
 
@@ -109,15 +108,6 @@ public class SettingsFragment extends BaseFragment {
         super.onDetach();
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
-
-    /**
-     * 현재 Fragment 에서 뒤로가기 버튼을 눌렀을 때 수행할 작업 정의
-     */
-    @Override
-    public void doBackBehavior() {
-
-        mainActivity.back();
-    }
 
     /**
      * 버튼 이벤트핸들러 바인딩

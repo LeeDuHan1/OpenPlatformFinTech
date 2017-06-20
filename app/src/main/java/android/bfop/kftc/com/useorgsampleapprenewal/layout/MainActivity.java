@@ -3,8 +3,6 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitializedEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
-import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
-import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -25,11 +23,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import static android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil.defaultString;
-
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener, MainFragment.OnFragmentInteractionListener,
-        AuthNewMenuFragment.OnFragmentInteractionListener, AuthOldAppMenuFragment.OnFragmentInteractionListener,
+        AuthOldAppMenuFragment.OnFragmentInteractionListener,
         AuthOldWebMenuFragment.OnFragmentInteractionListener
 {
 
@@ -82,17 +78,16 @@ public class MainActivity extends AppCompatActivity implements
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);;
+                BaseFragment fragment = (BaseFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_container);;
                 if(fragment != null){ // 이 조건을 넣지 않으면 초기 기동시 NPE가 발생한다.
                     if(getSupportActionBar() != null){
-                        getSupportActionBar().setTitle(StringUtil.defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
+                        getSupportActionBar().setTitle(fragment.getActionBarTitle());
                     }
                 }
             }
         });
 
     }
-
 
     /**
      * 뒤로가기 버튼이 눌렸을 때 최초로 호출되는 메서드
@@ -187,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements
      */
     public void goPage(int id){
 
-        Fragment fragment = null;
+        BaseFragment fragment = null;
         String title = null;
 
         switch(id){
@@ -214,18 +209,20 @@ public class MainActivity extends AppCompatActivity implements
                 break;
         }
 
-        // Fragment 교체
         if(fragment != null){
+
+            // Fragment 교체
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.fragment_container, fragment);
             ft.addToBackStack(null); // 뒤로가기 버튼 클릭시 이전 Fragment 스택을 불러올 수 있게 하기 위한 사전작업
             ft.commit();
+
+            // 액션바 타이틀 교체
+            if(getSupportActionBar() != null){
+                getSupportActionBar().setTitle(fragment.getActionBarTitle());
+            }
         }
 
-        // 액션바 타이틀 교체
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setTitle(defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
-        }
 
     }
 
@@ -285,11 +282,6 @@ public class MainActivity extends AppCompatActivity implements
     //===================================== 각 Fragment 들과의 통신 접점 - start =====================================
     @Override
     public void onFragmentInteractionMainPage(Uri uri) {
-
-    }
-
-    @Override
-    public void onFragmentInteractionAuthNewPage(Uri uri) {
 
     }
 

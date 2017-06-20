@@ -130,15 +130,6 @@ public class MainFragment extends BaseFragment {
     }
 
     /**
-     * 뒤로가기 눌렀을 때 동작
-     */
-    @Override
-    public void doBackBehavior() {
-
-        mainActivity.getBackPressCloseHandler().onBackPressed();
-    }
-
-    /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that

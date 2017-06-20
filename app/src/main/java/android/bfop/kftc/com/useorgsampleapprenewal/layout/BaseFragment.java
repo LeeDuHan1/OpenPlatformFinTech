@@ -1,5 +1,7 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
+import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -34,9 +36,12 @@ public abstract class BaseFragment extends Fragment implements Button.OnClickLis
     }
 
     /**
-     * 뒤로가기 눌렀을 때 동작
+     * 액션바 타이틀 리턴
      *
+     * @return
      */
-    public abstract void doBackBehavior();
+    public String getActionBarTitle(){
 
+        return StringUtil.defaultString(this.getArguments().get(Constants.ACTIONBAR_TITLE));
+    }
 }
