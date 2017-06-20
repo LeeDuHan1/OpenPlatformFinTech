@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.btnAPICallMenu:
             case R.id.nav_APICall:
+                fragment = APICallMenuFragment.newInstance("API 거래기능");
                 break;
             case R.id.btnSettings:
             case R.id.nav_setting:
