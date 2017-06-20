@@ -4,7 +4,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitializedEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
-import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -24,6 +23,8 @@ import android.view.View;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import static android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil.defaultString;
 
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener, MainFragment.OnFragmentInteractionListener,
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements
                 Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);;
                 if(fragment != null){ // 이 조건을 넣지 않으면 초기 기동시 NPE가 발생한다.
                     if(getSupportActionBar() != null){
-                        getSupportActionBar().setTitle(StringUtil.defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
+                        getSupportActionBar().setTitle(defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
                     }
                 }
             }
@@ -98,16 +99,28 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onBackPressed() {
 
+        // Navigation Drawer가 열려 있을 경우 닫는다.
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
 
-            // 현재 활성화된 fragment를 찾아서, 거기에 구현된 뒤로가기 핸들러를 호출해야 한다.
+        // Navigation Drawer가 닫혀 있을 경우
+        } else {
             FragmentManager fm = getSupportFragmentManager();
             BaseFragment fragment = (BaseFragment)fm.findFragmentById(R.id.fragment_container);
-            Log.d("", "## onBackPressed() > fragment:" + fragment.getClass().getName());
-            fragment.doBackBehavior();
+            if (fragment != null) {
+                int backStackCnt = fm.getBackStackEntryCount();
+                Log.d("", "## onBackPressed() > fragment:" + fragment.getClass().getName());
+                Log.d("", "## backStackCnt: "+backStackCnt);
+                // 현재 MainFragment 이면서 backstack이 없을 경우 backPressCloseHandler 를 호출한다
+                if ((fragment instanceof MainFragment) && (backStackCnt <= 1)) {
+                    backPressCloseHandler.onBackPressed();
+                // 그 외의 경우 backstack 을 호출한다.
+                }else{
+                    super.onBackPressed();
+                }
+            }
+
         }
     }
 
@@ -210,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements
 
         // 액션바 타이틀 교체
         if(getSupportActionBar() != null){
-            getSupportActionBar().setTitle(StringUtil.defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
+            getSupportActionBar().setTitle(defaultString(fragment.getArguments().get(Constants.ACTIONBAR_TITLE)));
         }
 
     }
