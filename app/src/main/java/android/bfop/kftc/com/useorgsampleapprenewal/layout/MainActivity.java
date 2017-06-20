@@ -30,9 +30,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private BackPressCloseHandler backPressCloseHandler;
-    public BackPressCloseHandler getBackPressCloseHandler() {
-        return backPressCloseHandler;
-    }
 
     private boolean toolbarNavigationListenerRegistered = false;
 
@@ -99,36 +96,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ///////////////////////////////////// Activity Lifecycle Callbacks - end ///////////////////////////////////////
 
     /**
-     * 뒤로가기 버튼이 눌렸을 때 최초로 호출되는 메서드
+     * 액션바 우측 옵션메뉴 생성
+     *
+     * @param menu
+     * @return
      */
-    @Override
-    public void onBackPressed() {
-
-        // Navigation Drawer가 열려 있을 경우 닫는다.
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-
-        // Navigation Drawer가 닫혀 있을 경우
-        } else {
-            FragmentManager fm = getSupportFragmentManager();
-            BaseFragment fragment = (BaseFragment)fm.findFragmentById(R.id.fragment_container);
-            if (fragment != null) {
-                int backStackCnt = fm.getBackStackEntryCount();
-                Log.d("", "## onBackPressed() > fragment:" + fragment.getClass().getName());
-                Log.d("", "## backStackCnt: "+backStackCnt);
-                // 현재 MainFragment 이면서 backstack이 없을 경우 backPressCloseHandler 를 호출한다
-                if ((fragment instanceof MainFragment) && (backStackCnt <= 1)) {
-                    backPressCloseHandler.onBackPressed();
-                // 그 외의 경우 backstack 을 호출한다.
-                }else{
-                    super.onBackPressed();
-                }
-            }
-
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -137,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * 우상단 메뉴 항목 클릭시 호출
+     * 우상단 메뉴 선택 이벤트핸들러
      *
      * @param item
      * @return
@@ -173,6 +145,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    /**
+     * 뒤로가기 버튼이 눌렸을 때 최초로 호출되는 메서드
+     */
+    @Override
+    public void onBackPressed() {
+
+        // Navigation Drawer가 열려 있을 경우 닫는다.
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+
+        // Navigation Drawer가 닫혀 있을 경우
+        } else {
+            FragmentManager fm = getSupportFragmentManager();
+            BaseFragment fragment = (BaseFragment)fm.findFragmentById(R.id.fragment_container);
+            if (fragment != null) {
+                int backStackCnt = fm.getBackStackEntryCount();
+                Log.d("", "## onBackPressed() > fragment:" + fragment.getClass().getName());
+                Log.d("", "## backStackCnt: "+backStackCnt);
+                // 현재 MainFragment 이면서 backstack이 없을 경우 backPressCloseHandler 를 호출한다
+                if ((fragment instanceof MainFragment) && (backStackCnt <= 1)) {
+                    backPressCloseHandler.onBackPressed();
+                // 그 외의 경우 backstack 을 호출한다.
+                }else{
+                    super.onBackPressed();
+                }
+            }
+
+        }
     }
 
     /**
