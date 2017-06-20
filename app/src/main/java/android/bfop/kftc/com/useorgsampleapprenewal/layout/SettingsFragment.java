@@ -162,7 +162,7 @@ public class SettingsFragment extends BaseFragment {
             cookieManager.removeSessionCookies(new ValueCallback<Boolean>() {
                 @Override
                 public void onReceiveValue(Boolean value) {
-                    Log.d("", "## 롤리팝 이상 버전의 removeSessionCookie() 호출 후");
+                Log.d("", "## 롤리팝 이상 버전의 removeSessionCookie() 호출 후");
                 }
             });
 
