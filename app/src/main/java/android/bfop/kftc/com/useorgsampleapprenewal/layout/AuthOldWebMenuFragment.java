@@ -2,9 +2,11 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,16 +99,38 @@ public class AuthOldWebMenuFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
 
+        Log.d("", "@@@@@@@@@@@@@@@@@@@@#####################@@@@@@@@@@@@@@@@@");
+
+        BaseFragment fragment = null;
+        String title = null;
+
         switch(v.getId()){
             case R.id.btnAuthOldWeb:
                 break;
             case R.id.btnRegAcntOldWeb:
+                fragment = AuthOldWebPageRegisterAccountFragment.newInstance("계좌등록 기존버전 (웹 방식)");
                 break;
             case R.id.btnAuthAcntOldWeb:
                 break;
             default:
                 break;
         }
+
+        // TODO: Fragment 를 교체하는 EventBus를 작성해야 한다.
+        EventBus.getDefault().post(new FragmentReplaceEvent(fragment));
+
+//        if(fragment != null){
+//
+//            // Fragment 교체
+//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//            ft.replace(R.id.fragment_container, fragment);
+//            ft.addToBackStack(null); // 뒤로가기 버튼 클릭시 이전 Fragment 스택을 불러올 수 있게 하기 위한 사전작업
+//            ft.commit();
+//
+//            // 액션바 타이틀 교체
+//            if(getSupportActionBar() != null){
+//                getSupportActionBar().setTitle(fragment.getActionBarTitle());
+//            }
     }
 
 }

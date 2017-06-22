@@ -2,6 +2,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -214,6 +215,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
 
+        replaceFragment(fragment);
+    }
+
+    /**
+     * MainActivity 위에 떠 있는 Fragment 교체
+     *
+     * @param fragment
+     */
+    private void replaceFragment(BaseFragment fragment) {
+
         if(fragment != null){
 
             // Fragment 교체
@@ -227,8 +238,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportActionBar().setTitle(fragment.getActionBarTitle());
             }
         }
-
-
     }
 
     /**
@@ -269,6 +278,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onFragmentInitialized(FragmentInitEvent event){
 
         showBackArrowOnActionBar(event.isBackArrowOnActionBar());
+    }
+
+    /**
+     * FragmentReplaceEvent 에 대한 EventBus Subscriber
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onFragmentReplace(FragmentReplaceEvent event){
+
+        replaceFragment(event.getFragment());
     }
 
 }
