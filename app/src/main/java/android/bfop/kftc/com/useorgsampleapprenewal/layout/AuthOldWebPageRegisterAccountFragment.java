@@ -1,11 +1,14 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
+import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +17,14 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringJoiner;
 
 
 /**
  * 계좌등록 기존버전 (웹 방식) Fragment
  */
 public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
+
+    private static String URI = "/oauth/2.0/register_account";
 
     /**
      * 생성자
@@ -66,7 +70,7 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
 
-        String queryString = null;
+        // querystring을 만들기 위한 Map
         Map<String, String> pMap = new HashMap<>();
         pMap.put("response_type", "code");
         pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
@@ -74,89 +78,10 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
         pMap.put("scope", StringUtil.getPropStringForEnv("SCOPE"));
         pMap.put("client_info", "whatever_you_want");
 
-//        pMap.entrySet().stream()
-//                .map(p -> StringUtil.urlEncode(p.getKey()) + "=" + StringUtil.urlEncode(p.getValue()))
-//                .reduce((p1, p2) -> p1 + "&" + p2)
-//                .orElse("");
+        // 호출 URL (querystring 포함)
+        String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.converMapToQuerystring(pMap);
 
-
-
-
-
-/*
-
-        List<NameValuePair> params = new LinkedList<NameValuePair>();
-        params.add(new BasicNameValuePair("response_type", "code"));
-        params.add(new BasicNameValuePair("client_id", StringUtil.getPropStringForEnv("APP_KEY")));
-        params.add(new BasicNameValuePair("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL")));
-        params.add(new BasicNameValuePair("scope", StringUtil.getPropStringForEnv("SCOPE")));
-        params.add(new BasicNameValuePair("client_info", "whatever_you_want"));
-
-        // 20170214 - ARS 테스트를 위한 임시 파라미터 추가 (TODO: 추후에는 포털에서 자동 분기하므로 삭제할 것)
-//        params.add(new BasicNameValuePair("type", "ars"));
-
-        String paramString = URLEncodedUtils.format(params, "utf-8");
-        String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + paramString;
-
-        m_etUrl = (EditText) findViewById(R.id.etUrl);
-        m_webView = (WebView) findViewById(R.id.webView);
-
-        m_etUrl.setText(urlToLoad);
-        WebSettings settings = m_webView.getSettings();
-
-        settings.setJavaScriptEnabled(true);
-        settings.setDomStorageEnabled(true); //HSY: 로그인을 위해 필요
-        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-
-        // WebView의 팝업처리를 위해서 설정 추가 - 20170227 => 의도한 대로 작동하지 않았기 때문에 주석 처리
-//        settings.setJavaScriptCanOpenWindowsAutomatically(true);
-//        settings.setSupportMultipleWindows(true);
-
-        m_webView.setWebChromeClient(new WebChromeClient(){
-            @Override
-            public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
-                new AlertDialog.Builder(AuthOldWebPageRegisterAccountFragment.this)
-                        .setTitle("확인")
-                        .setMessage(message)
-                        .setPositiveButton(android.R.string.ok,
-                                new AlertDialog.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        result.confirm();
-                                    }
-                                })
-                        .setCancelable(false)
-                        .create()
-                        .show();
-                return true;
-            }
-        });
-        m_webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                Log.d("@@ url", url);
-
-                */
-/*
-                 * AuthorizationCode 발급이 완료된 이후에, 해당 코드를 사용하여 토큰발급까지의 흐름을 UI상에 보여주기 위해서 추가한 코드
-                 * 이용기관에 이렇게 사용하도록 가이드 하는 것은 아님에 주의할 것.
-                 *//*
-
-                goWebAuthCodeView(url);
-
-                return true;
-            }
-
-            @Override
-            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                handler.proceed(); // Ignore SSL certificate errors
-            }
-        });
-
-        m_webView.loadUrl(urlToLoad);
-
-*/
-
+        WebViewUtil.loadUrlOnWebView(view, urlToLoad);
 
         return view;
     }
