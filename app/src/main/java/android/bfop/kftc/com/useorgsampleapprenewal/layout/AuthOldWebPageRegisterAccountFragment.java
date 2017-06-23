@@ -3,6 +3,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringJoiner;
 
 
 /**
@@ -51,7 +56,7 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_autholdweb_page_register_account, container, false);
+        View view = inflater.inflate(R.layout.fragment_webview_common, container, false);
         super.initBaseFragment(view); // BaseFragment 초기화 수행
 
         // 버튼 이벤트핸들러 바인딩
@@ -60,6 +65,19 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
+
+        String queryString = null;
+        Map<String, String> pMap = new HashMap<>();
+        pMap.put("response_type", "code");
+        pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
+        pMap.put("scope", StringUtil.getPropStringForEnv("SCOPE"));
+        pMap.put("client_info", "whatever_you_want");
+
+//        pMap.entrySet().stream()
+//                .map(p -> StringUtil.urlEncode(p.getKey()) + "=" + StringUtil.urlEncode(p.getValue()))
+//                .reduce((p1, p2) -> p1 + "&" + p2)
+//                .orElse("");
 
 
 

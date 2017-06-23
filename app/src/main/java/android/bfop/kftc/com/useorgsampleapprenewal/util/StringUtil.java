@@ -3,7 +3,10 @@ package android.bfop.kftc.com.useorgsampleapprenewal.util;
 import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.util.Log;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.net.URLEncoder;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 /**
@@ -170,5 +173,39 @@ public class StringUtil {
         return "";
     }
 
+    /**
+     * URL encoding wrapper
+     *
+     * @param src
+     * @return
+     */
+    public static String urlEncode(String src){
+
+        String ret = "";
+        try {
+            ret = URLEncoder.encode(StringUtil.defaultString(src), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    /**
+     * Map을 querystring으로 변환하기
+     *
+     * @param paramMap
+     * @return
+     */
+    public static String converMapToQuerystring(Map<?,?> paramMap) {
+
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<?,?> e : paramMap.entrySet()) {
+            if (sb.length() > 0) {
+                sb.append("&");
+            }
+            sb.append(String.format("%s=%s", urlEncode(StringUtil.defaultString(e.getKey())), urlEncode(StringUtil.defaultString(e.getValue()))));
+        }
+        return sb.toString();
+    }
 
 }
