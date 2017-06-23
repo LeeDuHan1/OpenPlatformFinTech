@@ -8,7 +8,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +68,6 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
-
         // querystring을 만들기 위한 Map
         Map<String, String> pMap = new HashMap<>();
         pMap.put("response_type", "code");
@@ -81,6 +79,7 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.converMapToQuerystring(pMap);
 
+        // WebView로 url 호출
         WebViewUtil.loadUrlOnWebView(view, urlToLoad);
 
         return view;
