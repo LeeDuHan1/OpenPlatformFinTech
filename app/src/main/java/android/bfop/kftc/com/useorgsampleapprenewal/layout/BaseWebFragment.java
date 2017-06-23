@@ -13,6 +13,7 @@ import static android.bfop.kftc.com.useorgsampleapprenewal.R.id.btnFold;
  */
 public abstract class BaseWebFragment extends BaseFragment {
 
+    // 테스트
 
     @Override
     public void initBaseFragment(View view){
