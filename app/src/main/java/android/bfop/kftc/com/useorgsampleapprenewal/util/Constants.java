@@ -59,7 +59,8 @@ public interface Constants {
     /**
      * 오픈플랫폼에 등록된 이용기관 앱의 Redirect URL (웹 방식 호출의 경우) 기본값
      */
-    String WEB_CALLBACK_URL_TEST = "http://localhost:8090/openapi/test/callback.html"; // kftcedu00
+    //    String WEB_CALLBACK_URL_TEST = "http://localhost:8090/openapi/test/callback.html"; // kftcedu00
+    String WEB_CALLBACK_URL_TEST = "https://developers.open-platform.or.kr/tpt/test/getAuthCode"; // kftcedu00
     String WEB_CALLBACK_URL_PRD = "http://localhost:8090/openapi/test/callback.html"; // kftcedu00
 
     /**

@@ -17,21 +17,21 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil.getPropStringForEnv;
+
 
 /**
- * 계좌등록 기존버전 (웹 방식) Fragment
- *
- *      - TODO: 테스트가 까다로워서 일단 authorize 먼저 하기로 하고 일시 중단
+ * 사용자인증 기존버전 (웹 방식) Fragment
  */
-public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
+public class AuthOldWebPageAuthorizeFragment extends BaseWebFragment {
 
-    private static String URI = "/oauth/2.0/register_account";
+    private static String URI = "/oauth/2.0/authorize";
 
     /**
      * 생성자
      *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
      */
-    public AuthOldWebPageRegisterAccountFragment() {
+    public AuthOldWebPageAuthorizeFragment() {
         // Required empty public constructor
     }
 
@@ -41,9 +41,9 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
      * @param actionBarTitle
      * @return
      */
-    public static AuthOldWebPageRegisterAccountFragment newInstance(String actionBarTitle) {
+    public static AuthOldWebPageAuthorizeFragment newInstance(String actionBarTitle) {
 
-        AuthOldWebPageRegisterAccountFragment fragment = new AuthOldWebPageRegisterAccountFragment();
+        AuthOldWebPageAuthorizeFragment fragment = new AuthOldWebPageAuthorizeFragment();
         Bundle args = new Bundle();
         args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
         fragment.setArguments(args);
@@ -73,9 +73,9 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
         // querystring을 만들기 위한 Map
         Map<String, String> pMap = new HashMap<>();
         pMap.put("response_type", "code");
-        pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
-        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
-        pMap.put("scope", StringUtil.getPropStringForEnv("SCOPE"));
+        pMap.put("client_id", getPropStringForEnv("APP_KEY"));
+        pMap.put("redirect_uri", getPropStringForEnv("WEB_CALLBACK_URL"));
+        pMap.put("scope", "login");
         pMap.put("client_info", "whatever_you_want");
 
         // 호출 URL (querystring 포함)

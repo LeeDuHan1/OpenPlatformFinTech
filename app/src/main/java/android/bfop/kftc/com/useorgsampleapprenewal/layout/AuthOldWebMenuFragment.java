@@ -106,6 +106,7 @@ public class AuthOldWebMenuFragment extends BaseFragment {
 
         switch(v.getId()){
             case R.id.btnAuthOldWeb:
+                fragment = AuthOldWebPageAuthorizeFragment.newInstance("사용자인증 기존버전 (웹 방식)");
                 break;
             case R.id.btnRegAcntOldWeb:
                 fragment = AuthOldWebPageRegisterAccountFragment.newInstance("계좌등록 기존버전 (웹 방식)");
