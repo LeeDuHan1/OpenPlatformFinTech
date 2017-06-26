@@ -8,6 +8,7 @@ import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +20,21 @@ import java.util.Map;
 
 
 /**
- * 계좌등록 기존버전 (웹 방식) Fragment
+ * 발급받은 authcode를 눈으로 확인할 수 있도록 보여주는 페이지 (웹 방식)
+ *
+ *  - 각 앱의 callback 페이지가 호출될 때 querystring 으로 제공되는 authcode를 눈으로 확인할 수 있도록 하기 위한 목적으로 작성
+ *  - 또한 Token 발급까지도 시뮬레이션 해 볼 수 있도록 하기 위한 목적도 있음.
+ *  - 실제 업무상에서는 불필요한 페이지임. 오직 확인의 편의를 위해 제공.
  */
-public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
+public class AuthcodeViewWebFragment extends BaseWebFragment {
 
-    private static String URI = "/oauth/2.0/register_account";
+    private static String URI = "/oauth/2.0/token";
 
     /**
      * 생성자
      *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
      */
-    public AuthOldWebPageRegisterAccountFragment() {
+    public AuthcodeViewWebFragment() {
         // Required empty public constructor
     }
 
@@ -39,9 +44,9 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
      * @param actionBarTitle
      * @return
      */
-    public static AuthOldWebPageRegisterAccountFragment newInstance(String actionBarTitle) {
+    public static AuthcodeViewWebFragment newInstance(String actionBarTitle) {
 
-        AuthOldWebPageRegisterAccountFragment fragment = new AuthOldWebPageRegisterAccountFragment();
+        AuthcodeViewWebFragment fragment = new AuthcodeViewWebFragment();
         Bundle args = new Bundle();
         args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
         fragment.setArguments(args);
@@ -59,7 +64,7 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_webview_common, container, false);
+        View view = inflater.inflate(R.layout.fragment_authcode_view_web, container, false);
         super.initBaseFragment(view); // BaseFragment 초기화 수행
 
         // 버튼 이벤트핸들러 바인딩
@@ -68,13 +73,26 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
+//        String authCode = intent.getStringExtra("AuthorizationCode")
+        String authCode = ""; //TODO: authcode 전달받기
+//        String invoker = StringUtil.defaultString(intent.getStringExtra("Invoker"));
+        String invoker = ""; // TODO: invoker 전달받기
+        String redirectUriKey = StringUtil.EMPTY;
+
+        Log.d("## invoker", invoker);
+        if("APP".equals(invoker)){
+            redirectUriKey = "APP_CALLBACK_URL";
+        } else if("WEB".equals(invoker)){
+            redirectUriKey = "WEB_CALLBACK_URL";
+        }
+
         // querystring을 만들기 위한 Map
         Map<String, String> pMap = new HashMap<>();
-        pMap.put("response_type", "code");
+        pMap.put("code", authCode);
         pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
-        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
-        pMap.put("scope", StringUtil.getPropStringForEnv("SCOPE"));
-        pMap.put("client_info", "whatever_you_want");
+        pMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
+        pMap.put("redirect_uri", StringUtil.getPropStringForEnv(redirectUriKey));
+        pMap.put("grant_type", "authorization_code");
 
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.converMapToQuerystring(pMap);
@@ -125,27 +143,6 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
             default:
                 break;
         }
-    }
-
-    /**
-     * url 에서 AuthorizationCode와 Scope를 추출하여 TokenRequestViewWebActivity 로 이동한다.
-     *
-     * @param url
-     */
-    public void goWebAuthCodeView(String url) {
-
-/*        String callbackUrl = StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"); // 여러 요청 중에서 web callback url 요청에 대한 것만 필터링하여 수행한다.
-        if(url.startsWith(callbackUrl)){
-            String authCode = StringUtil.getParamValFromUrlString(url, "code");
-            String scope = StringUtil.getParamValFromUrlString(url, "scope");
-            Log.d("", "## authCode: ["+authCode+"], scope: ["+scope+"]");
-//                    MessageUtil.showToast("AuthorizationCode: "+authCode, 3000);
-            Intent intent = new Intent(App.getAppContext(), TokenRequestViewWebActivity.class);
-            intent.putExtra("AuthorizationCode", authCode);
-            intent.putExtra("Scope", scope);
-            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // Activity가 아닌 Context에서 Intent를 사용하여 Activity를 호출할 때에는 이 플래그가 필요하다고 한다.
-            startActivity(intent);
-        }*/
     }
 
 }
