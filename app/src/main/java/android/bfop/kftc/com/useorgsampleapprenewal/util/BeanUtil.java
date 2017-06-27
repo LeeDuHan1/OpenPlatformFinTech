@@ -1,5 +1,7 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.util;
 
+import android.util.Log;
+
 /**
  * java 객체 핸들링 관련 유틸 클래스
  *
@@ -14,6 +16,11 @@ public class BeanUtil {
      * @return
      */
     public static String getClassName(Object o){
+
+        if(o == null){
+            Log.e("##", "BeanUtil.getClassName(o) > 매개변수 o 가 null 입니다.");
+            return "";
+        }
 
         return o.getClass().getSimpleName();
     }

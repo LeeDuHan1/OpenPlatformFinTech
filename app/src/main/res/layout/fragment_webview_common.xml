@@ -23,11 +23,6 @@
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:text="펼침"/>
-            <Button
-                android:id="@+id/btnGo"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="이동"/>
         </TableRow>
     </TableLayout>
 
