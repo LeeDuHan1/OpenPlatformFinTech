@@ -1,8 +1,10 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
+import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,8 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.POST;
 
 
 /**
@@ -20,6 +34,9 @@ import org.greenrobot.eventbus.EventBus;
  *  - 업무수행에 있어서 필수적인 페이지는 아님. token 발급 과정을 보여주기 위해서 작성한 페이지
  */
 public class TokenRequestFragment extends BaseFragment {
+
+    private String authcode;
+    private String scope;
 
     /**
      * 생성자
@@ -63,6 +80,17 @@ public class TokenRequestFragment extends BaseFragment {
 
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
+
+        // EditText 에 authcode 등을 바인딩한다.
+        Bundle args = this.getArguments();
+        authcode = args.getString("authcode");
+        scope = args.getString("scope");
+        Log.d("##", "TokenRequestFragment > authcode:["+authcode+"], scope:["+scope+"]");
+
+        EditText etAuthorizationCode = (EditText) view.findViewById(R.id.etAuthorizationCode);
+        EditText etScope = (EditText) view.findViewById(R.id.etScope);
+        etAuthorizationCode.setText(authcode);
+        etScope.setText(scope);
 
         return view;
     }
@@ -112,9 +140,25 @@ public class TokenRequestFragment extends BaseFragment {
      */
     private void getToken(){
 
-        Log.d("##", "getToken() called!");
-    }
+        Log.d("##", "token() called!");
+        TokenService tokenService = TokenService.retrofit.create(TokenService.class);
 
+        Map<String, String> params = new LinkedHashMap<>();
+        params.put("code", authcode);
+        params.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+        params.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
+        params.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL")); //TODO: 앱쪽은 어떻게 처리해야 할 지 고민할 것
+        params.put("grant_type", "authorization_code");
+
+        Call<String> call = tokenService.token(params);
+        String response = StringUtil.EMPTY;
+        try {
+            response = call.execute().body();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d("##", "tokenService.token() reponse: "+response);
+    }
 
     /**
      * TODO: 뒤로가기시 다시 돌아오지 않도록 특별히 처리해야 한다.
@@ -122,6 +166,30 @@ public class TokenRequestFragment extends BaseFragment {
      */
     private void onBackBtn(){
 
+    }
+
+    /**
+     * http call을 위한 retrofit2 interface 정의
+     */
+    public interface TokenService{
+
+        /**
+         * token 획득
+         *
+         * @param params
+         * @return
+         */
+        @FormUrlEncoded
+        @POST("/oauth/2.0/token")
+        Call<String> token(@FieldMap Map<String, String> params);
+
+        /**
+         * retrofit 객체 정의
+         */
+        public static final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(App.getApiBaseUrl())
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build();
     }
 
 }

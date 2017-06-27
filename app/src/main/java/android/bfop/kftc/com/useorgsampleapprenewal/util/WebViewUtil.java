@@ -87,8 +87,8 @@ public class WebViewUtil {
 //                    startActivity(intent);
 
                     Map<String, Object> pMap = new HashMap<>();
-                    pMap.put("AuthorizationCode", authCode);
-                    pMap.put("Scope", scope);
+                    pMap.put("authcode", authCode);
+                    pMap.put("scope", scope); // UI에서만 사용되는 것인가?
 
                     fragment.onAuthCodeResponse(pMap);
                 }
