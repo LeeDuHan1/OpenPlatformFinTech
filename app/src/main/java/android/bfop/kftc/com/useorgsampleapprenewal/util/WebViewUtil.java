@@ -3,6 +3,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.util;
 import android.app.AlertDialog;
 import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.bfop.kftc.com.useorgsampleapprenewal.layout.BaseWebAuthInterface;
 import android.content.DialogInterface;
 import android.net.http.SslError;
 import android.util.Log;
@@ -14,6 +15,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by LeeHyeonJae on 2017-06-23.
@@ -27,7 +31,7 @@ public class WebViewUtil {
      * @param view
      * @param urlToLoad
      */
-    public static void loadUrlOnWebView(View view, String urlToLoad) {
+    public static void loadUrlOnWebView(View view, String urlToLoad, final BaseWebAuthInterface fragment) {
 
         Log.d("##", "WebView 호출 URL: ["+ urlToLoad +"]");
 
@@ -62,14 +66,32 @@ public class WebViewUtil {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
                 view.loadUrl(url);
-                Log.d("@@ url", url);
+                Log.d("##", "url: "+ url);
 
                 /*
                  * AuthorizationCode 발급이 완료된 이후에, 해당 코드를 사용하여 토큰발급까지의 흐름을 UI상에 보여주기 위해서 추가한 코드
                  * 이용기관에 이렇게 사용하도록 가이드 하는 것은 아님에 주의할 것.
+                 * 여러 요청 중에서 web callback url 요청에 대한 것만 필터링하여 수행한다.
                  */
-//                goWebAuthCodeView(url);
+                String callbackUrl = StringUtil.getPropStringForEnv("WEB_CALLBACK_URL");
+                if(url.startsWith(callbackUrl)){
+                    String authCode = StringUtil.getParamValFromUrlString(url, "code");
+                    String scope = StringUtil.getParamValFromUrlString(url, "scope");
+                    Log.d("##", "authCode: ["+authCode+"], scope: ["+scope+"]");
+
+//                    Intent intent = new Intent(App.getAppContext(), TokenRequestViewWebActivity.class);
+//                    intent.putExtra("AuthorizationCode", authCode);
+//                    intent.putExtra("Scope", scope);
+//                    startActivity(intent);
+
+                    Map<String, Object> pMap = new HashMap<>();
+                    pMap.put("AuthorizationCode", authCode);
+                    pMap.put("Scope", scope);
+
+                    fragment.onAuthCodeResponse(pMap);
+                }
 
                 return true;
             }

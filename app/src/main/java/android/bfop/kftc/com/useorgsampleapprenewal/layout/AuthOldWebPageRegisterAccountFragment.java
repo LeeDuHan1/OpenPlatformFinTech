@@ -3,11 +3,13 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +28,7 @@ import static android.bfop.kftc.com.useorgsampleapprenewal.R.id.btnFold;
  *
  *      - TODO: 테스트가 까다로워서 일단 authorize 먼저 하기로 하고 일시 중단
  */
-public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
+public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment implements BaseWebAuthInterface {
 
     private static String URI = "/oauth/2.0/register_account";
 
@@ -85,7 +87,7 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
         String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.converMapToQuerystring(pMap);
 
         // WebView로 url 호출
-        WebViewUtil.loadUrlOnWebView(view, urlToLoad);
+        WebViewUtil.loadUrlOnWebView(view, urlToLoad, this);
 
         return view;
     }
@@ -156,4 +158,9 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
         }*/
     }
 
+    @Override
+    public void onAuthCodeResponse(Map<String, Object> pMap) {
+
+        Log.d("##", BeanUtil.getClassName(this)+".onAuthCodeResponse() invoked!");
+    }
 }

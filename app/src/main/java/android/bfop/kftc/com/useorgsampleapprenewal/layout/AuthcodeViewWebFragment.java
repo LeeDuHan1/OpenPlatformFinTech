@@ -5,7 +5,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
-import android.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,7 +63,7 @@ public class AuthcodeViewWebFragment extends BaseWebFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_authcode_view_web, container, false);
+        View view = inflater.inflate(R.layout.fragment_token_req_web, container, false);
         super.initBaseFragment(view); // BaseFragment 초기화 수행
 
         // 버튼 이벤트핸들러 바인딩
@@ -98,7 +97,9 @@ public class AuthcodeViewWebFragment extends BaseWebFragment {
         String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.converMapToQuerystring(pMap);
 
         // WebView로 url 호출
-        WebViewUtil.loadUrlOnWebView(view, urlToLoad);
+//        WebViewUtil.loadUrlOnWebView(view, urlToLoad);
+
+        // TODO: 그냥 retrofit을 사용하자.
 
         return view;
     }
