@@ -1,10 +1,13 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
+import android.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -43,5 +46,21 @@ public abstract class BaseFragment extends Fragment implements Button.OnClickLis
     public String getActionBarTitle(){
 
         return StringUtil.defaultString(this.getArguments().get(Constants.ACTIONBAR_TITLE));
+    }
+
+    @Override
+    public void onAttach(Context context) {
+
+        super.onAttach(context);
+
+        Log.d("##", BeanUtil.getClassName(this) + " onAttach() invoked!");
+    }
+
+    @Override
+    public void onDetach() {
+
+        super.onDetach();
+
+        Log.d("##", BeanUtil.getClassName(this) + " onDetach() invoked!");
     }
 }

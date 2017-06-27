@@ -2,6 +2,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +18,7 @@ public abstract class BaseWebFragment extends BaseFragment {
     public void initBaseFragment(View view){
 
         super.initBaseFragment(view); // BaseFragment의 동일 메서드 선 호출
-
-        ((Button)view.findViewById(btnFold)).setOnClickListener(this); // 접음/펼침 버튼
+//        ((Button)view.findViewById(btnFold)).setOnClickListener(this); // 접음/펼침 버튼
     }
 
     @Override
@@ -48,6 +48,8 @@ public abstract class BaseWebFragment extends BaseFragment {
      */
     protected void onFold(View v) {
 
+        Log.d("##", "call onFold!!!!!!!!!!!");
+
         EditText edt = (EditText) this.getView().findViewById(R.id.etUrl); // URL 표시부
         Button btn = (Button) this.getView().findViewById(btnFold); // 펼침/접음 버튼
 
@@ -60,4 +62,10 @@ public abstract class BaseWebFragment extends BaseFragment {
         }
     }
 
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//
+//        Log.d("@@@@@ onDetach()", "view: "+this.getView());
+//    }
 }

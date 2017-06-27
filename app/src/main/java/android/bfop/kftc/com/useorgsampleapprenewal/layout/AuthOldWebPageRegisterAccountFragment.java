@@ -11,11 +11,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.bfop.kftc.com.useorgsampleapprenewal.R.id.btnFold;
 
 
 /**
@@ -97,6 +100,9 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment {
     public void onDetach() {
 
         super.onDetach();
+
+        // TODO: 공통버튼 이벤트바인딩 해제해야 할 듯
+        ((Button)this.getView().findViewById(btnFold)).setOnClickListener(null); // 접음/펼침 버튼
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
