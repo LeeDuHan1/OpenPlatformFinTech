@@ -1,8 +1,8 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
-import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import android.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitInterface;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.content.Context;
@@ -16,16 +16,12 @@ import android.widget.EditText;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
-import retrofit2.http.FieldMap;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -141,7 +137,7 @@ public class TokenRequestFragment extends BaseFragment {
     private void getToken(){
 
         Log.d("##", "token() called!");
-        TokenService tokenService = TokenService.retrofit.create(TokenService.class);
+        RetrofitInterface retrofitInterface = RetrofitInterface.retrofit.create(RetrofitInterface.class);
 
         Map<String, String> params = new LinkedHashMap<>();
         params.put("code", authcode);
@@ -150,14 +146,20 @@ public class TokenRequestFragment extends BaseFragment {
         params.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL")); //TODO: 앱쪽은 어떻게 처리해야 할 지 고민할 것
         params.put("grant_type", "authorization_code");
 
-        Call<String> call = tokenService.token(params);
-        String response = StringUtil.EMPTY;
-        try {
-            response = call.execute().body();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Log.d("##", "tokenService.token() reponse: "+response);
+        Call<String> call = retrofitInterface.token(params);
+
+        // retrofit 비동기 호출 (동기호출하면 NetworkOnMainThreadException 발생)
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String rspJson = response.body();
+                Log.d("##", "retrofitInterface.token() rspJson: " + rspJson);
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                // handle failure
+            }
+        });
     }
 
     /**
@@ -167,29 +169,4 @@ public class TokenRequestFragment extends BaseFragment {
     private void onBackBtn(){
 
     }
-
-    /**
-     * http call을 위한 retrofit2 interface 정의
-     */
-    public interface TokenService{
-
-        /**
-         * token 획득
-         *
-         * @param params
-         * @return
-         */
-        @FormUrlEncoded
-        @POST("/oauth/2.0/token")
-        Call<String> token(@FieldMap Map<String, String> params);
-
-        /**
-         * retrofit 객체 정의
-         */
-        public static final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(App.getApiBaseUrl())
-                .addConverterFactory(JacksonConverterFactory.create())
-                .build();
-    }
-
 }
