@@ -1,14 +1,22 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
+import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -99,6 +107,7 @@ public class AuthOldAppMenuFragment extends BaseFragment {
 
         switch(v.getId()){
             case R.id.btnAuthOldApp:
+                goAuthOldApp(v);
                 break;
             case R.id.btnRegAcntOldApp:
                 break;
@@ -106,6 +115,27 @@ public class AuthOldAppMenuFragment extends BaseFragment {
                 break;
             default:
                 break;
+        }
+
+    }
+
+    /**
+     * 사용자 로그인 연결 (앱 방식)
+     */
+    public void goAuthOldApp(View v) {
+
+        Log.d("##", "goAuthOldApp called!");
+
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(App.getAppScheme() + "authorize?response_type=code" +
+                    "&client_id=" + StringUtil.getPropStringForEnv("APP_KEY") +
+                    "&redirect_uri=" + StringUtil.getPropStringForEnv("APP_CALLBACK_URL")));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
+        } catch (ActivityNotFoundException e) {
+            MessageUtil.showToast("오픈플랫폼 앱을 설치해 주십시오", Toast.LENGTH_SHORT);
         }
     }
 
