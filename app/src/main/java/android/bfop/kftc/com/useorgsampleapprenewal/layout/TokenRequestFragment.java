@@ -157,8 +157,7 @@ public class TokenRequestFragment extends BaseFragment {
                 String rspJson = BeanUtil.GSON.toJson(rspMap);
 
                 // 조회 성공시 해당 내용을 TextView에 출력
-                TextView tvTokenResult = (TextView)getView().findViewById(R.id.tvTokenResult);
-                tvTokenResult.setText(rspJson);
+                ((TextView)getView().findViewById(R.id.tvTokenResult)).setText(rspJson);
             }
             @Override
             public void onFailure(Call<Map> call, Throwable t) {
