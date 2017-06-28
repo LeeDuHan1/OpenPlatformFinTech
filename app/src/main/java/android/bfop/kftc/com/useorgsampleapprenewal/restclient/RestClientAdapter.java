@@ -26,6 +26,8 @@ import static android.bfop.kftc.com.useorgsampleapprenewal.App.getApiBaseUrl;
 /**
  * retrofit 커스터마이징을 위한 어댑터 클래스
  *
+ *  - 무엇보다도 untrusted certificate 이슈 때문에 작성함.
+ *
  * Created by LeeHyeonJae on 2017-06-27.
  */
 public class RestClientAdapter {
@@ -33,7 +35,7 @@ public class RestClientAdapter {
     public static final int CONNECT_TIMEOUT = 10;
     public static final int WRITE_TIMEOUT = 15;
     public static final int READ_TIMEOUT = 20;
-    private static OkHttpClient client;
+    private static OkHttpClient okHttpClient;
     private static RetrofitInterface retrofitInterface;
 
     public synchronized static RetrofitInterface getInstance(){
@@ -48,7 +50,7 @@ public class RestClientAdapter {
         CookieManager cookieManager = new CookieManager();
         cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
 
-        client = configureClient(new OkHttpClient().newBuilder()) // 인증서 무시 설정 적용
+        okHttpClient = configureClient(new OkHttpClient().newBuilder()) // 인증서 무시 설정 적용
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
@@ -59,7 +61,7 @@ public class RestClientAdapter {
         // Retrofit 설정
         retrofitInterface = new Retrofit.Builder()
                 .baseUrl(getApiBaseUrl())
-                .client(client)
+                .client(okHttpClient)
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build().create(RetrofitInterface.class);
 
@@ -67,7 +69,7 @@ public class RestClientAdapter {
     }
 
     /**
-     * Allowing client to use an untrusted certificate for SSL/HTTPS connection
+     * Allowing okHttpClient to use an untrusted certificate for SSL/HTTPS connection
      *
      *  - 이 설정을 하지 않으면 테스트서버 등에서 ssl handshake 단계에 막혀 요청이 진행되지 않는다.
      *
