@@ -73,13 +73,13 @@
 
     <TextView
         android:id="@+id/tvTokenResult"
-        android:layout_width="331dp"
-        android:layout_height="267dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="30dp"
-        android:background="?attr/colorControlHighlight"
-        app:layout_constraintHorizontal_bias="0.586"
+        android:layout_width="346dp"
+        android:layout_height="293dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="29dp"
+        android:background="#e6e6fa"
+        android:textColor="#333333"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnToken" />
