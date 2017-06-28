@@ -30,7 +30,7 @@ import static android.bfop.kftc.com.useorgsampleapprenewal.App.getApiBaseUrl;
  *
  * Created by LeeHyeonJae on 2017-06-27.
  */
-public class RestClientAdapter {
+public class RetrofitCustomAdapter {
 
     public static final int CONNECT_TIMEOUT = 10;
     public static final int WRITE_TIMEOUT = 15;
@@ -38,6 +38,11 @@ public class RestClientAdapter {
     private static OkHttpClient okHttpClient;
     private static RetrofitInterface retrofitInterface;
 
+    /**
+     * RetrofitInterface 객체를 생성하거나, 기 생성된 객체를 리턴한다.
+     *
+     * @return
+     */
     public synchronized static RetrofitInterface getInstance(){
 
         if(retrofitInterface != null){ return retrofitInterface; }

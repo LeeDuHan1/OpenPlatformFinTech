@@ -2,7 +2,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
-import android.bfop.kftc.com.useorgsampleapprenewal.restclient.RestClientAdapter;
+import android.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitCustomAdapter;
 import android.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitInterface;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
@@ -138,16 +138,15 @@ public class TokenRequestFragment extends BaseFragment {
     private void getToken(){
 
         Log.d("##", "token() called!");
-//        RetrofitInterface retrofitInterface = RetrofitInterface.retrofit.create(RetrofitInterface.class); // 커스터마이징 전
-        RetrofitInterface retrofitInterface = RestClientAdapter.getInstance();
 
-                Map params = new LinkedHashMap<>();
+        Map params = new LinkedHashMap<>();
         params.put("code", authcode);
         params.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
         params.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
         params.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL")); //TODO: 앱쪽은 어떻게 처리해야 할 지 고민할 것
         params.put("grant_type", "authorization_code");
 
+        RetrofitInterface retrofitInterface = RetrofitCustomAdapter.getInstance();
         Call<String> call = retrofitInterface.token(params);
 
         // retrofit 비동기 호출 (동기호출하면 NetworkOnMainThreadException 발생)
