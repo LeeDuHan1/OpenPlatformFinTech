@@ -146,9 +146,7 @@ public class TokenRequestFragment extends BaseFragment {
         params.put("grant_type", "authorization_code");
 
         Call<Map> call = RetrofitCustomAdapter.getInstance().token(params);
-
-        // retrofit 비동기 호출 (동기호출하면 NetworkOnMainThreadException 발생)
-        call.enqueue(new Callback<Map>() {
+        call.enqueue(new Callback<Map>() { // retrofit 비동기 호출 (동기호출시 NetworkOnMainThreadException 발생)
             @Override
             public void onResponse(Call<Map> call, Response<Map> response) {
                 Log.d("##", "onResponse() called!");
