@@ -3,6 +3,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitCustomAdapter;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -136,8 +138,6 @@ public class TokenRequestFragment extends BaseFragment {
      */
     private void getToken(){
 
-        Log.d("##", "getToken() called!");
-
         Map params = new LinkedHashMap<>();
         params.put("code", authcode);
         params.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
@@ -146,15 +146,23 @@ public class TokenRequestFragment extends BaseFragment {
         params.put("grant_type", "authorization_code");
 
         Call<Map> call = RetrofitCustomAdapter.getInstance().token(params);
+
         call.enqueue(new Callback<Map>() { // retrofit 비동기 호출 (동기호출시 NetworkOnMainThreadException 발생)
             @Override
             public void onResponse(Call<Map> call, Response<Map> response) {
+
                 Log.d("##", "onResponse() called!");
                 Map rspMap = response.body();
                 Log.d("##", "token() rspMap: " + rspMap);
+                String rspJson = BeanUtil.GSON.toJson(rspMap);
+
+                // 조회 성공시 해당 내용을 TextView에 출력
+                TextView tvTokenResult = (TextView)getView().findViewById(R.id.tvTokenResult);
+                tvTokenResult.setText(rspJson);
             }
             @Override
             public void onFailure(Call<Map> call, Throwable t) {
+
                 Log.d("##", "onFailure() called!");
                 t.printStackTrace();
             }

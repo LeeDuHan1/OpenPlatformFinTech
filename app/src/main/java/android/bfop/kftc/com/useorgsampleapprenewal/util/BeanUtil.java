@@ -3,6 +3,9 @@ package android.bfop.kftc.com.useorgsampleapprenewal.util;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.Map;
 import java.util.Set;
 
@@ -14,6 +17,13 @@ import static android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil.defau
  * Created by LeeHyeonJae on 2017-06-27.
  */
 public class BeanUtil {
+
+    /**
+     * Gson 파서 초기화
+     *
+     *  - json beautify 처리 포함
+     */
+    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     /**
      * 클래스명 리턴

@@ -68,8 +68,21 @@
         android:id="@+id/btnToken"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout1" />
+
+    <TextView
+        android:id="@+id/tvTokenResult"
+        android:layout_width="331dp"
+        android:layout_height="267dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="30dp"
+        android:background="?attr/colorControlHighlight"
+        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnToken" />
     <!--//================= 토큰 발급 버튼 ==================-->
 
 </android.support.constraint.ConstraintLayout>
