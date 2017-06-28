@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -68,7 +68,7 @@ public class AuthOldWebPageAuthorizeFragment extends BaseWebFragment implements 
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
         // querystring을 만들기 위한 Map
-        Map<String, String> pMap = new HashMap<>();
+        Map<String, String> pMap = new LinkedHashMap<>();
         pMap.put("response_type", "code");
         pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
         pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
@@ -76,7 +76,7 @@ public class AuthOldWebPageAuthorizeFragment extends BaseWebFragment implements 
         pMap.put("client_info", "whatever_you_want");
 
         // 호출 URL (querystring 포함)
-        String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.converMapToQuerystring(pMap);
+        String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
 
         // WebView로 url 호출
         WebViewUtil.loadUrlOnWebView(view, urlToLoad, this);

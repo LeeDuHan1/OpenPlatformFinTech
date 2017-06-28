@@ -196,7 +196,7 @@ public class StringUtil {
      * @param paramMap
      * @return
      */
-    public static String converMapToQuerystring(Map<?,?> paramMap) {
+    public static String convertMapToQuerystring(Map<?,?> paramMap) {
 
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<?,?> e : paramMap.entrySet()) {

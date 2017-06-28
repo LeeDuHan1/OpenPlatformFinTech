@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -86,7 +86,7 @@ public class AuthcodeViewWebFragment extends BaseWebFragment {
         }
 
         // querystring을 만들기 위한 Map
-        Map<String, String> pMap = new HashMap<>();
+        Map<String, String> pMap = new LinkedHashMap<>();
         pMap.put("code", authCode);
         pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
         pMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
@@ -94,7 +94,7 @@ public class AuthcodeViewWebFragment extends BaseWebFragment {
         pMap.put("grant_type", "authorization_code");
 
         // 호출 URL (querystring 포함)
-        String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.converMapToQuerystring(pMap);
+        String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
 
         // WebView로 url 호출
 //        WebViewUtil.loadUrlOnWebView(view, urlToLoad);

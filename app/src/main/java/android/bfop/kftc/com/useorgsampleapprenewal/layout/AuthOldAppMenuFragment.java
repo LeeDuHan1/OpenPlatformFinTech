@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +18,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 /**
@@ -124,18 +126,23 @@ public class AuthOldAppMenuFragment extends BaseFragment {
      */
     public void goAuthOldApp(View v) {
 
-        Log.d("##", "goAuthOldApp called!");
-
         try {
+            // querystring을 만들기 위한 Map
+            Map<String, String> pMap = new LinkedHashMap<>();
+            pMap.put("response_type", "code");
+            pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+            pMap.put("redirect_uri", StringUtil.getPropStringForEnv("APP_CALLBACK_URL"));
+
+            // 호출 URL (querystring 포함)
+            String urlToLoad = App.getAppScheme() + "authorize?" + StringUtil.convertMapToQuerystring(pMap);
+
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(App.getAppScheme() + "authorize?response_type=code" +
-                    "&client_id=" + StringUtil.getPropStringForEnv("APP_KEY") +
-                    "&redirect_uri=" + StringUtil.getPropStringForEnv("APP_CALLBACK_URL")));
+            intent.setData(Uri.parse(urlToLoad));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            startActivity(intent); // 오픈플랫폼 앱 Activit 시작
 
         } catch (ActivityNotFoundException e) {
-            MessageUtil.showToast("오픈플랫폼 앱을 설치해 주십시오", Toast.LENGTH_SHORT);
+            MessageUtil.showToast("오픈플랫폼 앱("+App.getEnvName(App.getEnv())+")을 설치해 주십시오", Toast.LENGTH_SHORT);
         }
     }
 
