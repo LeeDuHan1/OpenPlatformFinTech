@@ -168,9 +168,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 int backStackCnt = fm.getBackStackEntryCount();
                 Log.d("", "## onBackPressed() > fragment:" + fragment.getClass().getName());
                 Log.d("", "## backStackCnt: "+backStackCnt);
+
                 // 현재 MainFragment 이면서 backstack이 없을 경우 backPressCloseHandler 를 호출한다
                 if ((fragment instanceof MainFragment) && (backStackCnt <= 1)) {
                     backPressCloseHandler.onBackPressed();
+
+                // TokenRequestFragment 일 경우, 한 번 뒤로가기를 하면 다시 자신의 페이지로 돌아오기 때문에 2단게 backstack 탐색을 하였음.
+                }else if (fragment instanceof TokenRequestFragment) {
+                    fm.popBackStackImmediate(2, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                 // 그 외의 경우 backstack 을 호출한다.
                 }else{
                     super.onBackPressed();
