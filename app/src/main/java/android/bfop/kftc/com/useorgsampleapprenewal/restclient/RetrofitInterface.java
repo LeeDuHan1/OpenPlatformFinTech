@@ -25,12 +25,4 @@ public interface RetrofitInterface {
     @POST("/oauth/2.0/token")
     Call<Map> token(@FieldMap Map<String, String> params);
 
-    /**
-     * retrofit 객체 정의
-     */
-//    public static final Retrofit retrofit = new Retrofit.Builder()
-//            .baseUrl(App.getApiBaseUrl())
-//            .addConverterFactory(JacksonConverterFactory.create())
-//            .build();
-
 }

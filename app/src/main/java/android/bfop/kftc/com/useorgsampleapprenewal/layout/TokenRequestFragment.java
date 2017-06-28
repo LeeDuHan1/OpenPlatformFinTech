@@ -152,8 +152,8 @@ public class TokenRequestFragment extends BaseFragment {
             @Override
             public void onResponse(Call<Map> call, Response<Map> response) {
                 Log.d("##", "onResponse() called!");
-                Map rspJson = response.body();
-                Log.d("##", "token() rspJson: " + rspJson);
+                Map rspMap = response.body();
+                Log.d("##", "token() rspMap: " + rspMap);
             }
             @Override
             public void onFailure(Call<Map> call, Throwable t) {
