@@ -168,11 +168,4 @@ public class TokenRequestFragment extends BaseFragment {
         });
     }
 
-    /**
-     * TODO: 뒤로가기시 다시 돌아오지 않도록 특별히 처리해야 한다.
-     *
-     */
-    private void onBackBtn(){
-
-    }
 }
