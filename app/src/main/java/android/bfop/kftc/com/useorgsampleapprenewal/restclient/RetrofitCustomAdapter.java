@@ -19,7 +19,7 @@ import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.bfop.kftc.com.useorgsampleapprenewal.App.getApiBaseUrl;
 
@@ -67,7 +67,7 @@ public class RetrofitCustomAdapter {
         retrofitInterface = new Retrofit.Builder()
                 .baseUrl(getApiBaseUrl())
                 .client(okHttpClient)
-                .addConverterFactory(JacksonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build().create(RetrofitInterface.class);
 
         return retrofitInterface;

@@ -136,7 +136,7 @@ public class TokenRequestFragment extends BaseFragment {
      */
     private void getToken(){
 
-        Log.d("##", "token() called!");
+        Log.d("##", "getToken() called!");
 
         Map params = new LinkedHashMap<>();
         params.put("code", authcode);
@@ -145,18 +145,20 @@ public class TokenRequestFragment extends BaseFragment {
         params.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL")); //TODO: 앱쪽은 어떻게 처리해야 할 지 고민할 것
         params.put("grant_type", "authorization_code");
 
-        Call<String> call = RetrofitCustomAdapter.getInstance().token(params);
+        Call<Map> call = RetrofitCustomAdapter.getInstance().token(params);
 
         // retrofit 비동기 호출 (동기호출하면 NetworkOnMainThreadException 발생)
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<Map>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String rspJson = response.body();
-                Log.d("##", "retrofitInterface.token() rspJson: " + rspJson);
+            public void onResponse(Call<Map> call, Response<Map> response) {
+                Log.d("##", "onResponse() called!");
+                Map rspJson = response.body();
+                Log.d("##", "token() rspJson: " + rspJson);
             }
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                // handle failure
+            public void onFailure(Call<Map> call, Throwable t) {
+                Log.d("##", "onFailure() called!");
+                t.printStackTrace();
             }
         });
     }
