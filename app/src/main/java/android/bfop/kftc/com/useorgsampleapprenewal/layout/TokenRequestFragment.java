@@ -2,6 +2,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import android.bfop.kftc.com.useorgsampleapprenewal.restclient.RestClientAdapter;
 import android.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitInterface;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
@@ -137,9 +138,10 @@ public class TokenRequestFragment extends BaseFragment {
     private void getToken(){
 
         Log.d("##", "token() called!");
-        RetrofitInterface retrofitInterface = RetrofitInterface.retrofit.create(RetrofitInterface.class);
+//        RetrofitInterface retrofitInterface = RetrofitInterface.retrofit.create(RetrofitInterface.class); // 커스터마이징 전
+        RetrofitInterface retrofitInterface = RestClientAdapter.getInstance();
 
-        Map<String, String> params = new LinkedHashMap<>();
+                Map params = new LinkedHashMap<>();
         params.put("code", authcode);
         params.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
         params.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));

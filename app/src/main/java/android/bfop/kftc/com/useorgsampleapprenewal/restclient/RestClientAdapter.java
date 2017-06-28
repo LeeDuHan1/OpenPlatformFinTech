@@ -67,7 +67,9 @@ public class RestClientAdapter {
     }
 
     /**
-     * UnCertificated 허용
+     * Allowing client to use an untrusted certificate for SSL/HTTPS connection
+     *
+     *  - 이 설정을 하지 않으면 테스트서버 등에서 ssl handshake 단계에 막혀 요청이 진행되지 않는다.
      *
      * @param builder
      * @return
@@ -86,7 +88,7 @@ public class RestClientAdapter {
             }
             @Override
             public X509Certificate[] getAcceptedIssuers() {
-                return null;
+                return new X509Certificate[0]; // 빈 객체를 리턴하는 느낌
             }
         }};
 
