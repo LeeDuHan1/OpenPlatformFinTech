@@ -244,6 +244,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         super.onBackPressed();
                     }else{
                         fm.popBackStackImmediate(2, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                        //으음
                     }
 
                 // 그 외의 경우 backstack 을 호출한다.
