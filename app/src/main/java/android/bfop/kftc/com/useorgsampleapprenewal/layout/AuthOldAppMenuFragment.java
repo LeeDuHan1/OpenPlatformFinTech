@@ -138,7 +138,7 @@ public class AuthOldAppMenuFragment extends BaseFragment {
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(urlToLoad));
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent); // 오픈플랫폼 앱 Activit 시작
 
         } catch (ActivityNotFoundException e) {

@@ -138,11 +138,14 @@ public class TokenRequestFragment extends BaseFragment {
      */
     private void getToken(){
 
+        String type = this.getArguments().getString("type");
+        String redirectUriKey = (StringUtil.isNotBlank(type) && "APP".equals(type)) ? "APP_CALLBACK_URL" : "WEB_CALLBACK_URL";
+
         Map params = new LinkedHashMap<>();
         params.put("code", authcode);
         params.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
         params.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
-        params.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL")); //TODO: 앱쪽은 어떻게 처리해야 할 지 고민할 것
+        params.put("redirect_uri", StringUtil.getPropStringForEnv(redirectUriKey));
         params.put("grant_type", "authorization_code");
 
         Call<Map> call = RetrofitCustomAdapter.getInstance().token(params);

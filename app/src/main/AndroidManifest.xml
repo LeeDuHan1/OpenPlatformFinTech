@@ -18,6 +18,14 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!-- 오픈플랫폼앱에서 이 앱을 호출하기 위한 스키마 정의 -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="bfoptest" android:host="result" />
+            </intent-filter>
+            <!--// 오픈플랫폼앱에서 이 앱을 호출하기 위한 스키마 정의 -->
         </activity>
 
     </application>

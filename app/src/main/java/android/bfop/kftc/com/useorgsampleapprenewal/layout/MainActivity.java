@@ -4,6 +4,11 @@ import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,6 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -37,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ///////////////////////////////////// Activity Lifecycle Callbacks - start /////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        MessageUtil.showToast(BeanUtil.getClassName(this)+".onCreate() called!", Toast.LENGTH_SHORT);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -84,14 +92,70 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onStart() {
+        MessageUtil.showToast(BeanUtil.getClassName(this)+".onStart() called!", Toast.LENGTH_SHORT);
         super.onStart();
         EventBus.getDefault().register(this);   // EventBus 등록
     }
 
     @Override
+    protected void onRestart() {
+        MessageUtil.showToast(BeanUtil.getClassName(this)+".onRestart() called!", Toast.LENGTH_SHORT);
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+
+        MessageUtil.showToast(BeanUtil.getClassName(this)+".onResume() called!", Toast.LENGTH_SHORT);
+
+        // 오픈플랫폼 앱 호출후 결과를 받는 부분(ex: 사용자로그인연결 결과)에 대한 처리를 여기서 하자.
+        Intent intent = getIntent();
+        MessageUtil.showToast("## intent:"+intent, Toast.LENGTH_SHORT);
+        MessageUtil.showToast("## intent.getData():"+intent.getData(), Toast.LENGTH_SHORT);
+        if (intent == null || intent.getData() == null) return;
+
+        MessageUtil.showToast("## intent.getAction():"+intent.getAction(), Toast.LENGTH_SHORT);
+        if (intent.getAction().equals(Intent.ACTION_VIEW)) {
+            Uri uri = intent.getData();
+            String rspCode = uri.getQueryParameter("rsp_code");
+            String rspMsg = uri.getQueryParameter("rsp_msg");
+            String authCode = uri.getQueryParameter("authorization_code");
+            String scope = uri.getQueryParameter("scope");
+
+            // TODO: 디버깅용 - 삭제할 것
+            MessageUtil.showToast(String.format("코드: %s\n메시지: %s\n인증 코드: %s\n인증 범위: %s", rspCode, rspMsg, authCode, scope), 2000);
+
+            BaseFragment fragment = TokenRequestFragment.newInstance("Token 발급 요청");
+            Bundle args = fragment.getArguments();
+            args.putString("rspCode", rspCode);
+            args.putString("rspMsg", rspMsg);
+            args.putString("authcode", authCode);
+            args.putString("scope", scope);
+            args.putString("type", "APP"); // 앱에서의 요청과 웹에서의 요청을 구분해 주기 위해서 추가
+            replaceFragment(fragment);
+        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        MessageUtil.showToast(BeanUtil.getClassName(this)+".onPause() called!", Toast.LENGTH_SHORT);
+        super.onPause();
+    }
+
+    @Override
     protected void onStop() {
+        MessageUtil.showToast(BeanUtil.getClassName(this)+".onStop() called!", Toast.LENGTH_SHORT);
         super.onStop();
         EventBus.getDefault().unregister(this); // EventBus 해지
+    }
+
+    @Override
+    protected void onDestroy() {
+        MessageUtil.showToast(BeanUtil.getClassName(this)+".onDestroy() called!", Toast.LENGTH_SHORT);
+        super.onDestroy();
     }
     ///////////////////////////////////// Activity Lifecycle Callbacks - end ///////////////////////////////////////
 
@@ -174,7 +238,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 // TokenRequestFragment 일 경우, 한 번 뒤로가기를 하면 다시 자신의 페이지로 돌아오기 때문에 2단게 backstack 탐색을 하였음.
                 }else if (fragment instanceof TokenRequestFragment) {
-                    fm.popBackStackImmediate(2, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+                    String type = fragment.getArguments().getString("type");
+                    if(StringUtil.isNotBlank(type) && "APP".equals(type)){
+                        super.onBackPressed();
+                    }else{
+                        fm.popBackStackImmediate(2, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    }
 
                 // 그 외의 경우 backstack 을 호출한다.
                 }else{
