@@ -52,6 +52,8 @@ public class MainFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+//        MessageUtil.showToast(BeanUtil.getClassName(this) + ".onCreateView called!");
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         super.initBaseFragment(view); // BaseFragment 초기화 수행
