@@ -59,7 +59,7 @@ public class FragmentUtil {
 
         String name = StringUtil.defaultString(FRAGMENT_NAME_MAP.get(clazz));
         if(StringUtil.isBlank(name)){
-            MessageUtil.showToast(BeanUtil.getClassName(clazz)+" 에 대한 Fragment 명을 정의해 주십시오", Toast.LENGTH_SHORT);
+            MessageUtil.showToast(BeanUtil.getClassName(clazz)+" 에 대한 Fragment 명을 정의해 주십시오");
         }
         return name;
     }

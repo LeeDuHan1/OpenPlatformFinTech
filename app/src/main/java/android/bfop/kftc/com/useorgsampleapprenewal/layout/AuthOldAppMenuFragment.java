@@ -143,7 +143,7 @@ public class AuthOldAppMenuFragment extends BaseFragment {
             startActivity(intent); // 오픈플랫폼 앱 Activit 시작
 
         } catch (ActivityNotFoundException e) {
-            MessageUtil.showToast("오픈플랫폼 앱("+App.getEnvName(App.getEnv())+")을 설치해 주십시오", Toast.LENGTH_SHORT);
+            MessageUtil.showToast("오픈플랫폼 앱("+App.getEnvName(App.getEnv())+")을 설치해 주십시오");
         }
     }
 

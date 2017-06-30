@@ -60,7 +60,7 @@ public abstract class BaseFragment extends Fragment implements Button.OnClickLis
         // 루프에 빠질 우려가 있어서 기본동작을 제거하였음
         // this.getActivity().getSupportFragmentManager().popBackStackImmediate(); // backstack 호출
 
-        MessageUtil.showToast(BeanUtil.getClassName(this)+" 에서의 뒤로가기 버튼 동작을 정의해 주십시오.", Toast.LENGTH_SHORT);
+        MessageUtil.showToast(BeanUtil.getClassName(this)+" 에서의 뒤로가기 버튼 동작을 정의해 주십시오.");
     }
 
     @Override

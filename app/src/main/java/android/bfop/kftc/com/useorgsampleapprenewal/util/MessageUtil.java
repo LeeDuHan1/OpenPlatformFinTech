@@ -6,7 +6,6 @@ import android.content.Context;
 import android.widget.Toast;
 
 
-
 /**
  * Created by LeeHyeonJae on 2017-02-23.
  */
@@ -21,6 +20,16 @@ public class MessageUtil {
     public static void showToast(String msg, int duration){
 
         Toast.makeText(App.getAppContext(), msg, duration).show();
+    }
+
+    /**
+     * Toast 메시지 띄우기
+     *
+     * @param msg
+     */
+    public static void showToast(String msg){
+
+        Toast.makeText(App.getAppContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
 

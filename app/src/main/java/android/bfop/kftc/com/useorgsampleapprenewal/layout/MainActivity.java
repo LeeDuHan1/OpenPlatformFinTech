@@ -23,7 +23,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onCreate() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onCreate() called!");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -92,14 +91,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onStart() {
-//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onStart() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onStart() called!");
         super.onStart();
         EventBus.getDefault().register(this);   // EventBus 등록
     }
 
     @Override
     protected void onRestart() {
-//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onRestart() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onRestart() called!");
         super.onRestart();
     }
 
@@ -108,15 +107,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         super.onResume();
 
-//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onResume() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onResume() called!");
 
         // 오픈플랫폼 앱 호출후 결과를 받는 부분(ex: 사용자로그인연결 결과)에 대한 처리를 여기서 하자.
         Intent intent = getIntent();
-        MessageUtil.showToast("## intent:"+intent, Toast.LENGTH_SHORT);
-        MessageUtil.showToast("## intent.getData():"+intent.getData(), Toast.LENGTH_SHORT);
+        MessageUtil.showToast("## intent:"+intent);
+        MessageUtil.showToast("## intent.getData():"+intent.getData());
         if (intent == null || intent.getData() == null) return;
 
-        MessageUtil.showToast("## intent.getAction():"+intent.getAction(), Toast.LENGTH_SHORT);
+        MessageUtil.showToast("## intent.getAction():"+intent.getAction());
         if (intent.getAction().equals(Intent.ACTION_VIEW)) {
             Uri uri = intent.getData();
             String rspCode = uri.getQueryParameter("rsp_code");
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String scope = uri.getQueryParameter("scope");
 
             // TODO: 디버깅용 - 삭제할 것
-            MessageUtil.showToast(String.format("코드: %s\n메시지: %s\n인증 코드: %s\n인증 범위: %s", rspCode, rspMsg, authCode, scope), 2000);
+            MessageUtil.showToast(String.format("코드: %s\n메시지: %s\n인증 코드: %s\n인증 범위: %s", rspCode, rspMsg, authCode, scope));
 
             BaseFragment fragment = FragmentUtil.newFragment(TokenRequestFragment.class);
             Bundle args = fragment.getArguments();
@@ -141,20 +140,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onPause() {
-//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onPause() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onPause() called!");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onStop() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onStop() called!");
         super.onStop();
         EventBus.getDefault().unregister(this); // EventBus 해지
     }
 
     @Override
     protected void onDestroy() {
-//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onDestroy() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onDestroy() called!");
         super.onDestroy();
     }
     ///////////////////////////////////// Activity Lifecycle Callbacks - end ///////////////////////////////////////
