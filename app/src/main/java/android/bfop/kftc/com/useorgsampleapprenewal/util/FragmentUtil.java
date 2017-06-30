@@ -95,6 +95,16 @@ public class FragmentUtil {
      */
     public static void replaceNewFragment(Class<? extends BaseFragment> clazz){
 
-        EventBus.getDefault().post(new FragmentReplaceEvent(FragmentUtil.newFragment(clazz)));
+        replaceFragment(FragmentUtil.newFragment(clazz));
+    }
+
+    /**
+     * 매개변수로 받은 fragment로 기존 활성화된 fragment를 교체하는 요청을 담은 EventBus 메시지를 호출한다.
+     *
+     * @param fragment
+     */
+    public static void replaceFragment(BaseFragment fragment){
+
+        EventBus.getDefault().post(new FragmentReplaceEvent(fragment));
     }
 }

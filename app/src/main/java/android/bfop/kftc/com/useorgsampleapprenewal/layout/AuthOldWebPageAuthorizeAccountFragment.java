@@ -3,7 +3,6 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
-import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
@@ -92,10 +91,9 @@ public class AuthOldWebPageAuthorizeAccountFragment extends BaseWebFragment impl
         Log.d("##", BeanUtil.getClassName(this)+".onAuthCodeResponse() > pMap: "+pMap);
 
         // token 발급 요청 Fragment로 이동한다.
-        BaseFragment tokenRequestFragment = TokenRequestFragment.newInstance("Token 발급 요청");
-        Bundle args = tokenRequestFragment.getArguments();
-        BeanUtil.putAllMapToBundle(args, pMap); // webview resposne 에서 추출한 authcode 등을 TokenRequestFragment 에 넣어준다.
-        EventBus.getDefault().post(new FragmentReplaceEvent(tokenRequestFragment));
+        BaseFragment tokenRequestFragment = FragmentUtil.newFragment(TokenRequestFragment.class);
+        BeanUtil.putAllMapToBundle(tokenRequestFragment.getArguments(), pMap); // webview resposne 에서 추출한 authcode 등을 TokenRequestFragment 에 넣어준다.
+        FragmentUtil.replaceFragment(tokenRequestFragment);
     }
 
     /**

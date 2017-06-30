@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // TODO: 디버깅용 - 삭제할 것
             MessageUtil.showToast(String.format("코드: %s\n메시지: %s\n인증 코드: %s\n인증 범위: %s", rspCode, rspMsg, authCode, scope), 2000);
 
-            BaseFragment fragment = TokenRequestFragment.newInstance("Token 발급 요청");
+            BaseFragment fragment = FragmentUtil.newFragment(TokenRequestFragment.class);
             Bundle args = fragment.getArguments();
             args.putString("rspCode", rspCode);
             args.putString("rspMsg", rspMsg);
