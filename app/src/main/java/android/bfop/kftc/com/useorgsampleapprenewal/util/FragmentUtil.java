@@ -2,7 +2,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.util;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.APICallMenuFragment;
-import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewMenuFragment;
+import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebMenuFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldAppMenuFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldWebMenuFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldWebPageAuthorizeAccountFragment;
@@ -12,7 +12,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.layout.BaseFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.SettingsFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.TokenRequestFragment;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -37,7 +36,7 @@ public class FragmentUtil {
 
         Map<Class<? extends BaseFragment>, String> map = new LinkedHashMap<>();
         map.put(MainFragment.class, "이용기관 샘플앱 메인");
-        map.put(AuthNewMenuFragment.class, "사용자인증 개선버전");
+        map.put(AuthNewWebMenuFragment.class, "사용자인증 개선버전");
         map.put(AuthOldAppMenuFragment.class, "사용자인증 기존버전 (앱 방식)");
         map.put(AuthOldWebMenuFragment.class, "사용자인증 기존버전 (웹 방식)");
         map.put(APICallMenuFragment.class, "API 거래기능");

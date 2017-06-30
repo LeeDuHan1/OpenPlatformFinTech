@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch(id){
             case R.id.btnAuthNewMenu:   // 메인페이지 버튼
             case R.id.nav_authNew:      // Navigation Drawer 메뉴
-                fragmentClass = AuthNewMenuFragment.class;
+                fragmentClass = AuthNewWebMenuFragment.class;
                 break;
             case R.id.btnAuthOldAppMenu:
             case R.id.nav_authOldApp:

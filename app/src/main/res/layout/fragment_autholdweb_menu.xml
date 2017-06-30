@@ -7,7 +7,7 @@
     tools:layout_editor_absoluteX="0dp">
 
     <Button
-        android:id="@+id/btnAuthOldWeb"
+        android:id="@+id/btnAuthOldWebAuth"
         style="@style/MainButton"
         android:layout_width="308dp"
         android:layout_height="52dp"
@@ -22,7 +22,7 @@
         android:layout_marginTop="41dp" />
 
     <Button
-        android:id="@+id/btnRegAcntOldWeb"
+        android:id="@+id/btnAuthOldWebRegAcnt"
         style="@style/MainButton"
         android:layout_width="308dp"
         android:layout_height="52dp"
@@ -34,10 +34,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/btnAuthOldWeb" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAuthOldWebAuth" />
 
     <Button
-        android:id="@+id/btnAuthAcntOldWeb"
+        android:id="@+id/btnAuthOldWebAuthAcnt"
         style="@style/MainButton"
         android:layout_width="308dp"
         android:layout_height="52dp"
@@ -49,6 +49,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegAcntOldWeb" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAuthOldWebRegAcnt" />
 
 </android.support.constraint.ConstraintLayout>

@@ -15,13 +15,13 @@ import org.greenrobot.eventbus.EventBus;
 /**
  * 사용자인증 개선버전 메뉴 Fragment
  */
-public class AuthNewMenuFragment extends BaseFragment {
+public class AuthNewWebMenuFragment extends BaseFragment {
 
     /**
      * 생성자
      *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
      */
-    public AuthNewMenuFragment() {
+    public AuthNewWebMenuFragment() {
         // Required empty public constructor
     }
 
@@ -31,9 +31,9 @@ public class AuthNewMenuFragment extends BaseFragment {
      * @param actionBarTitle
      * @return
      */
-    public static AuthNewMenuFragment newInstance(String actionBarTitle) {
+    public static AuthNewWebMenuFragment newInstance(String actionBarTitle) {
 
-        AuthNewMenuFragment fragment = new AuthNewMenuFragment();
+        AuthNewWebMenuFragment fragment = new AuthNewWebMenuFragment();
         Bundle args = new Bundle();
         args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
         fragment.setArguments(args);

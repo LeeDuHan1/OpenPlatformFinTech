@@ -72,9 +72,9 @@ public class AuthOldWebMenuFragment extends BaseFragment {
      */
     public void bindButtonClickEvents(View view){
 
-        ((Button)view.findViewById(R.id.btnAuthOldWeb)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnRegAcntOldWeb)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAuthAcntOldWeb)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthOldWebAuth)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthOldWebRegAcnt)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthOldWebAuthAcnt)).setOnClickListener(this);
     }
 
     /**
@@ -87,13 +87,13 @@ public class AuthOldWebMenuFragment extends BaseFragment {
 
         Class fragmentClass = null;
         switch(v.getId()){
-            case R.id.btnAuthOldWeb:
+            case R.id.btnAuthOldWebAuth:
                 fragmentClass = AuthOldWebPageAuthorizeFragment.class;
                 break;
-            case R.id.btnRegAcntOldWeb:
+            case R.id.btnAuthOldWebRegAcnt:
                 fragmentClass = AuthOldWebPageRegisterAccountFragment.class;
                 break;
-            case R.id.btnAuthAcntOldWeb:
+            case R.id.btnAuthOldWebAuthAcnt:
                 fragmentClass = AuthOldWebPageAuthorizeAccountFragment.class;
                 break;
             default:
