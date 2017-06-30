@@ -5,7 +5,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedIn
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
-import android.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import android.content.Intent;
@@ -100,8 +99,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onRestart() {
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onRestart() called!", Toast.LENGTH_SHORT);
-//        super.onRestart();
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onRestart() called!", Toast.LENGTH_SHORT);
+        super.onRestart();
     }
 
     @Override
@@ -269,35 +268,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     public void goPage(int id){
 
-        BaseFragment fragment = null;
-        String title = null;
-
+        Class<? extends BaseFragment> fragmentClass = null;
         switch(id){
             case R.id.btnAuthNewMenu:   // 메인페이지 버튼
             case R.id.nav_authNew:      // Navigation Drawer 메뉴
-                fragment = AuthNewMenuFragment.newInstance("사용자인증 개선버전");
+                fragmentClass = AuthNewMenuFragment.class;
                 break;
             case R.id.btnAuthOldAppMenu:
             case R.id.nav_authOldApp:
-                fragment = AuthOldAppMenuFragment.newInstance("사용자인증 기존버전 (앱 방식)");
+                fragmentClass = AuthOldAppMenuFragment.class;
                 break;
             case R.id.btnAuthOldWebMenu:
             case R.id.nav_authOldWeb:
-                fragment = AuthOldWebMenuFragment.newInstance("사용자인증 기존버전 (웹 방식)");
+                fragmentClass = AuthOldWebMenuFragment.class;
                 break;
             case R.id.btnAPICallMenu:
             case R.id.nav_APICall:
-                fragment = APICallMenuFragment.newInstance("API 거래기능");
+                fragmentClass = APICallMenuFragment.class;
                 break;
             case R.id.btnSettings:
             case R.id.nav_setting:
-                fragment = SettingsFragment.newInstance("설정");
+                fragmentClass = SettingsFragment.class;
                 break;
             default:
                 break;
         }
-
-        replaceFragment(fragment);
+        FragmentUtil.replaceNewFragment(fragmentClass);
     }
 
     /**
