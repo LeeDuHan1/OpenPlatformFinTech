@@ -4,6 +4,7 @@ import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.content.ActivityNotFoundException;
@@ -146,4 +147,12 @@ public class AuthOldAppMenuFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 뒤로가기 버튼을 눌렀을 때의 동작
+     */
+    @Override
+    public void onBackPressedForFragment() {
+
+        FragmentUtil.replaceNewFragment(MainFragment.class);
+    }
 }

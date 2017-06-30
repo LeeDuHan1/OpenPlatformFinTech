@@ -3,6 +3,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -114,4 +115,12 @@ public class APICallMenuFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 뒤로가기 버튼을 눌렀을 때의 동작
+     */
+    @Override
+    public void onBackPressedForFragment() {
+
+        FragmentUtil.replaceNewFragment(MainFragment.class);
+    }
 }

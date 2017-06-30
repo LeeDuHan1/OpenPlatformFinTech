@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onCreate() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onCreate() called!", Toast.LENGTH_SHORT);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onStart() {
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onStart() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onStart() called!", Toast.LENGTH_SHORT);
         super.onStart();
         EventBus.getDefault().register(this);   // EventBus 등록
     }
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onRestart() {
         MessageUtil.showToast(BeanUtil.getClassName(this)+".onRestart() called!", Toast.LENGTH_SHORT);
-        super.onRestart();
+//        super.onRestart();
     }
 
     @Override
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         super.onResume();
 
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onResume() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onResume() called!", Toast.LENGTH_SHORT);
 
         // 오픈플랫폼 앱 호출후 결과를 받는 부분(ex: 사용자로그인연결 결과)에 대한 처리를 여기서 하자.
         Intent intent = getIntent();
@@ -142,20 +142,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onPause() {
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onPause() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onPause() called!", Toast.LENGTH_SHORT);
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onStop() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onStop() called!", Toast.LENGTH_SHORT);
         super.onStop();
         EventBus.getDefault().unregister(this); // EventBus 해지
     }
 
     @Override
     protected void onDestroy() {
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onDestroy() called!", Toast.LENGTH_SHORT);
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onDestroy() called!", Toast.LENGTH_SHORT);
         super.onDestroy();
     }
     ///////////////////////////////////// Activity Lifecycle Callbacks - end ///////////////////////////////////////
