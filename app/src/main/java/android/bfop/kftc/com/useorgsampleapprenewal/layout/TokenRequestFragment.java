@@ -2,6 +2,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitCustomAdapter;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
@@ -169,6 +170,33 @@ public class TokenRequestFragment extends BaseFragment {
                 t.printStackTrace();
             }
         });
+    }
+
+    /**
+     * 뒤로가기 버튼을 눌렀을 때의 동작
+     */
+    @Override
+    public void onBackPressedForFragment() {
+
+        // Fragment 교체
+        BaseFragment fragment = null;
+        if (isFromApp()) {
+            fragment = AuthOldAppMenuFragment.newInstance("계좌등록확인 기존버전 (앱 방식)");
+        } else {
+            fragment = AuthOldWebMenuFragment.newInstance("계좌등록확인 기존버전 (웹 방식)");
+        }
+        EventBus.getDefault().post(new FragmentReplaceEvent(fragment));
+    }
+
+    /**
+     * 앱에서 온 요청으로 인해 이 Fragment가 로딩된 것이면 true를 리턴한다.
+     *
+     * @return
+     */
+    private boolean isFromApp(){
+
+        String type = this.getArguments().getString("type");
+        return (StringUtil.isNotBlank(type) && "APP".equals(type));
     }
 
 }

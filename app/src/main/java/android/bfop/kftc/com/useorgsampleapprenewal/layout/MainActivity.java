@@ -1,12 +1,13 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMainEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
-import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -67,11 +68,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //================================ fragment 추가 - start ================================
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
-        if(fragment == null){
-            fragment = MainFragment.newInstance("이용기관 샘플앱 메인");
+        if (fragment == null) {
+            fragment = FragmentUtil.newFragment(MainFragment.class);
             fm.beginTransaction().add(R.id.fragment_container, fragment)
-              .addToBackStack(null)
-              .commit();
+                    //.addToBackStack(null)
+                    .commit();
         }
         //================================ fragment 추가 - end ==================================
 
@@ -225,9 +226,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Navigation Drawer가 닫혀 있을 경우
         } else {
+
             FragmentManager fm = getSupportFragmentManager();
             BaseFragment fragment = (BaseFragment)fm.findFragmentById(R.id.fragment_container);
+
             if (fragment != null) {
+                fragment.onBackPressedForFragment();
+            }
+
+/*            if (fragment != null) {
                 int backStackCnt = fm.getBackStackEntryCount();
                 Log.d("", "## onBackPressed() > fragment:" + fragment.getClass().getName());
                 Log.d("", "## backStackCnt: "+backStackCnt);
@@ -244,14 +251,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         super.onBackPressed();
                     }else{
                         fm.popBackStackImmediate(2, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                        //으음
                     }
 
                 // 그 외의 경우 backstack 을 호출한다.
                 }else{
                     super.onBackPressed();
                 }
-            }
+            }*/
 
         }
     }
@@ -306,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // Fragment 교체
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.fragment_container, fragment);
-            ft.addToBackStack(null); // 뒤로가기 버튼 클릭시 이전 Fragment 스택을 불러올 수 있게 하기 위한 사전작업
+            //ft.addToBackStack(null); // 뒤로가기 버튼 클릭시 이전 Fragment 스택을 불러올 수 있게 하기 위한 사전작업
             ft.commit();
 
             // 액션바 타이틀 교체
@@ -365,6 +371,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onFragmentReplace(FragmentReplaceEvent event){
 
         replaceFragment(event.getFragment());
+    }
+
+    /**
+     * BackButtonPressedInMainEvent 에 대한 EventBus Subscriber
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBackButtonPressedInMain(BackButtonPressedInMainEvent event){
+
+        FragmentManager fm = getSupportFragmentManager();
+        int backStackCnt = fm.getBackStackEntryCount();
+        Log.d("", "## backStackCnt: "+backStackCnt);
+        // backstack이 없을 경우 backPressCloseHandler 를 호출한다
+        if (backStackCnt <= 1) {
+            backPressCloseHandler.onBackPressed();
+        }
     }
 
 }

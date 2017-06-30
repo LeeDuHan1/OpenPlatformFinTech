@@ -2,8 +2,8 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
-import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -98,27 +98,32 @@ public class AuthOldWebMenuFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
 
-        BaseFragment fragment = null;
-        String title = null;
-
+        Class fragmentClass = null;
         switch(v.getId()){
             case R.id.btnAuthOldWeb:
-                fragment = AuthOldWebPageAuthorizeFragment.newInstance("사용자인증 기존버전 (웹 방식)");
+                fragmentClass = AuthOldWebPageAuthorizeFragment.class;
                 break;
             case R.id.btnRegAcntOldWeb:
-                fragment = AuthOldWebPageRegisterAccountFragment.newInstance("계좌등록 기존버전 (웹 방식)");
+                fragmentClass = AuthOldWebPageRegisterAccountFragment.class;
                 break;
             case R.id.btnAuthAcntOldWeb:
-                fragment = AuthOldWebPageAuthorizeAccountFragment.newInstance("계좌등록확인 기존버전 (웹 방식)");
+                fragmentClass = AuthOldWebPageAuthorizeAccountFragment.class;
                 break;
             default:
                 break;
         }
-
-        // Fragment 교체
-        if(fragment != null){
-            EventBus.getDefault().post(new FragmentReplaceEvent(fragment));
+        if(fragmentClass != null){
+            FragmentUtil.replaceNewFragment(fragmentClass);
         }
+    }
+
+    /**
+     * 뒤로가기 버튼을 눌렀을 때의 동작
+     */
+    @Override
+    public void onBackPressedForFragment() {
+
+        FragmentUtil.replaceNewFragment(MainFragment.class);
     }
 
 }

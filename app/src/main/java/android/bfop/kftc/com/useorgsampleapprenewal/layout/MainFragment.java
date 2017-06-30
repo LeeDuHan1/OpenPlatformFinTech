@@ -1,6 +1,7 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMainEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.content.Context;
@@ -125,4 +126,12 @@ public class MainFragment extends BaseFragment {
 
     }
 
+    /**
+     * 뒤로가기 버튼을 눌렀을 때의 기본동작
+     */
+    @Override
+    public void onBackPressedForFragment() {
+
+        EventBus.getDefault().post(new BackButtonPressedInMainEvent());
+    }
 }

@@ -81,11 +81,6 @@ public class WebViewUtil {
                     String scope = StringUtil.getParamValFromUrlString(url, "scope");
                     Log.d("##", "authCode: ["+authCode+"], scope: ["+scope+"]");
 
-//                    Intent intent = new Intent(App.getAppContext(), TokenRequestViewWebActivity.class);
-//                    intent.putExtra("AuthorizationCode", authCode);
-//                    intent.putExtra("Scope", scope);
-//                    startActivity(intent);
-
                     Map<String, Object> pMap = new HashMap<>();
                     pMap.put("authcode", authCode);
                     pMap.put("scope", scope); // UI에서만 사용되는 것인가?
