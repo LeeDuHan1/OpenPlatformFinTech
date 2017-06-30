@@ -4,7 +4,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,18 +61,6 @@ public class APICallMenuFragment extends BaseFragment {
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
         return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-
-        super.onDetach();
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 

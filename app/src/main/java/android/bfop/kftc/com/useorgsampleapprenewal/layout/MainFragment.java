@@ -4,7 +4,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMainEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -64,18 +63,6 @@ public class MainFragment extends BaseFragment {
         bindButtonClickEvents(view);
 
         return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-
-        super.onDetach();
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 

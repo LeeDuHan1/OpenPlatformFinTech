@@ -5,7 +5,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -102,18 +101,6 @@ public class AuthcodeViewWebFragment extends BaseWebFragment {
         // TODO: 그냥 retrofit을 사용하자.
 
         return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-
-        super.onDetach();
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 

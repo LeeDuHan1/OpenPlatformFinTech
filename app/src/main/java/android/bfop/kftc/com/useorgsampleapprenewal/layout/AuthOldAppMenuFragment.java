@@ -8,7 +8,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -74,18 +72,6 @@ public class AuthOldAppMenuFragment extends BaseFragment {
 
         return view;
     }
-
-    @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-
-        super.onDetach();
-    }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**
@@ -97,7 +83,6 @@ public class AuthOldAppMenuFragment extends BaseFragment {
 
         ((Button)view.findViewById(R.id.btnAuthOldApp)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.btnRegAcntOldApp)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAuthAcntOldApp)).setOnClickListener(this);
     }
 
     /**
@@ -110,11 +95,10 @@ public class AuthOldAppMenuFragment extends BaseFragment {
 
         switch(v.getId()){
             case R.id.btnAuthOldApp:
-                goAuthOldApp(v);
+                goAuthOldAppAuthorize(v);
                 break;
             case R.id.btnRegAcntOldApp:
-                break;
-            case R.id.btnAuthAcntOldApp:
+                goAuthOldAppRegisterAccount(v);
                 break;
             default:
                 break;
@@ -125,7 +109,7 @@ public class AuthOldAppMenuFragment extends BaseFragment {
     /**
      * 사용자 로그인 연결 (앱 방식)
      */
-    public void goAuthOldApp(View v) {
+    public void goAuthOldAppAuthorize(View v) {
 
         try {
             // querystring을 만들기 위한 Map
@@ -139,8 +123,34 @@ public class AuthOldAppMenuFragment extends BaseFragment {
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(urlToLoad));
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent); // 오픈플랫폼 앱 Activit 시작
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); // 원래 있던 코드. 반드시 필요한가?
+            startActivity(intent); // 오픈플랫폼 앱 Activity 시작
+
+        } catch (ActivityNotFoundException e) {
+            MessageUtil.showToast("오픈플랫폼 앱("+App.getEnvName(App.getEnv())+")을 설치해 주십시오");
+        }
+    }
+
+    /**
+     * 계좌등록 (앱 방식)
+     */
+    public void goAuthOldAppRegisterAccount(View v) {
+
+        try {
+            // querystring을 만들기 위한 Map
+            Map<String, String> pMap = new LinkedHashMap<>();
+            pMap.put("response_type", "code");
+            pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+            pMap.put("scope", StringUtil.getPropStringForEnv("SCOPE"));
+            pMap.put("redirect_uri", StringUtil.getPropStringForEnv("APP_CALLBACK_URL"));
+
+            // 호출 URL (querystring 포함)
+            String urlToLoad = App.getAppScheme() + "register?" + StringUtil.convertMapToQuerystring(pMap);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(urlToLoad));
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP); // 원래 있던 코드. 반드시 필요한가?
+            startActivity(intent); // 오픈플랫폼 앱 Activity 시작
 
         } catch (ActivityNotFoundException e) {
             MessageUtil.showToast("오픈플랫폼 앱("+App.getEnvName(App.getEnv())+")을 설치해 주십시오");

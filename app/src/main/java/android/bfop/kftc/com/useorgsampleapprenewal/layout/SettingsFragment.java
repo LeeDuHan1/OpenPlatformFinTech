@@ -7,7 +7,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -95,18 +94,6 @@ public class SettingsFragment extends BaseFragment {
         loadPreferences(App.getEnv());
 
         return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-
-        super.onDetach();
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
