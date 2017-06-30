@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:actionBarSize">45dp</item><!-- 액션바 높이 -->
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -32,5 +33,10 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">#111111</item>
     </style>
+
+    <!--<style name="AppTheme.ActionBar" parent="Widget.AppCompat.Light.ActionBar">-->
+        <!--<item name="android:height">@dimen/bar_height</item>-->
+        <!--<item name="height">@dimen/bar_height</item>-->
+    <!--</style>-->
 
 </resources>
