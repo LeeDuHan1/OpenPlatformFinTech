@@ -7,7 +7,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -92,18 +91,6 @@ public class TokenRequestFragment extends BaseFragment {
         etScope.setText(scope);
 
         return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-
-        super.onDetach();
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
