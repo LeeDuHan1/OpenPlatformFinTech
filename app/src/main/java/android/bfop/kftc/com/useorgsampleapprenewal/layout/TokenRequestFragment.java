@@ -2,10 +2,10 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
-import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitCustomAdapter;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.content.Context;
 import android.os.Bundle;
@@ -178,14 +178,14 @@ public class TokenRequestFragment extends BaseFragment {
     @Override
     public void onBackPressedForFragment() {
 
-        // Fragment 교체
-        BaseFragment fragment = null;
+        Class<? extends BaseFragment> fragmentClass = null;
         if (isFromApp()) {
-            fragment = AuthOldAppMenuFragment.newInstance("계좌등록확인 기존버전 (앱 방식)");
+            fragmentClass = AuthOldAppMenuFragment.class;
         } else {
-            fragment = AuthOldWebMenuFragment.newInstance("계좌등록확인 기존버전 (웹 방식)");
+            fragmentClass = AuthOldWebMenuFragment.class;
         }
-        EventBus.getDefault().post(new FragmentReplaceEvent(fragment));
+        // Fragment 교체
+        FragmentUtil.replaceNewFragment(fragmentClass);
     }
 
     /**
