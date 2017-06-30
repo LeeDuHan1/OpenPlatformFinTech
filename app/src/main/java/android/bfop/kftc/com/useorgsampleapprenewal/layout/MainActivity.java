@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             toolbarNavigationListenerRegistered = false;
         }
 
-        drawerToggle.syncState();
+        drawerToggle.syncState(); // 이걸 호출해 주지 않으면 햄버거 버튼이 없어져버리는 현상이 발생한다!
     }
 
     /**
