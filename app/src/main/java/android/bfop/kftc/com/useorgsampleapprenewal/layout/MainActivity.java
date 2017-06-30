@@ -6,7 +6,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
-import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -106,25 +105,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
 
         super.onResume();
-
 //        MessageUtil.showToast(BeanUtil.getClassName(this)+".onResume() called!");
 
         // 오픈플랫폼 앱 호출후 결과를 받는 부분(ex: 사용자로그인연결 결과)에 대한 처리를 여기서 하자.
         Intent intent = getIntent();
-        MessageUtil.showToast("## intent:"+intent);
-        MessageUtil.showToast("## intent.getData():"+intent.getData());
+//        MessageUtil.showToast("## intent:"+intent);
+//        MessageUtil.showToast("## intent.getData():"+intent.getData());
         if (intent == null || intent.getData() == null) return;
 
-        MessageUtil.showToast("## intent.getAction():"+intent.getAction());
+//        MessageUtil.showToast("## intent.getAction():"+intent.getAction());
         if (intent.getAction().equals(Intent.ACTION_VIEW)) {
             Uri uri = intent.getData();
             String rspCode = uri.getQueryParameter("rsp_code");
             String rspMsg = uri.getQueryParameter("rsp_msg");
             String authCode = uri.getQueryParameter("authorization_code");
             String scope = uri.getQueryParameter("scope");
-
-            // TODO: 디버깅용 - 삭제할 것
-            MessageUtil.showToast(String.format("코드: %s\n메시지: %s\n인증 코드: %s\n인증 범위: %s", rspCode, rspMsg, authCode, scope));
+//            MessageUtil.showToast(String.format("코드: %s\n메시지: %s\n인증 코드: %s\n인증 범위: %s", rspCode, rspMsg, authCode, scope));
 
             BaseFragment fragment = FragmentUtil.newFragment(TokenRequestFragment.class);
             Bundle args = fragment.getArguments();
