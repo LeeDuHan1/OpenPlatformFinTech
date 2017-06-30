@@ -3,6 +3,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.util;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.APICallMenuFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebMenuFragment;
+import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2Fragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldAppMenuFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldWebMenuFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldWebPageAuthorizeAccountFragment;
@@ -41,6 +42,7 @@ public class FragmentUtil {
         map.put(AuthOldWebMenuFragment.class, "사용자인증 기존버전 (웹 방식)");
         map.put(APICallMenuFragment.class, "API 거래기능");
         map.put(SettingsFragment.class, "설정");
+        map.put(AuthNewWebPageAuthorize2Fragment.class, "사용자인증 개선버전");
         map.put(AuthOldWebPageAuthorizeFragment.class, "사용자인증 기존버전 (웹 방식)");
         map.put(AuthOldWebPageRegisterAccountFragment.class, "계좌등록 기존버전 (웹 방식)");
         map.put(AuthOldWebPageAuthorizeAccountFragment.class, "계좌등록확인 기존버전 (웹 방식)");

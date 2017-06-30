@@ -71,8 +71,8 @@ public class AuthNewWebMenuFragment extends BaseFragment {
      */
     public void bindButtonClickEvents(View view){
 
-        ((Button)view.findViewById(R.id.btnInqrBlnc)).setOnClickListener(this);
-        ((Button)view.findViewById(R.id.btnAuthAcnt2)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthNewWebAuth2)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthNewWebAuthAcnt2)).setOnClickListener(this);
     }
 
     /**
@@ -83,13 +83,18 @@ public class AuthNewWebMenuFragment extends BaseFragment {
     @Override
     public void onClick(View v) {
 
+        Class fragmentClass = null;
         switch(v.getId()){
-            case R.id.btnInqrBlnc:
+            case R.id.btnAuthNewWebAuth2:
+                fragmentClass = AuthNewWebPageAuthorize2Fragment.class;
                 break;
-            case R.id.btnAuthAcnt2:
+            case R.id.btnAuthNewWebAuthAcnt2:
                 break;
             default:
                 break;
+        }
+        if(fragmentClass != null){
+            FragmentUtil.replaceNewFragment(fragmentClass);
         }
     }
 
