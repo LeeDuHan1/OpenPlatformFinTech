@@ -99,7 +99,7 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
         pMap.put("btn2_color", btn2Color);
 
         // 호출 URL (querystring 포함)
-        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2Fragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
+        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         BaseFragment webViewFragment = FragmentUtil.newFragment(AuthNewWebCommonWebViewFragment.class);

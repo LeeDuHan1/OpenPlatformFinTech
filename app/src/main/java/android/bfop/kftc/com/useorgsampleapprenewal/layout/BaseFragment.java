@@ -11,7 +11,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 /**
@@ -67,7 +66,6 @@ public abstract class BaseFragment extends Fragment implements Button.OnClickLis
     public void onAttach(Context context) {
 
         super.onAttach(context);
-
         Log.d("##", BeanUtil.getClassName(this) + " onAttach() invoked!");
     }
 
@@ -75,7 +73,13 @@ public abstract class BaseFragment extends Fragment implements Button.OnClickLis
     public void onDetach() {
 
         super.onDetach();
-
         Log.d("##", BeanUtil.getClassName(this) + " onDetach() invoked!");
+    }
+
+    @Override
+    public void onDestroy() {
+
+        super.onDestroy();
+        MessageUtil.showToast(BeanUtil.getClassName(this) + " onDestroy() invoked!");
     }
 }

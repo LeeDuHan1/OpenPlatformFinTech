@@ -15,7 +15,7 @@ import android.widget.TabHost;
 /**
  * 사용자인증 개선버전 Fragment (탭 있는 부모 페이지)
  */
-public class AuthNewWebPageAuthorize2Fragment extends BaseFragment {
+public class AuthNewWebPageAuthorize2TabFragment extends BaseFragment {
 
     public static String URI = "/oauth/2.0/authorize2";
 
@@ -25,7 +25,7 @@ public class AuthNewWebPageAuthorize2Fragment extends BaseFragment {
      * 생성자
      *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
      */
-    public AuthNewWebPageAuthorize2Fragment() {
+    public AuthNewWebPageAuthorize2TabFragment() {
         // Required empty public constructor
     }
 
@@ -35,9 +35,9 @@ public class AuthNewWebPageAuthorize2Fragment extends BaseFragment {
      * @param actionBarTitle
      * @return
      */
-    public static AuthNewWebPageAuthorize2Fragment newInstance(String actionBarTitle) {
+    public static AuthNewWebPageAuthorize2TabFragment newInstance(String actionBarTitle) {
 
-        AuthNewWebPageAuthorize2Fragment fragment = new AuthNewWebPageAuthorize2Fragment();
+        AuthNewWebPageAuthorize2TabFragment fragment = new AuthNewWebPageAuthorize2TabFragment();
         Bundle args = new Bundle();
         args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
         fragment.setArguments(args);

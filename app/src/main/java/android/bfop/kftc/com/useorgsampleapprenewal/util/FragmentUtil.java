@@ -7,7 +7,7 @@ import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebMenuFragmen
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2Case1Fragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2Case2Fragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2Case3Fragment;
-import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2Fragment;
+import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2TabFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldAppMenuFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldWebMenuFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldWebPageAuthorizeAccountFragment;
@@ -46,7 +46,7 @@ public class FragmentUtil {
         map.put(AuthOldWebMenuFragment.class, "사용자인증 기존버전 (웹 방식)");
         map.put(APICallMenuFragment.class, "API 거래기능");
         map.put(SettingsFragment.class, "설정");
-        map.put(AuthNewWebPageAuthorize2Fragment.class, "사용자인증 개선버전");
+        map.put(AuthNewWebPageAuthorize2TabFragment.class, "사용자인증 개선버전");
         map.put(AuthNewWebPageAuthorize2Case1Fragment.class, "사용자인증 개선버전 (Case1)");
         map.put(AuthNewWebPageAuthorize2Case2Fragment.class, "사용자인증 개선버전 (Case2)");
         map.put(AuthNewWebPageAuthorize2Case3Fragment.class, "사용자인증 개선버전 (Case3)");

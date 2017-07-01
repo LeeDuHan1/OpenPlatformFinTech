@@ -86,7 +86,7 @@ public class AuthNewWebMenuFragment extends BaseFragment {
         Class fragmentClass = null;
         switch(v.getId()){
             case R.id.btnAuthNewWebAuth2:
-                fragmentClass = AuthNewWebPageAuthorize2Fragment.class;
+                fragmentClass = AuthNewWebPageAuthorize2TabFragment.class;
                 break;
             case R.id.btnAuthNewWebAuthAcnt2:
                 break;
