@@ -1,4 +1,4 @@
-package and.bfop.kftc.com.useorgsampleapprenewal.layout;
+package and.bfop.kftc.com.useorgsampleapprenewal.layout.common;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.util.Log;

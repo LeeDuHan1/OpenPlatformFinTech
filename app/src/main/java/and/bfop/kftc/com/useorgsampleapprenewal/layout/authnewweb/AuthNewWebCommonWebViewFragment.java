@@ -1,4 +1,4 @@
-package and.bfop.kftc.com.useorgsampleapprenewal.layout;
+package and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
@@ -9,11 +9,14 @@ import android.view.ViewGroup;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
-import and.bfop.kftc.com.useorgsampleapprenewal.App;
+import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.ActionBarChangeEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebAuthInterface;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
@@ -22,17 +25,15 @@ import and.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 
 
 /**
- * 계좌등록확인 기존버전 (웹 방식) Fragment
+ * 사용자인증 개선버전에서 공통적으로 사용하는 WebView Fragment
  */
-public class AuthOldWebPageAuthorizeAccountFragment extends BaseWebFragment implements BaseWebAuthInterface {
-
-    private static String URI = "/oauth/2.0/authorize_account";
+public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements BaseWebAuthInterface {
 
     /**
      * 생성자
      *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
      */
-    public AuthOldWebPageAuthorizeAccountFragment() {
+    public AuthNewWebCommonWebViewFragment() {
         // Required empty public constructor
     }
 
@@ -42,9 +43,9 @@ public class AuthOldWebPageAuthorizeAccountFragment extends BaseWebFragment impl
      * @param actionBarTitle
      * @return
      */
-    public static AuthOldWebPageAuthorizeAccountFragment newInstance(String actionBarTitle) {
+    public static AuthNewWebCommonWebViewFragment newInstance(String actionBarTitle) {
 
-        AuthOldWebPageAuthorizeAccountFragment fragment = new AuthOldWebPageAuthorizeAccountFragment();
+        AuthNewWebCommonWebViewFragment fragment = new AuthNewWebCommonWebViewFragment();
         Bundle args = new Bundle();
         args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
         fragment.setArguments(args);
@@ -68,16 +69,12 @@ public class AuthOldWebPageAuthorizeAccountFragment extends BaseWebFragment impl
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
-        // querystring을 만들기 위한 Map
-        Map<String, String> pMap = new LinkedHashMap<>();
-        pMap.put("response_type", "code");
-        pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
-        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
-        pMap.put("scope", StringUtil.getPropStringForEnv("SCOPE"));
-        pMap.put("client_info", "whatever_you_want");
+        // 액션바 타이틀 교체
+        EventBus.getDefault().post(new ActionBarChangeEvent(this.getArguments().getString(Constants.ACTIONBAR_TITLE)));
 
-        // 호출 URL (querystring 포함)
-        String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
+        // Bundle 파라미터로 받은 url 풀셋
+        String urlToLoad = StringUtil.defaultString(this.getArguments().getString("urlToLoad"));
+        Log.d("##", "urlToLoad: ["+urlToLoad+"]");
 
         // WebView로 url 호출
         WebViewUtil.loadUrlOnWebView(view, urlToLoad, this);
@@ -88,6 +85,9 @@ public class AuthOldWebPageAuthorizeAccountFragment extends BaseWebFragment impl
 
     @Override
     public void onAuthCodeResponse(Map<String, Object> pMap) {
+
+        // TokenRequestFragment 페이지에서의 뒤로가기 분기를 위해서 추가
+        pMap.put("invokerType", "WEB_AUTH_NEW");
 
         Log.d("##", BeanUtil.getClassName(this)+".onAuthCodeResponse() > pMap: "+pMap);
 
@@ -103,6 +103,6 @@ public class AuthOldWebPageAuthorizeAccountFragment extends BaseWebFragment impl
     @Override
     public void onBackPressedForFragment() {
 
-        FragmentUtil.replaceNewFragment(AuthOldWebMenuFragment.class);
+        FragmentUtil.replaceNewFragment(AuthNewWebMenuFragment.class);
     }
 }

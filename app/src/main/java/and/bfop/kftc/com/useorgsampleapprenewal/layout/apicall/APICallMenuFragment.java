@@ -1,4 +1,4 @@
-package and.bfop.kftc.com.useorgsampleapprenewal.layout;
+package and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import org.greenrobot.eventbus.EventBus;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import butterknife.OnClick;

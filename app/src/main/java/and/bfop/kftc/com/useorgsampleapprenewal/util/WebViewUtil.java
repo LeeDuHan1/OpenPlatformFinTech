@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.BaseWebAuthInterface;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebAuthInterface;
 
 /**
  * Created by LeeHyeonJae on 2017-06-23.

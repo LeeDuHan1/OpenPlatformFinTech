@@ -1,4 +1,4 @@
-package and.bfop.kftc.com.useorgsampleapprenewal.layout;
+package and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import org.greenrobot.eventbus.EventBus;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 

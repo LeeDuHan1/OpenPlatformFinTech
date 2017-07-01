@@ -1,4 +1,4 @@
-package and.bfop.kftc.com.useorgsampleapprenewal.layout;
+package and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
@@ -9,10 +9,15 @@ import android.view.ViewGroup;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.ActionBarChangeEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebAuthInterface;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
@@ -21,15 +26,17 @@ import and.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 
 
 /**
- * 사용자인증 개선버전에서 공통적으로 사용하는 WebView Fragment
+ * 사용자인증 기존버전 (웹 방식) Fragment
  */
-public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements BaseWebAuthInterface {
+public class AuthOldWebPageAuthorizeFragment extends BaseWebFragment implements BaseWebAuthInterface {
+
+    private static String URI = "/oauth/2.0/authorize";
 
     /**
      * 생성자
      *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
      */
-    public AuthNewWebCommonWebViewFragment() {
+    public AuthOldWebPageAuthorizeFragment() {
         // Required empty public constructor
     }
 
@@ -39,9 +46,9 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
      * @param actionBarTitle
      * @return
      */
-    public static AuthNewWebCommonWebViewFragment newInstance(String actionBarTitle) {
+    public static AuthOldWebPageAuthorizeFragment newInstance(String actionBarTitle) {
 
-        AuthNewWebCommonWebViewFragment fragment = new AuthNewWebCommonWebViewFragment();
+        AuthOldWebPageAuthorizeFragment fragment = new AuthOldWebPageAuthorizeFragment();
         Bundle args = new Bundle();
         args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
         fragment.setArguments(args);
@@ -65,12 +72,16 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
-        // 액션바 타이틀 교체
-        EventBus.getDefault().post(new ActionBarChangeEvent(this.getArguments().getString(Constants.ACTIONBAR_TITLE)));
+        // querystring을 만들기 위한 Map
+        Map<String, String> pMap = new LinkedHashMap<>();
+        pMap.put("response_type", "code");
+        pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
+        pMap.put("scope", "login");
+        pMap.put("client_info", "whatever_you_want");
 
-        // Bundle 파라미터로 받은 url 풀셋
-        String urlToLoad = StringUtil.defaultString(this.getArguments().getString("urlToLoad"));
-        Log.d("##", "urlToLoad: ["+urlToLoad+"]");
+        // 호출 URL (querystring 포함)
+        String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
 
         // WebView로 url 호출
         WebViewUtil.loadUrlOnWebView(view, urlToLoad, this);
@@ -81,9 +92,6 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
 
     @Override
     public void onAuthCodeResponse(Map<String, Object> pMap) {
-
-        // TokenRequestFragment 페이지에서의 뒤로가기 분기를 위해서 추가
-        pMap.put("invokerType", "WEB_AUTH_NEW");
 
         Log.d("##", BeanUtil.getClassName(this)+".onAuthCodeResponse() > pMap: "+pMap);
 
@@ -99,6 +107,6 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
     @Override
     public void onBackPressedForFragment() {
 
-        FragmentUtil.replaceNewFragment(AuthNewWebMenuFragment.class);
+        FragmentUtil.replaceNewFragment(AuthOldWebMenuFragment.class);
     }
 }

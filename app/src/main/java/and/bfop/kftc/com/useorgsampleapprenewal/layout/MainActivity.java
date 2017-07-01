@@ -27,6 +27,13 @@ import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMain
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallMenuFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebMenuFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdapp.AuthOldAppMenuFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebMenuFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.settings.SettingsFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

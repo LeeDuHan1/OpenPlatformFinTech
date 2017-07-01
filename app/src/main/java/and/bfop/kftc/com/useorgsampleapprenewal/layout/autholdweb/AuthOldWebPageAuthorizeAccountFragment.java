@@ -1,4 +1,4 @@
-package and.bfop.kftc.com.useorgsampleapprenewal.layout;
+package and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
@@ -14,6 +14,10 @@ import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebAuthInterface;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
@@ -22,17 +26,17 @@ import and.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 
 
 /**
- * 계좌등록 기존버전 (웹 방식) Fragment
+ * 계좌등록확인 기존버전 (웹 방식) Fragment
  */
-public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment implements BaseWebAuthInterface {
+public class AuthOldWebPageAuthorizeAccountFragment extends BaseWebFragment implements BaseWebAuthInterface {
 
-    private static String URI = "/oauth/2.0/register_account";
+    private static String URI = "/oauth/2.0/authorize_account";
 
     /**
      * 생성자
      *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
      */
-    public AuthOldWebPageRegisterAccountFragment() {
+    public AuthOldWebPageAuthorizeAccountFragment() {
         // Required empty public constructor
     }
 
@@ -42,9 +46,9 @@ public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment imple
      * @param actionBarTitle
      * @return
      */
-    public static AuthOldWebPageRegisterAccountFragment newInstance(String actionBarTitle) {
+    public static AuthOldWebPageAuthorizeAccountFragment newInstance(String actionBarTitle) {
 
-        AuthOldWebPageRegisterAccountFragment fragment = new AuthOldWebPageRegisterAccountFragment();
+        AuthOldWebPageAuthorizeAccountFragment fragment = new AuthOldWebPageAuthorizeAccountFragment();
         Bundle args = new Bundle();
         args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
         fragment.setArguments(args);

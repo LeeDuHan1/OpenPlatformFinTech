@@ -1,4 +1,4 @@
-package and.bfop.kftc.com.useorgsampleapprenewal.layout;
+package and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
@@ -9,20 +9,23 @@ import android.view.ViewGroup;
 import org.greenrobot.eventbus.EventBus;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import butterknife.OnClick;
 
+
 /**
- * 사용자인증 개선버전 메뉴 Fragment
+ * 사용자인증 기존버전 (웹 방식) 메뉴 Fragment
  */
-public class AuthNewWebMenuFragment extends BaseFragment {
+public class AuthOldWebMenuFragment extends BaseFragment {
 
     /**
      * 생성자
      *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
      */
-    public AuthNewWebMenuFragment() {
+    public AuthOldWebMenuFragment() {
         // Required empty public constructor
     }
 
@@ -32,9 +35,9 @@ public class AuthNewWebMenuFragment extends BaseFragment {
      * @param actionBarTitle
      * @return
      */
-    public static AuthNewWebMenuFragment newInstance(String actionBarTitle) {
+    public static AuthOldWebMenuFragment newInstance(String actionBarTitle) {
 
-        AuthNewWebMenuFragment fragment = new AuthNewWebMenuFragment();
+        AuthOldWebMenuFragment fragment = new AuthOldWebMenuFragment();
         Bundle args = new Bundle();
         args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
         fragment.setArguments(args);
@@ -52,7 +55,7 @@ public class AuthNewWebMenuFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_authnew_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_autholdweb_menu, container, false);
         super.initBaseFragment(view); // BaseFragment 초기화 수행
 
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
@@ -67,15 +70,19 @@ public class AuthNewWebMenuFragment extends BaseFragment {
      *
      * @param v
      */
-    @OnClick({ R.id.btnAuthNewWebAuth2, R.id.btnAuthNewWebAuthAcnt2 })
+    @OnClick({ R.id.btnAuthOldWebAuth, R.id.btnAuthOldWebRegAcnt, R.id.btnAuthOldWebAuthAcnt })
     public void onClick(View v) {
 
         Class fragmentClass = null;
         switch(v.getId()){
-            case R.id.btnAuthNewWebAuth2:
-                fragmentClass = AuthNewWebPageAuthorize2TabFragment.class;
+            case R.id.btnAuthOldWebAuth:
+                fragmentClass = AuthOldWebPageAuthorizeFragment.class;
                 break;
-            case R.id.btnAuthNewWebAuthAcnt2:
+            case R.id.btnAuthOldWebRegAcnt:
+                fragmentClass = AuthOldWebPageRegisterAccountFragment.class;
+                break;
+            case R.id.btnAuthOldWebAuthAcnt:
+                fragmentClass = AuthOldWebPageAuthorizeAccountFragment.class;
                 break;
             default:
                 break;
@@ -93,4 +100,5 @@ public class AuthNewWebMenuFragment extends BaseFragment {
 
         FragmentUtil.replaceNewFragment(MainFragment.class);
     }
+
 }

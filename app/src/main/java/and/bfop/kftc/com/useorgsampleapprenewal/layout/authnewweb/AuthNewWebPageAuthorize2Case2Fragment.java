@@ -1,4 +1,4 @@
-package and.bfop.kftc.com.useorgsampleapprenewal.layout;
+package and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
@@ -6,13 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
-import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
@@ -56,17 +53,7 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends AuthNewWebPageBaseFra
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_authnewweb_authorize2_case2, container, false);
-        super.initBaseFragment(view); // BaseFragment 초기화 수행
-
-        // 버튼 이벤트핸들러 바인딩
-//        bindButtonClickEvents(view);
-
-        // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
-        EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true)); // true/false 주의
-
-        return view;
+        return super.initView(inflater, container, R.layout.fragment_authnewweb_authorize2_case2);
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 

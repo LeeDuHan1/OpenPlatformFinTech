@@ -1,4 +1,4 @@
-package and.bfop.kftc.com.useorgsampleapprenewal.layout;
+package and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
@@ -14,6 +14,10 @@ import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebAuthInterface;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
@@ -22,17 +26,17 @@ import and.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 
 
 /**
- * 사용자인증 기존버전 (웹 방식) Fragment
+ * 계좌등록 기존버전 (웹 방식) Fragment
  */
-public class AuthOldWebPageAuthorizeFragment extends BaseWebFragment implements BaseWebAuthInterface {
+public class AuthOldWebPageRegisterAccountFragment extends BaseWebFragment implements BaseWebAuthInterface {
 
-    private static String URI = "/oauth/2.0/authorize";
+    private static String URI = "/oauth/2.0/register_account";
 
     /**
      * 생성자
      *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
      */
-    public AuthOldWebPageAuthorizeFragment() {
+    public AuthOldWebPageRegisterAccountFragment() {
         // Required empty public constructor
     }
 
@@ -42,9 +46,9 @@ public class AuthOldWebPageAuthorizeFragment extends BaseWebFragment implements 
      * @param actionBarTitle
      * @return
      */
-    public static AuthOldWebPageAuthorizeFragment newInstance(String actionBarTitle) {
+    public static AuthOldWebPageRegisterAccountFragment newInstance(String actionBarTitle) {
 
-        AuthOldWebPageAuthorizeFragment fragment = new AuthOldWebPageAuthorizeFragment();
+        AuthOldWebPageRegisterAccountFragment fragment = new AuthOldWebPageRegisterAccountFragment();
         Bundle args = new Bundle();
         args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
         fragment.setArguments(args);
@@ -73,7 +77,7 @@ public class AuthOldWebPageAuthorizeFragment extends BaseWebFragment implements 
         pMap.put("response_type", "code");
         pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
         pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
-        pMap.put("scope", "login");
+        pMap.put("scope", StringUtil.getPropStringForEnv("SCOPE"));
         pMap.put("client_info", "whatever_you_want");
 
         // 호출 URL (querystring 포함)

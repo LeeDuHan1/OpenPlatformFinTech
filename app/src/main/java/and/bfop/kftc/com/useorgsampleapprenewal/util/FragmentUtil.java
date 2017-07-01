@@ -1,22 +1,22 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.util;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.APICallMenuFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebCommonWebViewFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebMenuFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2Case1Fragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2Case2Fragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2Case3Fragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2TabFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldAppMenuFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldWebMenuFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldWebPageAuthorizeAccountFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldWebPageAuthorizeFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.AuthOldWebPageRegisterAccountFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.BaseFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallMenuFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebCommonWebViewFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebMenuFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebPageAuthorize2Case1Fragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebPageAuthorize2Case2Fragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebPageAuthorize2Case3Fragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebPageAuthorize2TabFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdapp.AuthOldAppMenuFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebMenuFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebPageAuthorizeAccountFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebPageAuthorizeFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebPageRegisterAccountFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.SettingsFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.TokenRequestFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.settings.SettingsFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
 
 import org.greenrobot.eventbus.EventBus;
 
