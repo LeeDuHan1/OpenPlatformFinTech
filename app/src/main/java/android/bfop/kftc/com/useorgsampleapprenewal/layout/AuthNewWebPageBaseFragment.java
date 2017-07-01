@@ -21,8 +21,8 @@ public class AuthNewWebPageBaseFragment extends BaseFragment {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         BaseFragment webViewFragment = FragmentUtil.newFragment(AuthNewWebCommonWebViewFragment.class);
         Bundle args = webViewFragment.getArguments();
-        args.putString(Constants.ACTIONBAR_TITLE, this.getActionBarTitle()); // 액션바 타이틀
-        args.putString("urlToLoad", urlToLoad); // 호출 URL
+        args.putString(Constants.ACTIONBAR_TITLE, this.getActionBarTitle()); // 액션바 타이틀 전달
+        args.putString("urlToLoad", urlToLoad); // 호출 URL 전달
         webViewFragment.setArguments(args);
         ft.replace(android.R.id.tabcontent, webViewFragment);
         ft.commit();
