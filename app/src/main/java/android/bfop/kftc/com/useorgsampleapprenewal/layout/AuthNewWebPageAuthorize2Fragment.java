@@ -16,7 +16,7 @@ import org.greenrobot.eventbus.EventBus;
 
 
 /**
- * 사용자인증 개선버전 Fragment
+ * 사용자인증 개선버전 Fragment (탭 있는 부모 페이지)
  */
 public class AuthNewWebPageAuthorize2Fragment extends BaseFragment {
 
@@ -95,13 +95,13 @@ public class AuthNewWebPageAuthorize2Fragment extends BaseFragment {
         Class<? extends BaseFragment> fragmentClass = null;
         switch(tabId){
             case "tab1":
-                fragmentClass = AuthOldAppMenuFragment.class;
+                fragmentClass = AuthNewWebPageAuthorize2Case1Fragment.class;
                 break;
             case "tab2":
-                fragmentClass = AuthOldWebMenuFragment.class;
+                fragmentClass = AuthNewWebPageAuthorize2Case2Fragment.class;
                 break;
             case "tab3":
-                fragmentClass = APICallMenuFragment.class;
+                fragmentClass = AuthNewWebPageAuthorize2Case3Fragment.class;
                 break;
             default:
                 break;
