@@ -4,10 +4,8 @@ import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
-import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +19,7 @@ import java.util.Map;
 /**
  ** 사용자인증 개선버전 Fragment (Case1)
  */
-public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
+public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFragment {
 
     /**
      * 생성자
@@ -71,9 +69,9 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**
-     * authorize2 를 호출한다.
+     * 사용자인증 개선버전 호출
      */
-    public void invokeAuth2(){
+    public void invokeAuth(){
 
         String clientId = StringUtil.getPropStringForEnv("APP_KEY");
         String clientSecret = StringUtil.getPropStringForEnv("APP_SECRET");
@@ -101,14 +99,7 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        BaseFragment webViewFragment = FragmentUtil.newFragment(AuthNewWebCommonWebViewFragment.class);
-        Bundle args = webViewFragment.getArguments();
-        args.putString(Constants.ACTIONBAR_TITLE, this.getActionBarTitle()); // 액션바 타이틀
-        args.putString("urlToLoad", urlToLoad); // 호출 URL
-        webViewFragment.setArguments(args);
-        ft.replace(android.R.id.tabcontent, webViewFragment);
-        ft.commit();
+        super.callUrlUsingWebView(urlToLoad);
     }
 
     /**
@@ -131,19 +122,11 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
 
         switch(v.getId()){
             case R.id.btnAuthNewWebAuth2Case1:
-                invokeAuth2();
+                invokeAuth();
                 break;
             default:
                 break;
         }
     }
 
-    /**
-     * 뒤로가기 버튼을 눌렀을 때의 동작
-     */
-    @Override
-    public void onBackPressedForFragment() {
-
-        FragmentUtil.replaceNewFragment(AuthNewWebMenuFragment.class);
-    }
 }
