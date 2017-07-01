@@ -58,9 +58,11 @@ public class AuthNewWebPageAuthorize2Fragment extends BaseFragment {
         final View view = inflater.inflate(R.layout.fragment_authnewweb_authorize2, container, false); // createTabContent() 때문에 final 처리해 줌.
         super.initBaseFragment(view); // BaseFragment 초기화 수행
 
+        // TabHost 초기화 작업
         tabHost = (FragmentTabHost)view.findViewById(android.R.id.tabhost);
         tabHost.setup(this.getActivity(), this.getFragmentManager(), android.R.id.tabcontent);
 
+        // TabSpec을 생성하여 TabHost에 add 한다.
         createAndAddTabSpec(view, "tab1", "Case1");
         createAndAddTabSpec(view, "tab2", "Case2");
         createAndAddTabSpec(view, "tab3", "Case3");
@@ -106,6 +108,13 @@ public class AuthNewWebPageAuthorize2Fragment extends BaseFragment {
         ft.commit();
     }
 
+    /**
+     * 탭의 기본 구성요소인 TabSpec를 생성하여 TabHost에 add 한다.
+     *
+     * @param view
+     * @param tag
+     * @param indicator
+     */
     private void createAndAddTabSpec(final View view, String tag, String indicator) {
 
         TabHost.TabSpec spec = tabHost.newTabSpec(tag);
