@@ -2,16 +2,12 @@ package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
-import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
-import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -37,11 +33,7 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
      */
     public static AuthNewWebPageAuthorize2Case1Fragment newInstance(String actionBarTitle) {
 
-        AuthNewWebPageAuthorize2Case1Fragment fragment = new AuthNewWebPageAuthorize2Case1Fragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
-        fragment.setArguments(args);
-        return fragment;
+        return AuthNewWebPageBaseFragment.getInstance(actionBarTitle, AuthNewWebPageAuthorize2Case1Fragment.class);
     }
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
@@ -54,17 +46,7 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_authnewweb_authorize2_case1, container, false);
-        super.initBaseFragment(view); // BaseFragment 초기화 수행
-
-        // 버튼 이벤트핸들러 바인딩
-        bindButtonClickEvents(view);
-
-        // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
-        EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true)); // true/false 주의
-
-        return view;
+        return super.initView(inflater, container, R.layout.fragment_authnewweb_authorize2_case1);
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
@@ -107,6 +89,7 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
      *
      * @param view
      */
+    @Override
     public void bindButtonClickEvents(View view){
 
         ((Button)view.findViewById(R.id.btnAuthNewWebAuth2Case1)).setOnClickListener(this);
