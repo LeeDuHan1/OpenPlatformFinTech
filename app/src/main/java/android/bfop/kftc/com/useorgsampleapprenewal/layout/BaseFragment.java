@@ -80,6 +80,7 @@ public abstract class BaseFragment extends Fragment implements Button.OnClickLis
     public void onDestroy() {
 
         super.onDestroy();
-        MessageUtil.showToast(BeanUtil.getClassName(this) + " onDestroy() invoked!");
+        Log.d("##", BeanUtil.getClassName(this) + " onDestroy() invoked!");
+//        MessageUtil.showToast(BeanUtil.getClassName(this) + " onDestroy() invoked!");
     }
 }
