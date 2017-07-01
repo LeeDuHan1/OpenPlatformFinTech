@@ -2,8 +2,6 @@ package and.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,40 +11,11 @@ import org.greenrobot.eventbus.EventBus;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 
 /**
  ** 사용자인증 개선버전 부모 Fragment
  */
 public class AuthNewWebPageBaseFragment extends BaseFragment {
-
-    protected MainActivity mainActivity;
-    protected ActionBar actionBar;
-    public ActionBarDrawerToggle drawerToggle;
-    protected View thisFragmentView;
-
-    /**
-     * 초기화 수행
-     *
-     * @param view
-     */
-    public void initBaseFragment(View view){
-
-        mainActivity = ((MainActivity)this.getActivity());
-        actionBar = mainActivity.getSupportActionBar();
-        drawerToggle = mainActivity.getDrawerToggle();
-        thisFragmentView = view;
-    }
-
-    /**
-     * 액션바 타이틀 리턴
-     *
-     * @return
-     */
-    public String getActionBarTitle(){
-
-        return StringUtil.defaultString(this.getArguments().get(Constants.ACTIONBAR_TITLE));
-    }
 
     /**
      * Fragment 인스턴스를 생성하여 리턴한다.
