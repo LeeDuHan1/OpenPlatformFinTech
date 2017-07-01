@@ -7,7 +7,7 @@
     tools:layout_editor_absoluteX="0dp">
 
     <Button
-        android:id="@+id/btnAuthNewWebAuth2"
+        android:id="@+id/btnAuthNewWebAuth2Case2"
         style="@style/MainButton"
         android:layout_width="308dp"
         android:layout_height="52dp"

@@ -71,7 +71,7 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends BaseFragment {
      */
     public void bindButtonClickEvents(View view){
 
-        ((Button)view.findViewById(R.id.btnAuthNewWebAuth2)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.btnAuthNewWebAuth2Case2)).setOnClickListener(this);
     }
 
     /**
@@ -84,7 +84,7 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends BaseFragment {
 
         Class fragmentClass = null;
         switch(v.getId()){
-            case R.id.btnAuthNewWebAuth2:
+            case R.id.btnAuthNewWebAuth2Case2:
                 break;
             default:
                 break;
