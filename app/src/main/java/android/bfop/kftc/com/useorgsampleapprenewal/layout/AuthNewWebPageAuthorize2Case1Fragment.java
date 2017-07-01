@@ -91,12 +91,12 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
         pMap.put("response_type", "code"); // 고정값
         pMap.put("scope", scope);
         pMap.put("redirect_uri", redirectUri);
-        pMap.put("client_info", clientId);
+        pMap.put("client_info", clientInfo);
         pMap.put("auth_type", "0"); // 고정값 (Case1)
-        pMap.put("bg_color", clientId);
-        pMap.put("txt_color", clientId);
-        pMap.put("btn1_color", clientId);
-        pMap.put("btn2_color", clientId);
+        pMap.put("bg_color", bgColor);
+        pMap.put("txt_color", txtColor);
+        pMap.put("btn1_color", btn1Color);
+        pMap.put("btn2_color", btn2Color);
 
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2Fragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
