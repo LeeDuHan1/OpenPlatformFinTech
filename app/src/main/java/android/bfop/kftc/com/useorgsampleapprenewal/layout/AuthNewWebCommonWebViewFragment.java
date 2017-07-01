@@ -81,6 +81,9 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
     @Override
     public void onAuthCodeResponse(Map<String, Object> pMap) {
 
+        // TokenRequestFragment 페이지에서의 뒤로가기 분기를 위해서 추가
+        pMap.put("invokerType", "WEB_AUTH_NEW");
+
         Log.d("##", BeanUtil.getClassName(this)+".onAuthCodeResponse() > pMap: "+pMap);
 
         // token 발급 요청 Fragment로 이동한다.

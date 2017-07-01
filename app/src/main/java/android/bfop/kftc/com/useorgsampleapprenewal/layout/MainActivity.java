@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             args.putString("rspMsg", rspMsg);
             args.putString("authcode", authCode);
             args.putString("scope", scope);
-            args.putString("type", "APP"); // 앱에서의 요청과 웹에서의 요청을 구분해 주기 위해서 추가
+            args.putString("invokerType", "APP"); // 앱에서의 요청과 웹에서의 요청을 구분해 주기 위해서 추가
             replaceFragment(fragment);
         }
 
@@ -347,6 +347,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onActionBarChange(ActionBarChangeEvent event){
 
         String actionBarTitle = event.getActionBarTitle();
+        Log.d("##", "ActionBarChangeEvent.getActionBarTitle(): "+actionBarTitle);
+
         if(getSupportActionBar() != null){
             getSupportActionBar().setTitle(actionBarTitle);
         }

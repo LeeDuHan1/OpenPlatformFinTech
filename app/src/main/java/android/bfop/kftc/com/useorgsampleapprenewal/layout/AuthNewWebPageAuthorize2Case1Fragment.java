@@ -104,7 +104,7 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         BaseFragment webViewFragment = FragmentUtil.newFragment(AuthNewWebCommonWebViewFragment.class);
         Bundle args = webViewFragment.getArguments();
-        args.putString(Constants.ACTIONBAR_TITLE, webViewFragment.getActionBarTitle()); // 액션바 타이틀
+        args.putString(Constants.ACTIONBAR_TITLE, this.getActionBarTitle()); // 액션바 타이틀
         args.putString("urlToLoad", urlToLoad); // 호출 URL
         webViewFragment.setArguments(args);
         ft.replace(android.R.id.tabcontent, webViewFragment);

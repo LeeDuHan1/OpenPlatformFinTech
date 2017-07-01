@@ -35,6 +35,7 @@ public class TokenRequestFragment extends BaseFragment {
 
     private String authcode;
     private String scope;
+    String invokerType;
 
     /**
      * 생성자
@@ -81,9 +82,10 @@ public class TokenRequestFragment extends BaseFragment {
 
         // EditText 에 authcode 등을 바인딩한다.
         Bundle args = this.getArguments();
-        authcode = args.getString("authcode");
-        scope = args.getString("scope");
-        Log.d("##", "TokenRequestFragment > authcode:["+authcode+"], scope:["+scope+"]");
+        authcode = StringUtil.defaultString(args.getString("authcode"));
+        scope = StringUtil.defaultString(args.getString("scope"));
+        invokerType = StringUtil.defaultString(args.getString("invokerType"));
+        Log.d("##", "TokenRequestFragment > authcode:["+authcode+"], scope:["+scope+"], invokerType:["+invokerType+"]");
 
         EditText etAuthorizationCode = (EditText) view.findViewById(R.id.etAuthorizationCode);
         EditText etScope = (EditText) view.findViewById(R.id.etScope);
@@ -126,7 +128,7 @@ public class TokenRequestFragment extends BaseFragment {
      */
     private void getToken(){
 
-        String type = this.getArguments().getString("type");
+        String type = this.getArguments().getString("invokerType");
         String redirectUriKey = (StringUtil.isNotBlank(type) && "APP".equals(type)) ? "APP_CALLBACK_URL" : "WEB_CALLBACK_URL";
 
         Map params = new LinkedHashMap<>();
@@ -166,24 +168,19 @@ public class TokenRequestFragment extends BaseFragment {
     public void onBackPressedForFragment() {
 
         Class<? extends BaseFragment> fragmentClass = null;
-        if (isFromApp()) {
-            fragmentClass = AuthOldAppMenuFragment.class;
-        } else {
-            fragmentClass = AuthOldWebMenuFragment.class;
+        switch(invokerType){
+            case "WEB_AUTH_NEW": // 사용자인증 개선버전 에서 들어온 경우
+                fragmentClass = AuthNewWebMenuFragment.class;
+                break;
+            case "APP": // 사용자인증 기존버전 (앱 방식) 에서 들어온 경우
+                fragmentClass = AuthOldAppMenuFragment.class;
+                break;
+            default: // 사용자인증 기존버전 (웹 방식) 에서 들어온 경우
+                fragmentClass = AuthOldWebMenuFragment.class;
+                break;
         }
         // Fragment 교체
         FragmentUtil.replaceNewFragment(fragmentClass);
-    }
-
-    /**
-     * 앱에서 온 요청으로 인해 이 Fragment가 로딩된 것이면 true를 리턴한다.
-     *
-     * @return
-     */
-    private boolean isFromApp(){
-
-        String type = this.getArguments().getString("type");
-        return (StringUtil.isNotBlank(type) && "APP".equals(type));
     }
 
 }
