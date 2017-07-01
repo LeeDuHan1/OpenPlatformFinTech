@@ -17,7 +17,7 @@ import android.widget.TabHost;
  */
 public class AuthNewWebPageAuthorize2Fragment extends BaseFragment {
 
-    private static String URI = "/oauth/2.0/authorize2";
+    public static String URI = "/oauth/2.0/authorize2";
 
     private FragmentTabHost tabHost;
 

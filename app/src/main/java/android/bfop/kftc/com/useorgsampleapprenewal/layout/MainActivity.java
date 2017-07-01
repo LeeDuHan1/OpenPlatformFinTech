@@ -1,6 +1,7 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.ActionBarChangeEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMainEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
@@ -335,6 +336,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onFragmentReplace(FragmentReplaceEvent event){
 
         replaceFragment(event.getFragment());
+    }
+
+    /**
+     * ActionBarChangeEvent 에 대한 EventBus Subscriber
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onActionBarChange(ActionBarChangeEvent event){
+
+        String actionBarTitle = event.getActionBarTitle();
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle(actionBarTitle);
+        }
     }
 
     /**

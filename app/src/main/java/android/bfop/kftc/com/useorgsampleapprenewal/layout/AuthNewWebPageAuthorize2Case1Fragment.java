@@ -1,17 +1,22 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
+import android.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
-import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  ** 사용자인증 개선버전 Fragment (Case1)
@@ -66,6 +71,47 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**
+     * authorize2 를 호출한다.
+     */
+    public void invokeAuth2(){
+
+        String clientId = StringUtil.getPropStringForEnv("APP_KEY");
+        String clientSecret = StringUtil.getPropStringForEnv("APP_SECRET");
+        String redirectUri = StringUtil.getPropStringForEnv("WEB_CALLBACK_URL");
+        String scope = "login transfer";
+        String clientInfo = "[test] whatever you want";
+        String bgColor = "#FBEFF2";
+        String txtColor = "#088A08";
+        String btn1Color = "#FF8000";
+        String btn2Color = "#F3E2A9";
+
+        Map<String, String> pMap = new LinkedHashMap<>();
+        pMap.put("client_id", clientId);
+        pMap.put("client_secret", clientSecret);
+        pMap.put("response_type", "code"); // 고정값
+        pMap.put("scope", scope);
+        pMap.put("redirect_uri", redirectUri);
+        pMap.put("client_info", clientId);
+        pMap.put("auth_type", "0"); // 고정값 (Case1)
+        pMap.put("bg_color", clientId);
+        pMap.put("txt_color", clientId);
+        pMap.put("btn1_color", clientId);
+        pMap.put("btn2_color", clientId);
+
+        // 호출 URL (querystring 포함)
+        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2Fragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        BaseFragment webViewFragment = FragmentUtil.newFragment(AuthNewWebCommonWebViewFragment.class);
+        Bundle args = webViewFragment.getArguments();
+        args.putString(Constants.ACTIONBAR_TITLE, webViewFragment.getActionBarTitle()); // 액션바 타이틀
+        args.putString("urlToLoad", urlToLoad); // 호출 URL
+        webViewFragment.setArguments(args);
+        ft.replace(android.R.id.tabcontent, webViewFragment);
+        ft.commit();
+    }
+
+    /**
      * 버튼 이벤트핸들러 바인딩
      *
      * @param view
@@ -83,10 +129,9 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
     @Override
     public void onClick(View v) {
 
-        MessageUtil.showToast("으헤헤헤헤");
-
         switch(v.getId()){
             case R.id.btnAuthNewWebAuth2Case1:
+                invokeAuth2();
                 break;
             default:
                 break;

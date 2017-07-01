@@ -2,6 +2,7 @@ package android.bfop.kftc.com.useorgsampleapprenewal.util;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.APICallMenuFragment;
+import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebCommonWebViewFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebMenuFragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2Case1Fragment;
 import android.bfop.kftc.com.useorgsampleapprenewal.layout.AuthNewWebPageAuthorize2Case2Fragment;
@@ -49,6 +50,7 @@ public class FragmentUtil {
         map.put(AuthNewWebPageAuthorize2Case1Fragment.class, "사용자인증 개선버전 (Case1)");
         map.put(AuthNewWebPageAuthorize2Case2Fragment.class, "사용자인증 개선버전 (Case2)");
         map.put(AuthNewWebPageAuthorize2Case3Fragment.class, "사용자인증 개선버전 (Case3)");
+        map.put(AuthNewWebCommonWebViewFragment.class, "사용자인증 개선버전"); // 어차피 override 되는 값이다.
         map.put(AuthOldWebPageAuthorizeFragment.class, "사용자인증 기존버전 (웹 방식)");
         map.put(AuthOldWebPageRegisterAccountFragment.class, "계좌등록 기존버전 (웹 방식)");
         map.put(AuthOldWebPageAuthorizeAccountFragment.class, "계좌등록확인 기존버전 (웹 방식)");
