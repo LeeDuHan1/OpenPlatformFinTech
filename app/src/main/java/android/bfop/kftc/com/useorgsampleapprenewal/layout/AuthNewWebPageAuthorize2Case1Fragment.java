@@ -82,7 +82,6 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
     @Override
     public void onClick(View v) {
 
-        Class fragmentClass = null;
         switch(v.getId()){
             case R.id.btnAuthNewWebAuth2Case1:
                 break;
