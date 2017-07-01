@@ -58,7 +58,7 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends BaseFragment {
         bindButtonClickEvents(view);
 
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
-        EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), false)); // true/false 주의
+        EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true)); // true/false 주의
 
         return view;
     }

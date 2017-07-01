@@ -1,7 +1,6 @@
 package android.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
-import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import android.os.Bundle;
@@ -11,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TabHost;
-
-import org.greenrobot.eventbus.EventBus;
 
 
 /**
@@ -78,9 +75,6 @@ public class AuthNewWebPageAuthorize2Fragment extends BaseFragment {
 
         // 컨텐츠영역의 내용을 첫번째 Fragment로 기본 설정
         changeFragmentInTabContents("tab1");
-
-        // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
-        EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
         return view;
     }

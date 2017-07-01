@@ -4,6 +4,7 @@ import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import android.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
+import android.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +59,7 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
         bindButtonClickEvents(view);
 
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
-        EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), false)); // true/false 주의
+        EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true)); // true/false 주의
 
         return view;
     }
@@ -81,6 +82,8 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends BaseFragment {
      */
     @Override
     public void onClick(View v) {
+
+        MessageUtil.showToast("으헤헤헤헤");
 
         switch(v.getId()){
             case R.id.btnAuthNewWebAuth2Case1:
