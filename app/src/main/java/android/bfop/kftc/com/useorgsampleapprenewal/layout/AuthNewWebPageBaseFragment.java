@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 /**
- ** 사용자인증 개선버전 Fragment (Case1)
+ ** 사용자인증 개선버전 부모 Fragment
  */
 public class AuthNewWebPageBaseFragment extends BaseFragment {
 
