@@ -102,13 +102,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dp">
+
             <TextView
                 style="@style/FormLabel02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center_vertical|end"
-                android:text="Callback URL\n(via Web) : " />
+                android:text="Callback URL   \n(via Web) : " />
             <EditText
                 style="@style/FormValue02"
                 android:id="@+id/etWebCallbackUrl"
@@ -124,15 +125,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dip">
+
             <TextView
-                style="@style/FormLabel02"
                 android:id="@+id/textView3"
+                style="@style/FormLabel02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="0dp"
                 android:layout_weight="3"
                 android:gravity="center_vertical|end"
-                android:text="Callback URL\n(via App) : " />
+                android:text="Callback URL   \n(via App) : " />
             <EditText
                 style="@style/FormValue02"
                 android:id="@+id/etCallbackUrl"
@@ -171,19 +173,21 @@
             android:padding="5dip"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
+
             <TextView
                 style="@style/FormLabel02"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:gravity="center_vertical|end"
-                android:text="Scope : " />
+                android:text="Scope    \n(기존버전용) : " />
+
             <Spinner
                 android:id="@+id/spScope"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                android:layout_weight="7" />
         </TableRow>
     </TableLayout>
 
