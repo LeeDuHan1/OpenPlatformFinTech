@@ -62,31 +62,23 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
      */
     public void invokeAuth(){
 
-        // 현재 폼데이터를 SharedPreferences에 저장
-        FragmentUtil.saveFormData(getView(), R.id.auth2Case1FormTable);
+        View v = getView();
 
-        String clientId = StringUtil.getPropStringForEnv("APP_KEY");
-        String clientSecret = StringUtil.getPropStringForEnv("APP_SECRET");
-        String redirectUri = StringUtil.getPropStringForEnv("WEB_CALLBACK_URL");
-        String scope = "login transfer";
-        String clientInfo = "[test] whatever you want";
-        String bgColor = "#FBEFF2";
-        String txtColor = "#088A08";
-        String btn1Color = "#FF8000";
-        String btn2Color = "#F3E2A9";
+        // 현재 폼데이터를 SharedPreferences에 저장
+        FragmentUtil.saveFormData(v, R.id.auth2Case1FormTable);
 
         Map<String, String> pMap = new LinkedHashMap<>();
-        pMap.put("client_id", clientId);
-        pMap.put("client_secret", clientSecret);
+        pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+        pMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
+        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
         pMap.put("response_type", "code"); // 고정값
-        pMap.put("scope", scope);
-        pMap.put("redirect_uri", redirectUri);
-        pMap.put("client_info", clientInfo);
         pMap.put("auth_type", "0"); // 고정값 (Case1)
-        pMap.put("bg_color", bgColor);
-        pMap.put("txt_color", txtColor);
-        pMap.put("btn1_color", btn1Color);
-        pMap.put("btn2_color", btn2Color);
+        pMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
+        pMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
+        pMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
+        pMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
+        pMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
+        pMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
 
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);

@@ -188,4 +188,16 @@ public class FragmentUtil {
 //        MessageUtil.showToast("저장되었습니다.", 1500);
     }
 
+    /**
+     * EditText의 값을 리턴한다.
+     *
+     * @param rootView
+     * @param etId
+     * @return
+     */
+    public static String getEtVal(View rootView, int etId){
+
+        return ((EditText)rootView.findViewById(etId)).getText().toString().trim();
+    }
+
 }
