@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseFragment extends Fragment {
 
-    protected MainActivity mainActivity;
+    protected MainActivity mainActivity; // TODO: MainActivity 의존성 제거
     protected ActionBar actionBar;
     public ActionBarDrawerToggle drawerToggle;
     protected View thisFragmentView;
