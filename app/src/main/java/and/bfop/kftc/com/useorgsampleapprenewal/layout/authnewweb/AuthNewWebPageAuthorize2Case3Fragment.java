@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
@@ -62,7 +63,11 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
      */
     public void invokeAuth(){
 
-        String headerJson = "";
+        Map<String, String> hMap = new LinkedHashMap<>();
+        hMap.put("Kftc-Bfop-UserSeqNo", "1100002505");
+        hMap.put("Kftc-Bfop-UserCI", "8lVNGtFACsr6wWKe1kS34tM+tUODqwZxhYZqfdVFpYjg/TXrEclBzag2e8CzsemJVbRLQIt2EhawiQypch6sVg==");
+        hMap.put("Kftc-Bfop-AccessToken", "9c7186ef-385c-43f1-a2c1-a8c8ede3437c");
+        String headerJson = BeanUtil.GSON.toJson(hMap, LinkedHashMap.class);
 
         String clientId = StringUtil.getPropStringForEnv("APP_KEY");
         String clientSecret = StringUtil.getPropStringForEnv("APP_SECRET");
@@ -81,7 +86,7 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
         pMap.put("scope", scope);
         pMap.put("redirect_uri", redirectUri);
         pMap.put("client_info", clientInfo);
-        pMap.put("auth_type", "0"); // 고정값 (Case1)
+        pMap.put("auth_type", "2"); // 고정값 (Case3)
         pMap.put("bg_color", bgColor);
         pMap.put("txt_color", txtColor);
         pMap.put("btn1_color", btn1Color);
