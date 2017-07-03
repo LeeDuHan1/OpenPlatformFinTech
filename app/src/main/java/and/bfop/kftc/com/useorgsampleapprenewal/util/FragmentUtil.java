@@ -156,7 +156,8 @@ public class FragmentUtil {
     }
 
     /**
-     * 설정값을 SharedPreferences 에 저장
+     * view 하위의 특정 TableLayout의 TableRow를 순회하면서 EditText를 찾고,
+     * 각 EditText의 값을, id 문자열을 key로 하여 SharedPreferences 에 저장한다.
      */
     public static void saveFormData(View rootView, int tableLayoutId) {
 
