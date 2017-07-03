@@ -53,8 +53,8 @@ public interface Constants {
     /**
      * 오픈플랫폼에서 발급한 이용기관의 앱 Client Secret 기본값
      */
-    String APP_SECRET_TEST = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
-    String APP_SECRET_PRD = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
+    String APP_SECRTEST = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
+    String APP_SECRPRD = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
 
     /**
      * 오픈플랫폼에 등록된 이용기관 앱의 Redirect URL (웹 방식 호출의 경우) 기본값
@@ -114,6 +114,44 @@ public interface Constants {
      */
     String ANW_BTN2_COLOR_TEST = "#F3E2A9";
     String ANW_BTN2_COLOR_PRD = "#F3E2A9";
+
+
+    /**
+     * Kftc-Bfop-UserSeqNo
+     */
+    String ANW_USER_SEQ_NO_TEST = "0000000000";
+    String ANW_USER_SEQ_NO_PRD = "0000000000";
+
+    /**
+     * Kftc-Bfop-UserCI
+     */
+    String ANW_USER_CI_TEST = "abcd1234";
+    String ANW_USER_CI_PRD = "abcd1234";
+
+    /**
+     * Kftc-Bfop-UserName
+     */
+    String ANW_USER_NAME_TEST = "김핀텍";
+    String ANW_USER_NAME_PRD = "김핀텍";
+
+    /**
+     * Kftc-Bfop-UserInfo
+     */
+    String ANW_USER_INFO_TEST = "19871212";
+    String ANW_USER_INFO_PRD = "19871212";
+
+    /**
+     * Kftc-Bfop-UserCellNo
+     */
+    String ANW_USER_CELL_NO_TEST = "01077778888";
+    String ANW_USER_CELL_NO_PRD = "01077778888";
+
+    /**
+     * Kftc-Bfop-UserEmail
+     */
+    String ANW_USER_EMAIL_TEST = "abc@inter.net";
+    String ANW_USER_EMAIL_PRD = "abc@inter.net";
+
     //=========================================== 사용자정의 설정 기본값 (사용자인증 개선버전) - end ============================================
 
 
