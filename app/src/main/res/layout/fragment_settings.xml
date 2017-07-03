@@ -25,15 +25,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dip">
-
             <TextView
+                style="@style/FormLabel02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="3"
                 android:gravity="center_vertical|end"
                 android:text="호출 서버 : " />
-
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/rgSvr"
                 android:layout_width="0dp"
@@ -41,7 +40,9 @@
                 android:orientation="horizontal"
                 android:layout_weight="7"
                 >
-                <RadioButton android:id="@+id/radioSvr_TEST"
+                <RadioButton
+                    style="@style/FormLabel02"
+                    android:id="@+id/radioSvr_TEST"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="테스트서버"
@@ -59,15 +60,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dip">
-
             <TextView
+                style="@style/FormLabel02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center_vertical|end"
                 android:text="App Key : " />
-
             <EditText
+                style="@style/FormValue02"
                 android:id="@+id/etAppKey"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -80,15 +81,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dip">
-
             <TextView
+                style="@style/FormLabel02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center_vertical|end"
                 android:text="App Secret : " />
-
             <EditText
+                style="@style/FormValue02"
                 android:id="@+id/etAppSecret"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -101,15 +102,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dp">
-
             <TextView
+                style="@style/FormLabel02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center_vertical|end"
                 android:text="Callback URL\n(via Web) : " />
-
             <EditText
+                style="@style/FormValue02"
                 android:id="@+id/etWebCallbackUrl"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -123,8 +124,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dip">
-
             <TextView
+                style="@style/FormLabel02"
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -132,8 +133,8 @@
                 android:layout_weight="3"
                 android:gravity="center_vertical|end"
                 android:text="Callback URL\n(via App) : " />
-
             <EditText
+                style="@style/FormValue02"
                 android:id="@+id/etCallbackUrl"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -170,14 +171,13 @@
             android:padding="5dip"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
-
             <TextView
+                style="@style/FormLabel02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center_vertical|end"
                 android:text="Scope : " />
-
             <Spinner
                 android:id="@+id/spScope"
                 android:layout_width="0dp"

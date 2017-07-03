@@ -28,14 +28,14 @@
                 android:layout_height="match_parent"
                 android:padding="5dip">
                 <TextView
-                    style="@style/FormLabel"
+                    style="@style/FormLabel01"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:gravity="center_vertical|end"
                     android:text="scope : " />
                 <EditText
-                    style="@style/FormValue"
+                    style="@style/FormValue01"
                     android:id="@+id/et_ANW_SCOPE"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -49,14 +49,14 @@
                 android:layout_height="match_parent"
                 android:padding="5dip">
                 <TextView
-                    style="@style/FormLabel"
+                    style="@style/FormLabel01"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:gravity="center_vertical|end"
                     android:text="client_info : " />
                 <EditText
-                    style="@style/FormValue"
+                    style="@style/FormValue01"
                     android:id="@+id/et_ANW_CLIENT_INFO"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -70,14 +70,14 @@
                 android:layout_height="match_parent"
                 android:padding="5dip">
                 <TextView
-                    style="@style/FormLabel"
+                    style="@style/FormLabel01"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:gravity="center_vertical|end"
                     android:text="bg_color : " />
                 <EditText
-                    style="@style/FormValue"
+                    style="@style/FormValue01"
                     android:id="@+id/et_ANW_BG_COLOR"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -91,14 +91,14 @@
                 android:layout_height="match_parent"
                 android:padding="5dip">
                 <TextView
-                    style="@style/FormLabel"
+                    style="@style/FormLabel01"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:gravity="center_vertical|end"
                     android:text="txt_color : " />
                 <EditText
-                    style="@style/FormValue"
+                    style="@style/FormValue01"
                     android:id="@+id/et_ANW_TXT_COLOR"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -112,14 +112,14 @@
                 android:layout_height="match_parent"
                 android:padding="5dip">
                 <TextView
-                    style="@style/FormLabel"
+                    style="@style/FormLabel01"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:gravity="center_vertical|end"
                     android:text="btn1_color : " />
                 <EditText
-                    style="@style/FormValue"
+                    style="@style/FormValue01"
                     android:id="@+id/et_ANW_BTN1_COLOR"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -133,14 +133,14 @@
                 android:layout_height="match_parent"
                 android:padding="5dip">
                 <TextView
-                    style="@style/FormLabel"
+                    style="@style/FormLabel01"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:gravity="center_vertical|end"
                     android:text="btn2_color : " />
                 <EditText
-                    style="@style/FormValue"
+                    style="@style/FormValue01"
                     android:id="@+id/et_ANW_BTN2_COLOR"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
