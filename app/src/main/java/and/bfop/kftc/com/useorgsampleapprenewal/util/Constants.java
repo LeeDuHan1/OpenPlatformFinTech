@@ -53,8 +53,8 @@ public interface Constants {
     /**
      * 오픈플랫폼에서 발급한 이용기관의 앱 Client Secret 기본값
      */
-    String APP_SECRTEST = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
-    String APP_SECRPRD = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
+    String APP_SECRET_TEST = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
+    String APP_SECRET_PRD = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
 
     /**
      * 오픈플랫폼에 등록된 이용기관 앱의 Redirect URL (웹 방식 호출의 경우) 기본값

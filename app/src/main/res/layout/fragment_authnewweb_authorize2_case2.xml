@@ -23,132 +23,6 @@
             android:layout_marginTop="12dp">
 
             <TableRow
-                android:id="@+id/tableRow7"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dip">
-                <TextView
-                    style="@style/FormLabel01"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center_vertical|end"
-                    android:text="UserSeqNo : " />
-                <EditText
-                    style="@style/FormValue01"
-                    android:id="@+id/et_ANW_USER_SEQ_NO"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:textSize="16dp" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow8"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dip">
-                <TextView
-                    style="@style/FormLabel01"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center_vertical|end"
-                    android:text="UserCI : " />
-                <EditText
-                    style="@style/FormValue01"
-                    android:id="@+id/et_ANW_USER_CI"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:textSize="16dp" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dip">
-                <TextView
-                    style="@style/FormLabel01"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center_vertical|end"
-                    android:text="UserName : " />
-                <EditText
-                    style="@style/FormValue01"
-                    android:id="@+id/et_ANW_USER_NAME"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:textSize="16dp" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow10"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dip">
-                <TextView
-                    style="@style/FormLabel01"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center_vertical|end"
-                    android:text="UserInfo : " />
-                <EditText
-                    style="@style/FormValue01"
-                    android:id="@+id/et_ANW_USER_INFO"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:textSize="16dp" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow11"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dip">
-                <TextView
-                    style="@style/FormLabel01"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center_vertical|end"
-                    android:text="UserCellNo : " />
-                <EditText
-                    style="@style/FormValue01"
-                    android:id="@+id/et_ANW_USER_CELL_NO"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:textSize="16dp" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow12"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dip">
-                <TextView
-                    style="@style/FormLabel01"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center_vertical|end"
-                    android:text="UserEmail : " />
-                <EditText
-                    style="@style/FormValue01"
-                    android:id="@+id/et_ANW_USER_EMAIL"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:textSize="16dp" />
-            </TableRow>
-
-            <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -268,6 +142,132 @@
                 <EditText
                     style="@style/FormValue01"
                     android:id="@+id/et_ANW_BTN2_COLOR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="16dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dip">
+                <TextView
+                    style="@style/FormLabel01"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical|end"
+                    android:text="UserSeqNo : " />
+                <EditText
+                    style="@style/FormValue01"
+                    android:id="@+id/et_ANW_USER_SEQ_NO"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="16dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dip">
+                <TextView
+                    style="@style/FormLabel01"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical|end"
+                    android:text="UserCI : " />
+                <EditText
+                    style="@style/FormValue01"
+                    android:id="@+id/et_ANW_USER_CI"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="16dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dip">
+                <TextView
+                    style="@style/FormLabel01"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical|end"
+                    android:text="UserName : " />
+                <EditText
+                    style="@style/FormValue01"
+                    android:id="@+id/et_ANW_USER_NAME"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="16dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dip">
+                <TextView
+                    style="@style/FormLabel01"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical|end"
+                    android:text="UserInfo : " />
+                <EditText
+                    style="@style/FormValue01"
+                    android:id="@+id/et_ANW_USER_INFO"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="16dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dip">
+                <TextView
+                    style="@style/FormLabel01"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical|end"
+                    android:text="UserCellNo : " />
+                <EditText
+                    style="@style/FormValue01"
+                    android:id="@+id/et_ANW_USER_CELL_NO"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="16dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dip">
+                <TextView
+                    style="@style/FormLabel01"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical|end"
+                    android:text="UserEmail : " />
+                <EditText
+                    style="@style/FormValue01"
+                    android:id="@+id/et_ANW_USER_EMAIL"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
