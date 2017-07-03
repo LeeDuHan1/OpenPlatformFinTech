@@ -82,7 +82,7 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
 
-        super.callUrlUsingWebView(urlToLoad);
+        super.callUrlUsingWebView(urlToLoad, null);
     }
 
     /**

@@ -14,7 +14,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
@@ -29,21 +31,31 @@ public class WebViewUtil {
     /**
      * 매개변수로 받은 url을 WebView로 로딩한다.
      *
-     * @param view
+     * @param fragment
      * @param urlToLoad
+     * @param headerJson
      */
-    public static void loadUrlOnWebView(View view, String urlToLoad, final BaseWebAuthInterface fragment) {
+    public static void loadUrlOnWebView(View fView, final BaseWebAuthInterface fragment, String urlToLoad, String headerJson) {
 
         Log.d("##", "WebView 호출 URL: ["+ urlToLoad +"]");
+        Log.d("##", "WebView 호출 header json: "+headerJson);
 
-        EditText etUrl = (EditText)view.findViewById(R.id.etUrl);
-        WebView webView = (WebView)view.findViewById(R.id.webView);
+        Map<String, String> headerMap = null;
+        if(StringUtil.isNotBlank(headerJson)){
+            headerMap = BeanUtil.GSON.fromJson(headerJson, LinkedHashMap.class);
+            StringUtil.urlEncodeMapValues(headerMap, Arrays.asList(new String[]{"Kftc-Bfop-UserName"})); // 특정 파라미터 url encode
+            Log.d("##", "WebView 호출 header map: "+headerMap);
+        }
+
+        EditText etUrl = (EditText)fView.findViewById(R.id.etUrl);
+        WebView webView = (WebView)fView.findViewById(R.id.webView);
 
         etUrl.setText(urlToLoad);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true); //HSY: 로그인을 위해 필요
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webSettings.setDefaultTextEncodingName("UTF-8");
 
         webView.setWebChromeClient(new WebChromeClient(){
             @Override
@@ -99,6 +111,6 @@ public class WebViewUtil {
         });
 
         // WebView로 URL 호출
-        webView.loadUrl(urlToLoad);
+        webView.loadUrl(urlToLoad, headerMap);
     }
 }

@@ -73,11 +73,13 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
         EventBus.getDefault().post(new ActionBarChangeEvent(this.getArguments().getString(Constants.ACTIONBAR_TITLE)));
 
         // Bundle 파라미터로 받은 url 풀셋
+        String headerJson = StringUtil.defaultString(this.getArguments().getString("headerJson"));
         String urlToLoad = StringUtil.defaultString(this.getArguments().getString("urlToLoad"));
-        Log.d("##", "urlToLoad: ["+urlToLoad+"]");
+//        Log.d("##", "urlToLoad: ["+urlToLoad+"]");
+//        Log.d("##", "headerJson: "+headerJson);
 
         // WebView로 url 호출
-        WebViewUtil.loadUrlOnWebView(view, urlToLoad, this);
+        WebViewUtil.loadUrlOnWebView(view, this, urlToLoad, headerJson);
 
         return view;
     }

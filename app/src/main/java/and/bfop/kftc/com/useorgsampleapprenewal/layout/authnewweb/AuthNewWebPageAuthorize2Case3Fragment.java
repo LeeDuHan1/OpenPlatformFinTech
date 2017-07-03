@@ -62,6 +62,8 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
      */
     public void invokeAuth(){
 
+        String headerJson = "";
+
         String clientId = StringUtil.getPropStringForEnv("APP_KEY");
         String clientSecret = StringUtil.getPropStringForEnv("APP_SECRET");
         String redirectUri = StringUtil.getPropStringForEnv("WEB_CALLBACK_URL");
@@ -88,7 +90,7 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
 
-        super.callUrlUsingWebView(urlToLoad);
+        super.callUrlUsingWebView(urlToLoad, headerJson);
     }
 
     /**

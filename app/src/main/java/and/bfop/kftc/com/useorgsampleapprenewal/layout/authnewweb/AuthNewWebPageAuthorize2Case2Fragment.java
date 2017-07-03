@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
@@ -62,6 +63,15 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends AuthNewWebPageBaseFra
      */
     public void invokeAuth(){
 
+        Map<String, String> hMap = new LinkedHashMap<>();
+        hMap.put("Kftc-Bfop-UserCellNo", "01026683306");
+        hMap.put("Kftc-Bfop-UserCI", "8lVNGtFACsr6wWKe1kS34tM+tUODqwZxhYZqfdVFpYjg/TXrEclBzag2e8CzsemJVbRLQIt2EhawiQypch6sVg==");
+        hMap.put("Kftc-Bfop-UserEmail", "itpsolver@gmail.com");
+        hMap.put("Kftc-Bfop-UserInfo", "19781204");
+        hMap.put("Kftc-Bfop-UserName", "이현재");
+        hMap.put("Kftc-Bfop-UserSeqNo", "1100002505");
+        String headerJson = BeanUtil.GSON.toJson(hMap, LinkedHashMap.class);
+
         String clientId = StringUtil.getPropStringForEnv("APP_KEY");
         String clientSecret = StringUtil.getPropStringForEnv("APP_SECRET");
         String redirectUri = StringUtil.getPropStringForEnv("WEB_CALLBACK_URL");
@@ -79,7 +89,7 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends AuthNewWebPageBaseFra
         pMap.put("scope", scope);
         pMap.put("redirect_uri", redirectUri);
         pMap.put("client_info", clientInfo);
-        pMap.put("auth_type", "0"); // 고정값 (Case1)
+        pMap.put("auth_type", "1"); // 고정값 (Case2)
         pMap.put("bg_color", bgColor);
         pMap.put("txt_color", txtColor);
         pMap.put("btn1_color", btn1Color);
@@ -88,7 +98,7 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends AuthNewWebPageBaseFra
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
 
-        super.callUrlUsingWebView(urlToLoad);
+        super.callUrlUsingWebView(urlToLoad, headerJson);
     }
 
     /**

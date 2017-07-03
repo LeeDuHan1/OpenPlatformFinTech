@@ -1,13 +1,16 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.util;
 
-import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.util.Log;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringTokenizer;
+
+import and.bfop.kftc.com.useorgsampleapprenewal.App;
 
 /**
  * Created by LeeHyeonJae on 2017-02-21.
@@ -208,4 +211,26 @@ public class StringUtil {
         return sb.toString();
     }
 
+    /**
+     * Map의 요소를 순회하면서 특정 요소의 값을 url encoding 해 준다.
+     *
+     * @param map
+     * @param applyKeys
+     */
+    public static void urlEncodeMapValues(Map<String, String> map, List<String> applyKeys){
+
+        if(map == null || applyKeys == null){
+            Log.e("##", "urlEncodeMapValues() 의 필수 파라미터가 존재하지 않습니다.");
+        }
+        Set<Map.Entry<String, String>> eSet = map.entrySet();
+        String key, curVal, newVal = StringUtil.EMPTY;
+        for (Map.Entry<String, String> e : eSet) {
+            key = e.getKey();
+            if(! applyKeys.contains(key)){ continue; }
+            curVal = StringUtil.defaultString(e.getValue());
+            newVal = StringUtil.urlEncode(curVal);
+            Log.d("##", "urlEncodeMapValues() > curVal:["+curVal+"], newVal:["+newVal+"]");
+            e.setValue(newVal);
+        }
+    }
 }

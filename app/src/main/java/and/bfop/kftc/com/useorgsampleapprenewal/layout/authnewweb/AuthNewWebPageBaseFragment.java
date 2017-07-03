@@ -66,13 +66,15 @@ public class AuthNewWebPageBaseFragment extends BaseFragment {
      * 매개변수로 받은 URL을 WebView(사용자인증 개선버전용)로 호출한다.
      *
      * @param urlToLoad
+     * @param headerJson
      */
-    protected void callUrlUsingWebView(String urlToLoad) {
+    protected void callUrlUsingWebView(String urlToLoad, String headerJson) {
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         BaseFragment webViewFragment = FragmentUtil.newFragment(AuthNewWebCommonWebViewFragment.class);
         Bundle args = webViewFragment.getArguments();
         args.putString(Constants.ACTIONBAR_TITLE, this.getActionBarTitle()); // 액션바 타이틀 전달
+        args.putString("headerJson", headerJson); // 호출시 전달할 http header들을 json화 한 문자열
         args.putString("urlToLoad", urlToLoad); // 호출 URL 전달
         webViewFragment.setArguments(args);
         ft.replace(android.R.id.tabcontent, webViewFragment);

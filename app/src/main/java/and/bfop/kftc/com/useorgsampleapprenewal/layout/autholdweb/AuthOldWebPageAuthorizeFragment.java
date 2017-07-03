@@ -84,7 +84,7 @@ public class AuthOldWebPageAuthorizeFragment extends BaseWebFragment implements 
         String urlToLoad = (App.getApiBaseUrl() + URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
 
         // WebView로 url 호출
-        WebViewUtil.loadUrlOnWebView(view, urlToLoad, this);
+        WebViewUtil.loadUrlOnWebView(view, this, urlToLoad, null);
 
         return view;
     }
