@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
 
@@ -47,8 +48,14 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        return super.initView(inflater, container, R.layout.fragment_authnewweb_authorize2_case1);
+        View view  = super.initView(inflater, container, R.layout.fragment_authnewweb_authorize2_case1);
+
+        // EditText에 기본값 채워 넣기
+        FragmentUtil.fillDataToEditText(view, R.id.auth2Case1FormTable);
+
+        return view;
     }
+
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**

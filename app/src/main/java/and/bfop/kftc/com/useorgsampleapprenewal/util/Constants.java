@@ -42,7 +42,7 @@ public interface Constants {
     String APP_SCHEME_PRD = "kftcbfop://"; // 운영
 
 
-    //================================================== 사용자정의 설정 기본값 - start ==================================================
+    //================================================== 사용자정의 설정 기본값 (공통) - start ==================================================
     // 기본 값은 여기에 정의된 것을 사용하지만, SharedPreferences 를 사용하여 수정한 정보를 영구적으로 단말에 저장할 수 있다.
     /**
      * 오픈플랫폼에서 발급한 이용기관의 앱의 Key 기본값
@@ -74,7 +74,47 @@ public interface Constants {
      */
     String SCOPE_TEST = "inquiry"; // 테스트
     String SCOPE_PRD = "inquiry"; // 운영
-    //================================================== 사용자정의 설정 기본값 - end ====================================================
+    //================================================== 사용자정의 설정 기본값 (공통) - end ====================================================
+
+
+    //=========================================== 사용자정의 설정 기본값 (사용자인증 개선버전) - start ==========================================
+    // ANW (AuthNewWeb) => 사용자인증 개선버전 의 이니셜
+    /**
+     * scope
+     */
+    String ANW_SCOPE_TEST = "login transfer"; // 테스트
+    String ANW_SCOPE_PRD = "login transfer"; // 운영
+
+    /**
+     * client_info
+     */
+    String ANW_CLIENT_INFO_TEST = "[test] whatever you want";
+    String ANW_CLIENT_INFO_PRD = "[prd] whatever you want";
+
+    /**
+     * bg_color
+     */
+    String ANW_BG_COLOR_TEST = "#FBEFF2";
+    String ANW_BG_COLOR_PRD = "#FBEFF2";
+
+    /**
+     * txt_color
+     */
+    String ANW_TXT_COLOR_TEST = "#088A08";
+    String ANW_TXT_COLOR_PRD = "#088A08";
+
+    /**
+     * btn1_color
+     */
+    String ANW_BTN1_COLOR_TEST = "#FF8000";
+    String ANW_BTN1_COLOR_PRD = "#FF8000";
+
+    /**
+     * btn2_color
+     */
+    String ANW_BTN2_COLOR_TEST = "#F3E2A9";
+    String ANW_BTN2_COLOR_PRD = "#F3E2A9";
+    //=========================================== 사용자정의 설정 기본값 (사용자인증 개선버전) - end ============================================
 
 
     String BTN_NAME_FOLD = "접음";

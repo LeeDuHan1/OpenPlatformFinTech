@@ -72,7 +72,7 @@ public class StringUtil {
     /**
      * 빈 값이면 true 리턴
      *
-     * @param src
+     * @param cs
      * @return
      */
     public static boolean isBlank(final CharSequence cs){
@@ -113,7 +113,8 @@ public class StringUtil {
             field.setAccessible(true);
             value = field.get(null);
         } catch (IllegalAccessException | NoSuchFieldException | SecurityException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            Log.e("##", "Constants 에 해당 필드["+constantsFieldName+"]가 존재하지 않습니다.");
         }
         String ret = StringUtil.defaultString(value);
         Log.d("##", "ret:" + ret);

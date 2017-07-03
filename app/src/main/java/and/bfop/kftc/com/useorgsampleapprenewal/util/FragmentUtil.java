@@ -1,6 +1,20 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.util;
 
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallMenuFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebCommonWebViewFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebMenuFragment;
@@ -14,16 +28,8 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebPage
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebPageAuthorizeFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebPageRegisterAccountFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.settings.SettingsFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
-
-import org.greenrobot.eventbus.EventBus;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.settings.SettingsFragment;
 
 /**
  * Created by LeeHyeonJae on 2017-06-30.
@@ -116,4 +122,35 @@ public class FragmentUtil {
 
         EventBus.getDefault().post(new FragmentReplaceEvent(fragment));
     }
+
+    /**
+     * view 하위의 특정 TableLayout의 TableRow를 순회하면서 EditText를 찾고,
+     * 각 EditText의 id 문자열로 SharedPreferences(혹은 Constants)를 조회한 결과값을 EditText에 채워 넣는다.
+     *
+     * @param rootView
+     * @param tableLayoutId
+     */
+    public static void fillDataToEditText(View rootView, int tableLayoutId) {
+
+        TableLayout tableLayout = (TableLayout) rootView.findViewById(tableLayoutId);
+        TableRow tableRow;
+        View tmpView;
+        EditText et;
+        String id, key, val;
+        for(int i=0; i<tableLayout.getChildCount(); i++){
+            tableRow = (TableRow)tableLayout.getChildAt(i);
+            for(int j=0; j<tableRow.getChildCount(); j++){
+                tmpView = tableRow.getChildAt(j);
+                if(tmpView instanceof EditText){
+                    et = (EditText)tmpView;
+                    id = et.getResources().getResourceEntryName(et.getId());
+                    key = id.substring(3); // id에서 "et_" 제거
+                    val = StringUtil.getPropStringForEnv(key);
+                    et.setText(val);
+                    Log.d("##", "EditText id:["+id+"], key:["+key+"], val:["+val+"]");
+                }
+            }
+        }
+    }
+
 }
