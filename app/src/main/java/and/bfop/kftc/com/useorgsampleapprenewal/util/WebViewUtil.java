@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebAuthInterface;
 
 /**
@@ -60,7 +59,7 @@ public class WebViewUtil {
         webView.setWebChromeClient(new WebChromeClient(){
             @Override
             public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
-                new AlertDialog.Builder(App.getAppContext()) // TODO: 작동 확인
+                new AlertDialog.Builder(view.getContext())
                         .setTitle("확인")
                         .setMessage(message)
                         .setPositiveButton(android.R.string.ok,
