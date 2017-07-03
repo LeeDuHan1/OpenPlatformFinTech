@@ -1,5 +1,6 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.util;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallMenuFragment;
@@ -130,7 +132,7 @@ public class FragmentUtil {
      * @param rootView
      * @param tableLayoutId
      */
-    public static void fillDataToEditText(View rootView, int tableLayoutId) {
+    public static void fillSavedDataToForm(View rootView, int tableLayoutId) {
 
         TableLayout tableLayout = (TableLayout) rootView.findViewById(tableLayoutId);
         TableRow tableRow;
@@ -151,6 +153,39 @@ public class FragmentUtil {
                 }
             }
         }
+    }
+
+    /**
+     * 설정값을 SharedPreferences 에 저장
+     */
+    public static void saveFormData(View rootView, int tableLayoutId) {
+
+        SharedPreferences.Editor editor = App.getPref().edit();
+        String env = App.getEnv();
+        editor.putString("ENV", env);
+        String es = App.getEnvSuffix(env);
+
+        TableLayout tableLayout = (TableLayout) rootView.findViewById(tableLayoutId);
+        TableRow tableRow;
+        View tmpView;
+        EditText et;
+        String id, key, val;
+        for(int i=0; i<tableLayout.getChildCount(); i++){
+            tableRow = (TableRow)tableLayout.getChildAt(i);
+            for(int j=0; j<tableRow.getChildCount(); j++){
+                tmpView = tableRow.getChildAt(j);
+                if(tmpView instanceof EditText){
+                    et = (EditText)tmpView;
+                    id = et.getResources().getResourceEntryName(et.getId());
+                    key = id.substring(3); // id에서 "et_" 제거
+                    val = StringUtil.getPropStringForEnv(key);
+                    editor.putString(key + es, et.getText().toString());
+//                    Log.d("##", "EditText id:["+id+"], key:["+key+"], val:["+val+"]");
+                }
+            }
+        }
+        editor.apply();
+//        MessageUtil.showToast("저장되었습니다.", 1500);
     }
 
 }

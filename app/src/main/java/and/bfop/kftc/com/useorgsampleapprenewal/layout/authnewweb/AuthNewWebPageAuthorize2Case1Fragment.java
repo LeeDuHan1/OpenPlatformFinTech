@@ -50,18 +50,20 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
 
         View view  = super.initView(inflater, container, R.layout.fragment_authnewweb_authorize2_case1);
 
-        // EditText에 기본값 채워 넣기
-        FragmentUtil.fillDataToEditText(view, R.id.auth2Case1FormTable);
+        // 저장되어 있던 폼데이터를 화면에 채워넣기
+        FragmentUtil.fillSavedDataToForm(view, R.id.auth2Case1FormTable);
 
         return view;
     }
-
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**
      * 사용자인증 개선버전 호출
      */
     public void invokeAuth(){
+
+        // 현재 폼데이터를 SharedPreferences에 저장
+        FragmentUtil.saveFormData(getView(), R.id.auth2Case1FormTable);
 
         String clientId = StringUtil.getPropStringForEnv("APP_KEY");
         String clientSecret = StringUtil.getPropStringForEnv("APP_SECRET");
