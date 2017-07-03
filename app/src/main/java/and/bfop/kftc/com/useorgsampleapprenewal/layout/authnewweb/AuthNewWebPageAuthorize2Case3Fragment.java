@@ -54,7 +54,12 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        return super.initView(inflater, container, R.layout.fragment_authnewweb_authorize2_case3);
+        View view  = super.initView(inflater, container, R.layout.fragment_authnewweb_authorize2_case3);
+
+        // 저장되어 있던 폼데이터를 화면에 채워넣기
+        FragmentUtil.fillSavedDataToForm(view, R.id.auth2Case3FormTable);
+
+        return view;
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
@@ -63,34 +68,29 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
      */
     public void invokeAuth(){
 
+        View v = getView();
+
+        // 현재 폼데이터를 SharedPreferences에 저장
+        FragmentUtil.saveFormData(v, R.id.auth2Case3FormTable);
+
         Map<String, String> hMap = new LinkedHashMap<>();
-        hMap.put("Kftc-Bfop-UserSeqNo", "1100002505");
-        hMap.put("Kftc-Bfop-UserCI", "8lVNGtFACsr6wWKe1kS34tM+tUODqwZxhYZqfdVFpYjg/TXrEclBzag2e8CzsemJVbRLQIt2EhawiQypch6sVg==");
-        hMap.put("Kftc-Bfop-AccessToken", "9c7186ef-385c-43f1-a2c1-a8c8ede3437c");
+        hMap.put("Kftc-Bfop-UserSeqNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_SEQ_NO));
+        hMap.put("Kftc-Bfop-UserCI", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CI));
+        hMap.put("Kftc-Bfop-AccessToken", FragmentUtil.getEtVal(v, R.id.et_ANW_ACCESS_TOKEN));
         String headerJson = BeanUtil.GSON.toJson(hMap, LinkedHashMap.class);
 
-        String clientId = StringUtil.getPropStringForEnv("APP_KEY");
-        String clientSecret = StringUtil.getPropStringForEnv("APP_SECRET");
-        String redirectUri = StringUtil.getPropStringForEnv("WEB_CALLBACK_URL");
-        String scope = "login transfer";
-        String clientInfo = "[test] whatever you want";
-        String bgColor = "#FBEFF2";
-        String txtColor = "#088A08";
-        String btn1Color = "#FF8000";
-        String btn2Color = "#F3E2A9";
-
         Map<String, String> pMap = new LinkedHashMap<>();
-        pMap.put("client_id", clientId);
-        pMap.put("client_secret", clientSecret);
+        pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+        pMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
+        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
         pMap.put("response_type", "code"); // 고정값
-        pMap.put("scope", scope);
-        pMap.put("redirect_uri", redirectUri);
-        pMap.put("client_info", clientInfo);
         pMap.put("auth_type", "2"); // 고정값 (Case3)
-        pMap.put("bg_color", bgColor);
-        pMap.put("txt_color", txtColor);
-        pMap.put("btn1_color", btn1Color);
-        pMap.put("btn2_color", btn2Color);
+        pMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
+        pMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
+        pMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
+        pMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
+        pMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
+        pMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
 
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
