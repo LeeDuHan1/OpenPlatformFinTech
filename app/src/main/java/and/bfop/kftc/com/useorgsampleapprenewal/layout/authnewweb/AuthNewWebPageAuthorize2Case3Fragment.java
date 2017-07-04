@@ -60,7 +60,7 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
         paramMap.put("auth_type", "2"); // 고정값 (2 == Case3)
 
         // 호출 URL (querystring 포함)
-        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(paramMap);
+        String urlToLoad = App.getApiBaseUrl() + super.typeMap.get("URI") + "?" + StringUtil.convertMapToQuerystring(paramMap);
 
         // WebView 호출용 Fragment로 전달
         super.callUrlUsingWebView(urlToLoad, headerMap);

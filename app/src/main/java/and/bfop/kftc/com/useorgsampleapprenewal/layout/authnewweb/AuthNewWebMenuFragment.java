@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
@@ -18,6 +21,33 @@ import butterknife.OnClick;
  * 사용자인증 개선버전 메뉴 Fragment
  */
 public class AuthNewWebMenuFragment extends BaseFragment {
+
+    /**
+     * authorize2-authorize_account2간 UI 공유로 인해 추가된 코드
+     * authorize2-authorize_account2간 UI 구성이 하나라도 달라진다면 아예 Fragment를 분리하도록 하자.
+     */
+    public static final Map<String, HashMap<String, String>> ALL_TYPE_MAP = getAllTypeMap();
+
+    /**
+     * ALL_TYPE_MAP 초기화
+     *
+     * @return
+     */
+    private static Map<String, HashMap<String, String>> getAllTypeMap() {
+
+        HashMap<String, String> auth2 = new HashMap<>();
+        auth2.put("TYPE", "AUTH2");
+        auth2.put("URI", "/oauth/2.0/authorize2");
+        auth2.put("TITLE", "사용자인증 개선버전");
+        HashMap<String, String> authacnt2 = new HashMap<>();
+        authacnt2.put("TYPE", "AUTHACNT2");
+        authacnt2.put("URI", "/oauth/2.0/authorize_account2");
+        authacnt2.put("TITLE", "계좌등록확인 개선버전");
+        Map<String, HashMap<String, String>> ret = new HashMap<>();
+        ret.put("AUTH2", auth2);
+        ret.put("AUTHACNT2", authacnt2);
+        return ret;
+    }
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
@@ -48,18 +78,28 @@ public class AuthNewWebMenuFragment extends BaseFragment {
     @OnClick({ R.id.btnAuthNewWebAuth2, R.id.btnAuthNewWebAuthAcnt2 })
     public void onClick(View v) {
 
+        // authorize2-authorize_account2간 UI 공유로 인해 추가된 코드
+        HashMap<String, String> typeMap = null;
+
         Class fragmentClass = null;
         switch(v.getId()){
             case R.id.btnAuthNewWebAuth2:
                 fragmentClass = AuthNewWebPageAuthorize2TabFragment.class;
+                typeMap = ALL_TYPE_MAP.get("AUTH2");
                 break;
             case R.id.btnAuthNewWebAuthAcnt2:
+                fragmentClass = AuthNewWebPageAuthorize2TabFragment.class;
+                typeMap = ALL_TYPE_MAP.get("AUTHACNT2");
                 break;
             default:
                 break;
         }
+
         if(fragmentClass != null){
-            FragmentUtil.replaceNewFragment(fragmentClass);
+
+            BaseFragment fragment = FragmentUtil.newFragment(fragmentClass);
+            fragment.getArguments().putSerializable("TYPE_MAP", typeMap);
+            FragmentUtil.replaceFragment(fragment);
         }
     }
 

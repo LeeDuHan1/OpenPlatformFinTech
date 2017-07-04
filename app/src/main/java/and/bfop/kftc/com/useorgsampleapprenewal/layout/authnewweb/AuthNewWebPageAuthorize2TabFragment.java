@@ -4,21 +4,23 @@ import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TabHost;
 
+import java.util.HashMap;
+
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 
 
 /**
  * 사용자인증 개선버전 Fragment (탭 있는 부모 페이지)
  */
 public class AuthNewWebPageAuthorize2TabFragment extends BaseFragment {
-
-    public static String URI = "/oauth/2.0/authorize2";
 
     private FragmentTabHost tabHost;
 
@@ -66,22 +68,35 @@ public class AuthNewWebPageAuthorize2TabFragment extends BaseFragment {
      */
     private void changeFragmentInTabContents(String tabId) {
 
+        // authorize2-authorize_account2간 UI 공유로 인해 추가된 코드
+        String caseNo = StringUtil.EMPTY;
+
         Class<? extends BaseFragment> fragmentClass = null;
         switch(tabId){
             case "tab1":
                 fragmentClass = AuthNewWebPageAuthorize2Case1Fragment.class;
+                caseNo = "1";
                 break;
             case "tab2":
                 fragmentClass = AuthNewWebPageAuthorize2Case2Fragment.class;
+                caseNo = "2";
                 break;
             case "tab3":
                 fragmentClass = AuthNewWebPageAuthorize2Case3Fragment.class;
+                caseNo = "3";
                 break;
             default:
                 break;
         }
+
+        // authorize2-authorize_account2간 UI 공유로 인해 추가된 코드
+        HashMap<String, String> typeMap = (HashMap<String, String>)this.getArguments().getSerializable("TYPE_MAP");
+        typeMap.put("CASE_NO", caseNo);
+        Log.d("##", "authorize2와 authorize_account2의 분기점 > typeMap:["+typeMap+"]");
+
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         BaseFragment fragment = FragmentUtil.newFragment(fragmentClass);
+        fragment.getArguments().putSerializable("TYPE_MAP", typeMap);
         ft.replace(android.R.id.tabcontent, fragment);
         ft.commit();
     }

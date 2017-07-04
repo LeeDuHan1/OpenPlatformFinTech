@@ -52,7 +52,7 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
         paramMap.put("auth_type", "0"); // 고정값 (0 == Case1)
 
         // 호출 URL (querystring 포함)
-        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(paramMap);
+        String urlToLoad = App.getApiBaseUrl() + super.typeMap.get("URI") + "?" + StringUtil.convertMapToQuerystring(paramMap);
 
         super.callUrlUsingWebView(urlToLoad, null);
     }

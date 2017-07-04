@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.ActionBarChangeEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
@@ -23,6 +25,9 @@ import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
  ** 사용자인증 개선버전 부모 Fragment
  */
 public class AuthNewWebPageBaseFragment extends BaseFragment {
+
+    // authorize2-authorize_account2간 UI 공유로 인해 추가된 코드
+    protected Map<String, String> typeMap;
 
     /**
      * Fragment를 초기화하여 View를 리턴한다.
@@ -40,6 +45,11 @@ public class AuthNewWebPageBaseFragment extends BaseFragment {
 
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true)); // true/false 주의
+
+        // authorize2-authorize_account2간 UI 공유로 인해 추가된 코드
+        typeMap = (Map<String, String>)this.getArguments().getSerializable("TYPE_MAP");
+        ((Button)view.findViewWithTag("btnInvoke")).setText(typeMap.get("TITLE") + " (Case" + typeMap.get("CASE_NO") + ")"); // 호출 버튼 라벨 교체 (ex: "사용자인증 개선버전 (Case1)")
+        EventBus.getDefault().post(new ActionBarChangeEvent(typeMap.get("TITLE"))); // 액션바 타이틀 교체
 
         return view;
     }
