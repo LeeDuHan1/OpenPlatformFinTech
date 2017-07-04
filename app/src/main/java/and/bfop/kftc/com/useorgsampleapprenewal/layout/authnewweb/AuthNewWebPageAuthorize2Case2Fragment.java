@@ -83,18 +83,8 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends AuthNewWebPageBaseFra
         headerMap.put("Kftc-Bfop-UserEmail", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_EMAIL));
 
         // querystring 을 구성할 파라미터 Map
-        Map<String, String> paramMap = new LinkedHashMap<>();
-        paramMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
-        paramMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
-        paramMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
-        paramMap.put("response_type", "code"); // 고정값
-        paramMap.put("auth_type", "1"); // 고정값 (Case2)
-        paramMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
-        paramMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
-        paramMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
-        paramMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
-        paramMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
-        paramMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
+        Map<String, String> paramMap = super.getDefaultParamMap(v);
+        paramMap.put("auth_type", "1"); // 고정값 (1 ==Case2)
 
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(paramMap);

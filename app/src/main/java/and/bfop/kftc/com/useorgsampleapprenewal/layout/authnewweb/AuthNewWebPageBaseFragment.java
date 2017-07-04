@@ -1,5 +1,6 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb;
 
+import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -9,11 +10,14 @@ import android.view.ViewGroup;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 
 /**
  ** 사용자인증 개선버전 부모 Fragment
@@ -82,6 +86,28 @@ public class AuthNewWebPageBaseFragment extends BaseFragment {
         webViewFragment.setArguments(args);
         ft.replace(android.R.id.tabcontent, webViewFragment);
         ft.commit();
+    }
+
+    /**
+     * 사용자인증 개선버전에서 사용하는 공통 파라미터 Map을 생성하여 리턴
+     *
+     * @param v
+     * @return
+     */
+    protected Map<String, String> getDefaultParamMap(View v){
+
+        Map<String, String> pMap = new LinkedHashMap<>();
+        pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+        pMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
+        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
+        pMap.put("response_type", "code"); // 고정값
+        pMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
+        pMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
+        pMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
+        pMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
+        pMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
+        pMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
+        return pMap;
     }
 
     /**
