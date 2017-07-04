@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
 
@@ -36,27 +34,6 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
         FragmentUtil.fillSavedDataToForm(view, R.id.auth2Case1FormTable);
 
         return view;
-    }
-
-    @Override
-    public void onPause() {
-
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onPause() called!");
-        super.onPause();
-    }
-
-    @Override
-    public void onDetach() {
-
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onDetach() called!");
-        super.onDetach();
-    }
-
-    @Override
-    public void onDestroy() {
-
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onDestroy() called!");
-        super.onDestroy();
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
