@@ -73,11 +73,13 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
         // 현재 폼데이터를 SharedPreferences에 저장
         FragmentUtil.saveFormData(v, R.id.auth2Case3FormTable);
 
+        // http header Map
         HashMap<String, String> headerMap = new LinkedHashMap<>();
         headerMap.put("Kftc-Bfop-UserSeqNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_SEQ_NO));
         headerMap.put("Kftc-Bfop-UserCI", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CI));
         headerMap.put("Kftc-Bfop-AccessToken", FragmentUtil.getEtVal(v, R.id.et_ANW_ACCESS_TOKEN));
 
+        // querystring 을 구성할 파라미터 Map
         Map<String, String> paramMap = new LinkedHashMap<>();
         paramMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
         paramMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
@@ -94,6 +96,7 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
         // 호출 URL (querystring 포함)
         String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(paramMap);
 
+        // WebView 호출용 Fragment로 전달
         super.callUrlUsingWebView(urlToLoad, headerMap);
     }
 

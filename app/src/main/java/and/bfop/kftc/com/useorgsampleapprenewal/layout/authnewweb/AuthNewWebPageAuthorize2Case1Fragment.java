@@ -67,6 +67,7 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
         // 현재 폼데이터를 SharedPreferences에 저장
         FragmentUtil.saveFormData(v, R.id.auth2Case1FormTable);
 
+        // querystring 을 구성할 파라미터 Map
         Map<String, String> paramMap = new LinkedHashMap<>();
         paramMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
         paramMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));

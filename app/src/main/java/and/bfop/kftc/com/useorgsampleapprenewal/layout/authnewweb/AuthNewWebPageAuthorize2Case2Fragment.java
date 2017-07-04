@@ -73,6 +73,7 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends AuthNewWebPageBaseFra
         // 현재 폼데이터를 SharedPreferences에 저장
         FragmentUtil.saveFormData(v, R.id.auth2Case2FormTable);
 
+        // http header Map
         HashMap<String, String> headerMap = new LinkedHashMap<>(); // Serializable 때문에 HashMap 형식으로 선언
         headerMap.put("Kftc-Bfop-UserSeqNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_SEQ_NO));
         headerMap.put("Kftc-Bfop-UserCI", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CI));
@@ -81,6 +82,7 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends AuthNewWebPageBaseFra
         headerMap.put("Kftc-Bfop-UserCellNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CELL_NO));
         headerMap.put("Kftc-Bfop-UserEmail", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_EMAIL));
 
+        // querystring 을 구성할 파라미터 Map
         Map<String, String> paramMap = new LinkedHashMap<>();
         paramMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
         paramMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
