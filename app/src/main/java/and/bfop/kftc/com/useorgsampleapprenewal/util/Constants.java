@@ -152,6 +152,12 @@ public interface Constants {
     String ANW_USER_EMAIL_TEST = "abc@inter.net";
     String ANW_USER_EMAIL_PRD = "abc@inter.net";
 
+    /**
+     * Kftc-Bfop-AccessToken
+     */
+    String ANW_ACCESS_TOKEN_TEST = "abcd1234";
+    String ANW_ACCESS_TOKEN_PRD = "abcd1234";
+
     //=========================================== 사용자정의 설정 기본값 (사용자인증 개선버전) - end ============================================
 
 

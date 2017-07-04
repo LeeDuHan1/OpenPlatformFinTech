@@ -28,14 +28,6 @@ public class WebViewUtil {
     /**
      * 매개변수로 받은 url을 WebView로 로딩한다.
      *
-     * @param fragment
-     * @param urlToLoad
-     * @param headerJson
-     */
-
-    /**
-     * 매개변수로 받은 url을 WebView로 로딩한다.
-     *
      * @param fView
      * @param fragment
      * @param urlToLoad

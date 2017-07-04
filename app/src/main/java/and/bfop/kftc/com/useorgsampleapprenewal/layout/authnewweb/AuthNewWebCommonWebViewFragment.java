@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -13,13 +14,14 @@ import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.ActionBarChangeEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebAuthInterface;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 
@@ -28,6 +30,8 @@ import and.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
  * 사용자인증 개선버전에서 공통적으로 사용하는 WebView Fragment
  */
 public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements BaseWebAuthInterface {
+
+    private WebView webView;
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
@@ -64,6 +68,39 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
         WebViewUtil.loadUrlOnWebView(view, this, urlToLoad, headerMap);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+
+        MessageUtil.showToast(BeanUtil.getClassName(this)+".onResume() called!");
+        super.onResume();
+
+        // WebViewFragment 를 참조한 코드
+        if(webView != null){ webView.onResume(); }
+    }
+
+    @Override
+    public void onPause() {
+
+        MessageUtil.showToast(BeanUtil.getClassName(this)+".onPause() called!");
+        super.onPause();
+
+        // WebViewFragment 를 참조한 코드
+        if(webView != null){ webView.onPause(); }
+    }
+
+    @Override
+    public void onDestroy() {
+
+        MessageUtil.showToast(BeanUtil.getClassName(this)+".onDestroy() called!");
+        super.onDestroy();
+
+        // WebViewFragment 를 참조한 코드
+        if(webView != null){
+            webView.destroy();
+            webView = null;
+        }
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
