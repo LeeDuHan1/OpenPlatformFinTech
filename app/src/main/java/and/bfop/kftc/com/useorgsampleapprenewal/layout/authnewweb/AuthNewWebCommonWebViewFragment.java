@@ -56,6 +56,7 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
 
         // Bundle 파라미터로 받은 url 풀셋
         String urlToLoad = StringUtil.defaultString(args.getString("urlToLoad"));
+
         // Bundle 파라미터로 받은 header Map
         Map<String, String> headerMap = (Map<String, String>)args.getSerializable("headerMap");
         if(headerMap != null){
