@@ -81,21 +81,21 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends AuthNewWebPageBaseFra
         headerMap.put("Kftc-Bfop-UserCellNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CELL_NO));
         headerMap.put("Kftc-Bfop-UserEmail", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_EMAIL));
 
-        Map<String, String> paramsMap = new LinkedHashMap<>();
-        paramsMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
-        paramsMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
-        paramsMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
-        paramsMap.put("response_type", "code"); // 고정값
-        paramsMap.put("auth_type", "1"); // 고정값 (Case2)
-        paramsMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
-        paramsMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
-        paramsMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
-        paramsMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
-        paramsMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
-        paramsMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
+        Map<String, String> paramMap = new LinkedHashMap<>();
+        paramMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+        paramMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
+        paramMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
+        paramMap.put("response_type", "code"); // 고정값
+        paramMap.put("auth_type", "1"); // 고정값 (Case2)
+        paramMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
+        paramMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
+        paramMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
+        paramMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
+        paramMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
+        paramMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
 
         // 호출 URL (querystring 포함)
-        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(paramsMap);
+        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(paramMap);
 
         super.callUrlUsingWebView(urlToLoad, headerMap);
     }
