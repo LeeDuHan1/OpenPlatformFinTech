@@ -18,14 +18,6 @@ import butterknife.OnClick;
  */
 public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFragment {
 
-    /**
-     * 생성자
-     *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
-     */
-    public AuthNewWebPageAuthorize2Case1Fragment() {
-        // Required empty public constructor
-    }
-
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
     public void onCreate(Bundle savedInstanceState) {

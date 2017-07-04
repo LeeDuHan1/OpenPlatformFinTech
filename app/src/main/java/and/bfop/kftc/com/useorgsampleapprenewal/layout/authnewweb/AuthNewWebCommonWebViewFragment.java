@@ -29,14 +29,6 @@ import and.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
  */
 public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements BaseWebAuthInterface {
 
-    /**
-     * 생성자
-     *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
-     */
-    public AuthNewWebCommonWebViewFragment() {
-        // Required empty public constructor
-    }
-
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,10 +53,12 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
 
         // Bundle 파라미터로 받은 url 풀셋
         String urlToLoad = StringUtil.defaultString(args.getString("urlToLoad"));
+        // Bundle 파라미터로 받은 header Map
         Map<String, String> headerMap = (Map<String, String>)args.getSerializable("headerMap");
-
-        // 사용자이름 필드를 url encoding 한다 (G/W에서 디코딩 해 주는 설정 있음)
-        headerMap.put("Kftc-Bfop-UserName", StringUtil.urlEncode(headerMap.get("Kftc-Bfop-UserName")));
+        if(headerMap != null){
+            // 사용자이름 필드를 url encoding 한다 (G/W에서 디코딩 해 주는 설정 있음)
+            headerMap.put("Kftc-Bfop-UserName", StringUtil.urlEncode(headerMap.get("Kftc-Bfop-UserName")));
+        }
 
         // WebView로 url 호출
         WebViewUtil.loadUrlOnWebView(view, this, urlToLoad, headerMap);

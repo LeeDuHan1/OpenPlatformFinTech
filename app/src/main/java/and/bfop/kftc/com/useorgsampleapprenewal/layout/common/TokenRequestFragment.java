@@ -39,14 +39,6 @@ public class TokenRequestFragment extends BaseFragment {
     private String scope;
     String invokerType;
 
-    /**
-     * 생성자
-     *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
-     */
-    public TokenRequestFragment() {
-        // Required empty public constructor
-    }
-
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
     public void onCreate(Bundle savedInstanceState) {

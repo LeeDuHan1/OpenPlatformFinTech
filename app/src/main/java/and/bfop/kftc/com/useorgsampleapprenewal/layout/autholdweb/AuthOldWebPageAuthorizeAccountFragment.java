@@ -31,14 +31,6 @@ public class AuthOldWebPageAuthorizeAccountFragment extends BaseWebFragment impl
 
     private static String URI = "/oauth/2.0/authorize_account";
 
-    /**
-     * 생성자
-     *  - 매개변수가 있는 생성자를 사용할 수 없는 제약이 있다.
-     */
-    public AuthOldWebPageAuthorizeAccountFragment() {
-        // Required empty public constructor
-    }
-
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
     public void onCreate(Bundle savedInstanceState) {
