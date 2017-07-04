@@ -21,7 +21,6 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragme
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
 
@@ -73,7 +72,7 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
     @Override
     public void onResume() {
 
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onResume() called!");
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onResume() called!");
         super.onResume();
 
         // WebViewFragment 를 참조한 코드
@@ -83,7 +82,7 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
     @Override
     public void onPause() {
 
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onPause() called!");
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onPause() called!");
         super.onPause();
 
         // WebViewFragment 를 참조한 코드
@@ -93,7 +92,7 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
     @Override
     public void onDestroy() {
 
-        MessageUtil.showToast(BeanUtil.getClassName(this)+".onDestroy() called!");
+//        MessageUtil.showToast(BeanUtil.getClassName(this)+".onDestroy() called!");
         super.onDestroy();
 
         // WebViewFragment 를 참조한 코드
