@@ -34,6 +34,8 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragme
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.settings.SettingsFragment;
 
 /**
+ * Fragment 관련 유틸 클래스
+ *
  * Created by LeeHyeonJae on 2017-06-30.
  */
 public class FragmentUtil {
