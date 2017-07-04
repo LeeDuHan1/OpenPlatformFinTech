@@ -37,21 +37,6 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
         // Required empty public constructor
     }
 
-    /**
-     * Fragment 생성 메서드
-     *
-     * @param actionBarTitle
-     * @return
-     */
-    public static AuthNewWebCommonWebViewFragment newInstance(String actionBarTitle) {
-
-        AuthNewWebCommonWebViewFragment fragment = new AuthNewWebCommonWebViewFragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
     public void onCreate(Bundle savedInstanceState) {

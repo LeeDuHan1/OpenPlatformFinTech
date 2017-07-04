@@ -25,30 +25,6 @@ import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 public class AuthNewWebPageBaseFragment extends BaseFragment {
 
     /**
-     * Fragment 인스턴스를 생성하여 리턴한다.
-     *
-     * @param actionBarTitle
-     * @param clazz
-     * @param <T>
-     * @return
-     */
-    protected static <T extends AuthNewWebPageBaseFragment> T getInstance(String actionBarTitle, Class<T> clazz) {
-
-        T fragment = null;
-        try {
-            fragment = clazz.newInstance(); // 동적 객체 생성
-        } catch (java.lang.InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        Bundle args = new Bundle();
-        args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
-        fragment.setArguments(args);
-        return clazz.cast(fragment); // 동적 형변환
-    }
-
-    /**
      * Fragment를 초기화하여 View를 리턴한다.
      *
      * @param inflater

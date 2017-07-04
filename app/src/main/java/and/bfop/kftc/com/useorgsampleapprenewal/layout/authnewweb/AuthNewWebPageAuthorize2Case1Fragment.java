@@ -26,17 +26,6 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
         // Required empty public constructor
     }
 
-    /**
-     * Fragment 생성 메서드
-     *
-     * @param actionBarTitle
-     * @return
-     */
-    public static AuthNewWebPageAuthorize2Case1Fragment newInstance(String actionBarTitle) {
-
-        return getInstance(actionBarTitle, AuthNewWebPageAuthorize2Case1Fragment.class);
-    }
-
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
     public void onCreate(Bundle savedInstanceState) {

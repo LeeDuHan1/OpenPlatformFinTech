@@ -12,7 +12,6 @@ import org.greenrobot.eventbus.EventBus;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMainEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import butterknife.OnClick;
 
 
@@ -27,21 +26,6 @@ public class MainFragment extends BaseFragment {
      */
     public MainFragment() {
        // Required empty public constructor
-    }
-
-    /**
-     * Fragment 생성 메서드
-     *
-     * @param actionBarTitle
-     * @return
-     */
-    public static MainFragment newInstance(String actionBarTitle) {
-
-        MainFragment fragment = new MainFragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================

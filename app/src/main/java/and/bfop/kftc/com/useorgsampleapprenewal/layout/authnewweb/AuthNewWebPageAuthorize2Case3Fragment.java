@@ -11,7 +11,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
@@ -27,21 +26,6 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
      */
     public AuthNewWebPageAuthorize2Case3Fragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Fragment 생성 메서드
-     *
-     * @param actionBarTitle
-     * @return
-     */
-    public static AuthNewWebPageAuthorize2Case3Fragment newInstance(String actionBarTitle) {
-
-        AuthNewWebPageAuthorize2Case3Fragment fragment = new AuthNewWebPageAuthorize2Case3Fragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================

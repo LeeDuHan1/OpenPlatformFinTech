@@ -20,7 +20,6 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdapp.AuthOldAppMenu
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebMenuFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitCustomAdapter;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
@@ -46,21 +45,6 @@ public class TokenRequestFragment extends BaseFragment {
      */
     public TokenRequestFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Fragment 생성 메서드
-     *
-     * @param actionBarTitle
-     * @return
-     */
-    public static TokenRequestFragment newInstance(String actionBarTitle) {
-
-        TokenRequestFragment fragment = new TokenRequestFragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================

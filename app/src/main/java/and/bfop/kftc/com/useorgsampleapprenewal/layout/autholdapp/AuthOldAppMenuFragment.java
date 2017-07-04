@@ -18,7 +18,6 @@ import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
@@ -36,21 +35,6 @@ public class AuthOldAppMenuFragment extends BaseFragment {
      */
     public AuthOldAppMenuFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Fragment 생성 메서드
-     *
-     * @param actionBarTitle
-     * @return
-     */
-    public static AuthOldAppMenuFragment newInstance(String actionBarTitle) {
-
-        AuthOldAppMenuFragment fragment = new AuthOldAppMenuFragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================

@@ -14,12 +14,11 @@ import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebAuthInterface;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.WebViewUtil;
@@ -38,21 +37,6 @@ public class AuthOldWebPageAuthorizeFragment extends BaseWebFragment implements 
      */
     public AuthOldWebPageAuthorizeFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Fragment 생성 메서드
-     *
-     * @param actionBarTitle
-     * @return
-     */
-    public static AuthOldWebPageAuthorizeFragment newInstance(String actionBarTitle) {
-
-        AuthOldWebPageAuthorizeFragment fragment = new AuthOldWebPageAuthorizeFragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================

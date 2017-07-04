@@ -11,7 +11,6 @@ import org.greenrobot.eventbus.EventBus;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import butterknife.OnClick;
 
@@ -27,21 +26,6 @@ public class AuthOldWebMenuFragment extends BaseFragment {
      */
     public AuthOldWebMenuFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Fragment 생성 메서드
-     *
-     * @param actionBarTitle
-     * @return
-     */
-    public static AuthOldWebMenuFragment newInstance(String actionBarTitle) {
-
-        AuthOldWebMenuFragment fragment = new AuthOldWebMenuFragment();
-        Bundle args = new Bundle();
-        args.putString(Constants.ACTIONBAR_TITLE, actionBarTitle);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================

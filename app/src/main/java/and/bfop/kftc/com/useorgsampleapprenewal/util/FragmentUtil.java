@@ -1,6 +1,7 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.util;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -9,8 +10,6 @@ import android.widget.TableRow;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -84,27 +83,33 @@ public class FragmentUtil {
     }
 
     /**
-     * Fragment를 신규 생성하여 리턴한다.
+     * Fragment를 신규 생성하여 리턴한다. (동적 생성)
+     *
+     *   - 추가기능으로 액션바의 타이틀을 arguments 에 넣어준다.
      *
      * @param clazz
+     * @param <T>
      * @return
      */
-    public static BaseFragment newFragment(Class<? extends BaseFragment> clazz){
+    public static <T extends BaseFragment> T newFragment(Class<T> clazz){
 
-        BaseFragment ret = null;
+        T ret = null;
         try {
-            Method newMethod = clazz.getMethod("newInstance", String.class);
-            if(newMethod != null){
-                ret = (BaseFragment)newMethod.invoke(clazz, FragmentUtil.getFragmentName(clazz));
-            }
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+            ret = clazz.newInstance();
+        } catch (java.lang.InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+
+        if(ret != null){
+            Bundle args = new Bundle();
+            args.putString(Constants.ACTIONBAR_TITLE, FragmentUtil.getFragmentName(clazz)); // 액션바 타이틀
+            ret.setArguments(args);
+        }
+
         return ret;
+
     }
 
     /**
