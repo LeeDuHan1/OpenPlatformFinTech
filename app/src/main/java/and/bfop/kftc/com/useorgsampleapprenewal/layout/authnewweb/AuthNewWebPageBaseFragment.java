@@ -70,6 +70,7 @@ public class AuthNewWebPageBaseFragment extends BaseFragment {
      * @param urlToLoad
      * @param headerMap
      */
+
     protected void callUrlUsingWebView(String urlToLoad, HashMap<String, String> headerMap) {
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
