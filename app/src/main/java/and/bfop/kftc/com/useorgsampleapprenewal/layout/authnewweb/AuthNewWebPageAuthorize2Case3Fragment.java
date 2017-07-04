@@ -6,11 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
@@ -73,29 +73,28 @@ public class AuthNewWebPageAuthorize2Case3Fragment extends AuthNewWebPageBaseFra
         // 현재 폼데이터를 SharedPreferences에 저장
         FragmentUtil.saveFormData(v, R.id.auth2Case3FormTable);
 
-        Map<String, String> hMap = new LinkedHashMap<>();
-        hMap.put("Kftc-Bfop-UserSeqNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_SEQ_NO));
-        hMap.put("Kftc-Bfop-UserCI", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CI));
-        hMap.put("Kftc-Bfop-AccessToken", FragmentUtil.getEtVal(v, R.id.et_ANW_ACCESS_TOKEN));
-        String headerJson = BeanUtil.GSON.toJson(hMap, LinkedHashMap.class);
+        HashMap<String, String> headerMap = new LinkedHashMap<>();
+        headerMap.put("Kftc-Bfop-UserSeqNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_SEQ_NO));
+        headerMap.put("Kftc-Bfop-UserCI", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CI));
+        headerMap.put("Kftc-Bfop-AccessToken", FragmentUtil.getEtVal(v, R.id.et_ANW_ACCESS_TOKEN));
 
-        Map<String, String> pMap = new LinkedHashMap<>();
-        pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
-        pMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
-        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
-        pMap.put("response_type", "code"); // 고정값
-        pMap.put("auth_type", "2"); // 고정값 (Case3)
-        pMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
-        pMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
-        pMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
-        pMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
-        pMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
-        pMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
+        Map<String, String> paramMap = new LinkedHashMap<>();
+        paramMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+        paramMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
+        paramMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
+        paramMap.put("response_type", "code"); // 고정값
+        paramMap.put("auth_type", "2"); // 고정값 (Case3)
+        paramMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
+        paramMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
+        paramMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
+        paramMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
+        paramMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
+        paramMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
 
         // 호출 URL (querystring 포함)
-        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
+        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(paramMap);
 
-        super.callUrlUsingWebView(urlToLoad, headerJson);
+        super.callUrlUsingWebView(urlToLoad, headerMap);
     }
 
     /**

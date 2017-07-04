@@ -67,21 +67,21 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
         // 현재 폼데이터를 SharedPreferences에 저장
         FragmentUtil.saveFormData(v, R.id.auth2Case1FormTable);
 
-        Map<String, String> pMap = new LinkedHashMap<>();
-        pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
-        pMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
-        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
-        pMap.put("response_type", "code"); // 고정값
-        pMap.put("auth_type", "0"); // 고정값 (Case1)
-        pMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
-        pMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
-        pMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
-        pMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
-        pMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
-        pMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
+        Map<String, String> paramMap = new LinkedHashMap<>();
+        paramMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+        paramMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
+        paramMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
+        paramMap.put("response_type", "code"); // 고정값
+        paramMap.put("auth_type", "0"); // 고정값 (Case1)
+        paramMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
+        paramMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
+        paramMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
+        paramMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
+        paramMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
+        paramMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
 
         // 호출 URL (querystring 포함)
-        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
+        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(paramMap);
 
         super.callUrlUsingWebView(urlToLoad, null);
     }

@@ -14,9 +14,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseWebAuthInterface;
@@ -34,17 +32,19 @@ public class WebViewUtil {
      * @param urlToLoad
      * @param headerJson
      */
-    public static void loadUrlOnWebView(View fView, final BaseWebAuthInterface fragment, String urlToLoad, String headerJson) {
+
+    /**
+     * 매개변수로 받은 url을 WebView로 로딩한다.
+     *
+     * @param fView
+     * @param fragment
+     * @param urlToLoad
+     * @param headerMap
+     */
+    public static void loadUrlOnWebView(View fView, final BaseWebAuthInterface fragment, String urlToLoad, Map<String, String> headerMap) {
 
         Log.d("##", "WebView 호출 URL: ["+ urlToLoad +"]");
-        Log.d("##", "WebView 호출 header json: "+headerJson);
-
-        Map<String, String> headerMap = null;
-        if(StringUtil.isNotBlank(headerJson)){
-            headerMap = BeanUtil.GSON.fromJson(headerJson, LinkedHashMap.class);
-            StringUtil.urlEncodeMapValues(headerMap, Arrays.asList(new String[]{"Kftc-Bfop-UserName"})); // 특정 파라미터 url encode
-            Log.d("##", "WebView 호출 header map: "+headerMap);
-        }
+        Log.d("##", "WebView 호출 headerMap: "+ headerMap);
 
         EditText etUrl = (EditText)fView.findViewById(R.id.etUrl);
         WebView webView = (WebView)fView.findViewById(R.id.webView);

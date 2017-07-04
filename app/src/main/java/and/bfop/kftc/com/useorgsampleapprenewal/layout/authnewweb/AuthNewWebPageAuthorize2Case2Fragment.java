@@ -6,11 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.App;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
@@ -73,32 +73,31 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends AuthNewWebPageBaseFra
         // 현재 폼데이터를 SharedPreferences에 저장
         FragmentUtil.saveFormData(v, R.id.auth2Case2FormTable);
 
-        Map<String, String> hMap = new LinkedHashMap<>();
-        hMap.put("Kftc-Bfop-UserSeqNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_SEQ_NO));
-        hMap.put("Kftc-Bfop-UserCI", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CI));
-        hMap.put("Kftc-Bfop-UserName", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_NAME));
-        hMap.put("Kftc-Bfop-UserInfo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_INFO));
-        hMap.put("Kftc-Bfop-UserCellNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CELL_NO));
-        hMap.put("Kftc-Bfop-UserEmail", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_EMAIL));
-        String headerJson = BeanUtil.GSON.toJson(hMap, LinkedHashMap.class);
+        HashMap<String, String> headerMap = new LinkedHashMap<>(); // Serializable 때문에 HashMap 형식으로 선언
+        headerMap.put("Kftc-Bfop-UserSeqNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_SEQ_NO));
+        headerMap.put("Kftc-Bfop-UserCI", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CI));
+        headerMap.put("Kftc-Bfop-UserName", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_NAME));
+        headerMap.put("Kftc-Bfop-UserInfo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_INFO));
+        headerMap.put("Kftc-Bfop-UserCellNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CELL_NO));
+        headerMap.put("Kftc-Bfop-UserEmail", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_EMAIL));
 
-        Map<String, String> pMap = new LinkedHashMap<>();
-        pMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
-        pMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
-        pMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
-        pMap.put("response_type", "code"); // 고정값
-        pMap.put("auth_type", "1"); // 고정값 (Case2)
-        pMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
-        pMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
-        pMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
-        pMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
-        pMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
-        pMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
+        Map<String, String> paramsMap = new LinkedHashMap<>();
+        paramsMap.put("client_id", StringUtil.getPropStringForEnv("APP_KEY"));
+        paramsMap.put("client_secret", StringUtil.getPropStringForEnv("APP_SECRET"));
+        paramsMap.put("redirect_uri", StringUtil.getPropStringForEnv("WEB_CALLBACK_URL"));
+        paramsMap.put("response_type", "code"); // 고정값
+        paramsMap.put("auth_type", "1"); // 고정값 (Case2)
+        paramsMap.put("scope", FragmentUtil.getEtVal(v, R.id.et_ANW_SCOPE));
+        paramsMap.put("client_info", FragmentUtil.getEtVal(v, R.id.et_ANW_CLIENT_INFO));
+        paramsMap.put("bg_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BG_COLOR));
+        paramsMap.put("txt_color", FragmentUtil.getEtVal(v, R.id.et_ANW_TXT_COLOR));
+        paramsMap.put("btn1_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN1_COLOR));
+        paramsMap.put("btn2_color", FragmentUtil.getEtVal(v, R.id.et_ANW_BTN2_COLOR));
 
         // 호출 URL (querystring 포함)
-        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(pMap);
+        String urlToLoad = (App.getApiBaseUrl() + AuthNewWebPageAuthorize2TabFragment.URI) + "?" + StringUtil.convertMapToQuerystring(paramsMap);
 
-        super.callUrlUsingWebView(urlToLoad, headerJson);
+        super.callUrlUsingWebView(urlToLoad, headerMap);
     }
 
     /**

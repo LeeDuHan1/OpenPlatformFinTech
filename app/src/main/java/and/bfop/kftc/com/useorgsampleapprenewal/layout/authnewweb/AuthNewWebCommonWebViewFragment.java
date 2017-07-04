@@ -69,17 +69,20 @@ public class AuthNewWebCommonWebViewFragment extends BaseWebFragment implements 
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
+        Bundle args = this.getArguments();
+
         // 액션바 타이틀 교체
-        EventBus.getDefault().post(new ActionBarChangeEvent(this.getArguments().getString(Constants.ACTIONBAR_TITLE)));
+        EventBus.getDefault().post(new ActionBarChangeEvent(args.getString(Constants.ACTIONBAR_TITLE)));
 
         // Bundle 파라미터로 받은 url 풀셋
-        String headerJson = StringUtil.defaultString(this.getArguments().getString("headerJson"));
-        String urlToLoad = StringUtil.defaultString(this.getArguments().getString("urlToLoad"));
-//        Log.d("##", "urlToLoad: ["+urlToLoad+"]");
-//        Log.d("##", "headerJson: "+headerJson);
+        String urlToLoad = StringUtil.defaultString(args.getString("urlToLoad"));
+        Map<String, String> headerMap = (Map<String, String>)args.getSerializable("headerMap");
+
+        // 사용자이름 필드를 url encoding 한다 (G/W에서 디코딩 해 주는 설정 있음)
+        headerMap.put("Kftc-Bfop-UserName", StringUtil.urlEncode(headerMap.get("Kftc-Bfop-UserName")));
 
         // WebView로 url 호출
-        WebViewUtil.loadUrlOnWebView(view, this, urlToLoad, headerJson);
+        WebViewUtil.loadUrlOnWebView(view, this, urlToLoad, headerMap);
 
         return view;
     }
