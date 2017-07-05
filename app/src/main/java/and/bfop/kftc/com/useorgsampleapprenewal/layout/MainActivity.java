@@ -170,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     ///////////////////////////////////// Activity Lifecycle Callbacks - end ///////////////////////////////////////
 
-
     /**
      * 네비게이션메뉴 선택 이벤트핸들러
      *
@@ -182,12 +181,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
 
         goPage(item.getItemId());
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     /**
      * 뒤로가기 버튼이 눌렸을 때 최초로 호출되는 메서드
