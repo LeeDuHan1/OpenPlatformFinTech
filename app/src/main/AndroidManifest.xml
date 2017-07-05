@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.bfop.kftc.com.useorgsampleapprenewal">
 
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
     <application
         android:name="and.bfop.kftc.com.useorgsampleapprenewal.App"
         android:allowBackup="true"
@@ -26,7 +28,14 @@
                 <data android:scheme="bfoptest" android:host="result" />
             </intent-filter>
             <!--// 오픈플랫폼앱에서 이 앱을 호출하기 위한 스키마 정의 -->
+
         </activity>
+
+        <receiver android:name ="and.bfop.kftc.com.useorgsampleapprenewal.receiver.SMSReceiver">
+            <intent-filter android:priority="9999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

@@ -1,5 +1,6 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb;
 
+import android.Manifest;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import java.util.Map;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.ActivityUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import butterknife.OnClick;
 
@@ -65,6 +67,9 @@ public class AuthNewWebMenuFragment extends BaseFragment {
 
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), false)); // true/false 주의
+
+        // SMS 수신 권한 체크 (Android 6.0 이상에서는 권한설정 체크작업을 하지 않으면 해당 자원에 접근하는 것이 불가능하다.)
+        ActivityUtil.checkAccountsPermission(Manifest.permission.RECEIVE_SMS, 100, "이용기관샘플앱에서 SMS수신을 할 수 있게 하려면 권한이 필요합니다.", getActivity());
 
         return view;
     }

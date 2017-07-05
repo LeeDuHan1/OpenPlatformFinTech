@@ -142,7 +142,7 @@ public class SettingsFragment extends BaseFragment {
 
         editor.apply();
 
-        MessageUtil.showToast("저장되었습니다.", 1500);
+        MessageUtil.showToast("저장되었습니다.");
     }
 
     /**
