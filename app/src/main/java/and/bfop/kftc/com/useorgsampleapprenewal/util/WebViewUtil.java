@@ -96,6 +96,12 @@ public class WebViewUtil {
             }
 
             @Override
+            public void onPageFinished(WebView view, String url) {
+
+                Log.d("## onPageFinished", "url: "+url);
+            }
+
+            @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 handler.proceed(); // Ignore SSL certificate errors
             }

@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,7 +37,6 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.settings.SettingsFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -377,7 +377,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // 한국모바일인증에서 보낸 본인인증 메시지일 경우
         if("0220338500".equals(sender)){
             String authNum = contents.replaceAll("(.*)(\\d{6})(.*)", "$2"); // 문자 내용 중 6자리 숫자(인증번호)만 추출한다.
-            MessageUtil.showToast("인증번호:["+authNum+"]");
+//            MessageUtil.showToast("인증번호:["+authNum+"]");
+            // 현재 활성화되어 있는 WebView Fragment를 찾아서 javascript injection 한다.
+            FragmentManager fm = getSupportFragmentManager();
+            Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+            Log.d("##", "현재 활성화 상태의 Fragment: "+fragment);
+            WebView webView = (WebView)fragment.getView().findViewById(R.id.webView); // 해당 Fragment 내에서 Webview를 찾는다.
+            webView.loadUrl("javascript:(function(){ document.getElementById('certCode').value = '"+authNum+"' })()");
         }
     }
 
