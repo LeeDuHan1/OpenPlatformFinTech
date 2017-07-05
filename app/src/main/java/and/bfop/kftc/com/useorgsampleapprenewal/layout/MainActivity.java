@@ -417,7 +417,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     private void off(){
 
-        MessageUtil.getDialogBuilder("", "종료 하시겠습니까?", true, this)
+        MessageUtil.getDialogBuilder("", "앱을 종료 하시겠습니까?", true, this)
                 .setPositiveButton("종료", new DialogInterface.OnClickListener() {
                     // 종료 선택시
                     @Override

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <!-- 메뉴간 구분선을 위해서 group을 지어 주었음 -->
+    <group
+        android:id="@+id/menu_01"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_authNew"
             android:title="사용자인증 개선버전"/>
@@ -11,16 +14,32 @@
         <item
             android:id="@+id/nav_authOldWeb"
             android:title="사용자인증 기존버전 (웹방식)" />
+    </group>
+
+    <group
+        android:id="@+id/menu_02"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_APICall"
             android:title="API 거래기능" />
+    </group>
+
+    <group
+        android:id="@+id/menu_03"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_setting"
             android:title="설정" />
+    </group>
+
+    <group
+        android:id="@+id/menu_04"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_off"
             android:title="종료" />
     </group>
+
 
     <!-- 소제목 있는 메뉴그룹 샘플 -->
 <!--    <item android:title="Communicate">
