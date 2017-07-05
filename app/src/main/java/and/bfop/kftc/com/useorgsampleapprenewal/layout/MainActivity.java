@@ -170,40 +170,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     ///////////////////////////////////// Activity Lifecycle Callbacks - end ///////////////////////////////////////
 
-    /**
-     * 액션바 우측 옵션메뉴 생성
-     *
-     * @param menu
-     * @return
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    /**
-     * 우상단 메뉴 선택 이벤트핸들러
-     *
-     * @param item
-     * @return
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * 네비게이션메뉴 선택 이벤트핸들러
@@ -383,7 +349,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    //===================================== EventBus Subscriber - start =====================================
+    //======================================== EventBus Subscriber - start ========================================
     /**
      * FragmentInitEvent 에 대한 EventBus Subscriber
      *
@@ -461,6 +427,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             backPressCloseHandler.onBackPressed();
         }
     }
-    //===================================== EventBus Subscriber - end =======================================
+    //======================================== EventBus Subscriber - end ==========================================
 
+
+    //===================================== 액션바 우측 옵션메뉴 관련 - start =====================================
+    /**
+     * 액션바 우측 옵션메뉴 생성
+     *
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    /**
+     * 우상단 메뉴 선택 이벤트핸들러
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    //===================================== 액션바 우측 옵션메뉴 관련 - end =======================================
 }
