@@ -26,6 +26,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.ActionBarChangeEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMainEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.SMSReceiveEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallMenuFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebMenuFragment;
@@ -35,6 +36,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.settings.SettingsFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -359,6 +361,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(getSupportActionBar() != null){
             getSupportActionBar().setTitle(actionBarTitle);
+        }
+    }
+
+    /**
+     * SMSReceiveEvent 에 대한 EventBuss Subscriber
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSMSReceive(SMSReceiveEvent event){
+
+        String sender = event.getSender();
+        String contents = event.getContents();
+        // 한국모바일인증에서 보낸 본인인증 메시지일 경우
+        if("0220338500".equals(sender)){
+            String authNum = contents.replaceAll("(.*)(\\d{6})(.*)", "$2"); // 문자 내용 중 6자리 숫자(인증번호)만 추출한다.
+            MessageUtil.showToast("인증번호:["+authNum+"]");
         }
     }
 
