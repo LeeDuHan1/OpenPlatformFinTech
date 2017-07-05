@@ -1,10 +1,11 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.handler;
 
 import android.app.Activity;
-import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import android.content.pm.ApplicationInfo;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
+
+import and.bfop.kftc.com.useorgsampleapprenewal.App;
 
 
 /**
@@ -37,15 +38,21 @@ public class BackPressCloseHandler {
         if (System.currentTimeMillis() <= backKeyPressedTime + checkInterval) {
 
             toast.cancel();
+            off();
+        }
+    }
 
-            // 어느 Activity 에서든 모든 부모 Activity를 닫을 수 잇다.
-            ActivityCompat.finishAffinity(activity);
+    /**
+     * 앱 종료
+     */
+    public void off(){
 
-            // 디버그모드가 아닐 경우에만 사용하자
-            if(! isDebug){
-                System.exit(0); // 혹은 android.os.Process.killProcess(android.os.Process.myPid()); 사용
-            }
+        // 어느 Activity 에서든 모든 부모 Activity를 닫을 수 잇다.
+        ActivityCompat.finishAffinity(activity);
 
+        // 디버그모드가 아닐 경우에만 사용하자
+        if(! isDebug){
+            System.exit(0); // 혹은 android.os.Process.killProcess(android.os.Process.myPid()); 사용
         }
     }
 

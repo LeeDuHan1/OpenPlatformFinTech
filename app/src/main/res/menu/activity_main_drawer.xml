@@ -17,6 +17,9 @@
         <item
             android:id="@+id/nav_setting"
             android:title="설정" />
+        <item
+            android:id="@+id/nav_off"
+            android:title="종료" />
     </group>
 
     <!-- 소제목 있는 메뉴그룹 샘플 -->

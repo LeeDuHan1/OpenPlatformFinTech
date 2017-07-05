@@ -1,6 +1,7 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.settings.SettingsFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -246,6 +248,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     public void goPage(int id){
 
+        // 종료 메뉴 선택시
+        if(R.id.nav_off == id){
+            off();
+            return;
+        }
+
         Class<? extends BaseFragment> fragmentClass = null;
         switch(id){
             case R.id.btnAuthNewMenu:   // 메인페이지 버튼
@@ -404,5 +412,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    /**
+     * 앱 종료
+     */
+    private void off(){
+
+        MessageUtil.getDialogBuilder("", "종료 하시겠습니까?", true, this)
+                .setPositiveButton("종료", new DialogInterface.OnClickListener() {
+                    // 종료 선택시
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        backPressCloseHandler.off();
+                    }
+                }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            // 취소 선택시
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // do nothing
+            }
+        }).create().show();
+    }
 
 }
