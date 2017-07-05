@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.ImageView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        // 레프트메뉴의 로고이미지에 이벤트 바인딩
+        setNavLogoOnClickListener();
     }
 
     @Override
@@ -250,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // 종료 메뉴 선택시
         if(R.id.nav_off == id){
-            off();
+            offApp();
             return;
         }
 
@@ -335,6 +338,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
+     * 앱 종료
+     */
+    private void offApp(){
+
+        MessageUtil.getDialogBuilder("", "앱을 종료 하시겠습니까?", true, this)
+                .setPositiveButton("종료", new DialogInterface.OnClickListener() {
+                    // 종료 선택시
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        backPressCloseHandler.off();
+                    }
+                }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            // 취소 선택시
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // do nothing
+            }
+        }).create().show();
+    }
+
+    /**
+     * 메인페이지로 이동
+     */
+    public void goMain(){
+
+        FragmentUtil.replaceNewFragment(MainFragment.class);
+    }
+
+    /**
+     * 레프트메뉴의 로고이미지에 클릭 이벤트 바인딩 (ButterKnife로 구현하기에 어려워서 원래 방법대로 함)
+     */
+    private void setNavLogoOnClickListener() {
+
+        NavigationView navView = (NavigationView)findViewById(R.id.nav_view);
+        View headerView = navView.getHeaderView(0);
+        ImageView logo = (ImageView) headerView.findViewById(R.id.logo_in_nav);
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawer(GravityCompat.START); // 레프트메뉴 닫기
+                goMain(); // 메인페이지로
+            }
+        });
+    }
+
+    //===================================== EventBus Subscriber - start =====================================
+    /**
      * FragmentInitEvent 에 대한 EventBus Subscriber
      *
      * @param event
@@ -411,26 +461,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             backPressCloseHandler.onBackPressed();
         }
     }
-
-    /**
-     * 앱 종료
-     */
-    private void off(){
-
-        MessageUtil.getDialogBuilder("", "앱을 종료 하시겠습니까?", true, this)
-                .setPositiveButton("종료", new DialogInterface.OnClickListener() {
-                    // 종료 선택시
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        backPressCloseHandler.off();
-                    }
-                }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            // 취소 선택시
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // do nothing
-            }
-        }).create().show();
-    }
+    //===================================== EventBus Subscriber - end =======================================
 
 }
