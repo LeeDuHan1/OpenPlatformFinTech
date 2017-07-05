@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.bfop.kftc.com.useorgsampleapprenewal">
 
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-
     <application
         android:name="and.bfop.kftc.com.useorgsampleapprenewal.App"
         android:allowBackup="true"
@@ -31,7 +29,7 @@
 
         </activity>
 
-        <receiver android:name ="and.bfop.kftc.com.useorgsampleapprenewal.receiver.SMSReceiver">
+        <receiver android:name ="and.bfop.kftc.com.useorgsampleapprenewal.receiver.CustomReceiver">
             <intent-filter android:priority="9999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
@@ -40,5 +38,6 @@
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
 </manifest>
