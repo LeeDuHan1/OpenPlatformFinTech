@@ -112,6 +112,9 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
                 // DialogFragment에 호출 결과 출력
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 APICallResultFragment dialogFragment = new APICallResultFragment();
+                Bundle args = new Bundle();
+                args.putString("rspJson", rspJson); // 결과값 전달
+                dialogFragment.setArguments(args);
                 dialogFragment.show(fm, "fragment_dialog_test");
             }
             @Override

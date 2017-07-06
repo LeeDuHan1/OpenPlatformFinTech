@@ -6,13 +6,18 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 /**
  * API 호출 후 결과 JSON을 보여줄 목적으로 생성한 DialogFragment
  */
 public class APICallResultFragment extends DialogFragment {
+
+    TextView tvJsonResult;
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     /**
@@ -26,13 +31,23 @@ public class APICallResultFragment extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.fragment_apicall_result, null))
+        View view = inflater.inflate(R.layout.fragment_apicall_result, null);
+        builder.setView(view)
                 .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // nothing to do
                     }
                 });
-        return builder.create();
+        Dialog dialog = builder.create();
+
+        // TextView가 scroll 가능하도록 처리
+        tvJsonResult = (TextView)view.findViewById(R.id.tvJsonResult);
+        tvJsonResult.setMovementMethod(new ScrollingMovementMethod());
+
+        // 결과값 채우기
+        tvJsonResult.setText(getArguments().getString("rspJson"));
+
+        return dialog;
     }
 
     @Override
