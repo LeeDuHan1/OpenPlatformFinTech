@@ -47,9 +47,10 @@ public class APICallMenuFragment extends BaseFragment {
      *
      * @param v
      */
-    @OnClick({R.id.btnInqrBlnc, R.id.btnInqrTranRec, R.id.btnInqrRealName, R.id.btnTrnsDP, R.id.btnTrnsWD})
+    @OnClick({ R.id.btnInqrBlnc, R.id.btnInqrTranRec, R.id.btnInqrRealName, R.id.btnTrnsDP, R.id.btnTrnsWD, R.id.btnUserInfo })
     public void onClick(View v) {
 
+        Class fragmentClass = null;
         switch(v.getId()){
             case R.id.btnInqrBlnc:
                 break;
@@ -61,8 +62,14 @@ public class APICallMenuFragment extends BaseFragment {
                 break;
             case R.id.btnTrnsWD:
                 break;
+            case R.id.btnUserInfo:
+                fragmentClass = APICallWebPageUserInfoFragment.class;
+                break;
             default:
                 break;
+        }
+        if(fragmentClass != null){
+            FragmentUtil.replaceNewFragment(fragmentClass);
         }
     }
 
@@ -73,7 +80,7 @@ public class APICallMenuFragment extends BaseFragment {
      * @param event
      * @return
      */
-    @OnTouch({R.id.btnInqrBlnc, R.id.btnInqrTranRec, R.id.btnInqrRealName, R.id.btnTrnsDP, R.id.btnTrnsWD})
+    @OnTouch({ R.id.btnInqrBlnc, R.id.btnInqrTranRec, R.id.btnInqrRealName, R.id.btnTrnsDP, R.id.btnTrnsWD, R.id.btnUserInfo })
     public boolean onTouch(View v, MotionEvent event) {
         return FragmentUtil.onTouchSetColorFilter(v, event);
     }

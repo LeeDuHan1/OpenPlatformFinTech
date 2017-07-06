@@ -163,4 +163,6 @@ public interface Constants {
 
     String BTN_NAME_FOLD = "접음";
     String BTN_NAME_UNFOLD = "펼침";
+
+    String TOKEN_PREFIX = "Bearer ";
 }
