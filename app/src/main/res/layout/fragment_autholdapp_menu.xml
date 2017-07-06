@@ -8,32 +8,32 @@
 
     <Button
         android:id="@+id/btnAuthOldApp"
-        style="@style/MainButton"
-        android:layout_width="308dp"
-        android:layout_height="52dp"
+        style="@style/Button01"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
         android:text="사용자인증 기존버전 (앱 방식)"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="41dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnRegAcntOldApp"
-        style="@style/MainButton"
-        android:layout_width="308dp"
-        android:layout_height="52dp"
+        style="@style/Button01"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:text="계좌등록 기존버전 (앱 방식)"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@+id/btnAuthOldApp" />
 
 </android.support.constraint.ConstraintLayout>

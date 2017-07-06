@@ -1,9 +1,10 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +14,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMain
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 
 
 /**
@@ -51,29 +53,24 @@ public class MainFragment extends BaseFragment {
     @OnClick({ R.id.btnAuthNewMenu, R.id.btnAuthOldAppMenu, R.id.btnAuthOldWebMenu, R.id.btnAPICallMenu, R.id.btnSettings })
     public void onClick(View v) {
 
-        Fragment fm = null;
-        String title = null;
+        mainActivity.goPage(v.getId());
+    }
 
-        int btnId = v.getId();
-        MainActivity mainActivity = ((MainActivity)getActivity());
-
-        switch(btnId){
-            case R.id.btnAuthNewMenu:
+    @OnTouch({ R.id.btnAuthNewMenu, R.id.btnAuthOldAppMenu, R.id.btnAuthOldWebMenu, R.id.btnAPICallMenu, R.id.btnSettings })
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN: {
+                v.getBackground().setColorFilter(0xe02A5981, PorterDuff.Mode.SRC_ATOP); // 파란색에 대한 음영색
+                v.invalidate();
                 break;
-            case R.id.btnAuthOldAppMenu:
+            }
+            case MotionEvent.ACTION_UP: {
+                v.getBackground().clearColorFilter();
+                v.invalidate();
                 break;
-            case R.id.btnAuthOldWebMenu:
-                break;
-            case R.id.btnAPICallMenu:
-                break;
-            case R.id.btnSettings:
-                break;
-            default:
-                break;
+            }
         }
-
-        mainActivity.goPage(btnId);
-
+        return false;
     }
 
     /**
