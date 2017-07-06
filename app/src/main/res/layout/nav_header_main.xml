@@ -28,6 +28,7 @@
         android:gravity="bottom"
         android:text="오픈플랫폼 이용기관 샘플앱"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#f8f8f8"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_in_nav" />
 
