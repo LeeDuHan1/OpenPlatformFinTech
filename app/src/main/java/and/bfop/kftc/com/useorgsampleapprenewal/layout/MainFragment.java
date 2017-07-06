@@ -1,7 +1,6 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.layout;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,6 +12,7 @@ import org.greenrobot.eventbus.EventBus;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMainEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import butterknife.OnClick;
 import butterknife.OnTouch;
 
@@ -56,21 +56,16 @@ public class MainFragment extends BaseFragment {
         mainActivity.goPage(v.getId());
     }
 
+    /**
+     * 버튼 onTouch 이벤트 핸들러
+     *
+     * @param v
+     * @param event
+     * @return
+     */
     @OnTouch({ R.id.btnAuthNewMenu, R.id.btnAuthOldAppMenu, R.id.btnAuthOldWebMenu, R.id.btnAPICallMenu, R.id.btnSettings })
     public boolean onTouch(View v, MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN: {
-                v.getBackground().setColorFilter(0xe02A5981, PorterDuff.Mode.SRC_ATOP); // 파란색에 대한 음영색
-                v.invalidate();
-                break;
-            }
-            case MotionEvent.ACTION_UP: {
-                v.getBackground().clearColorFilter();
-                v.invalidate();
-                break;
-            }
-        }
-        return false;
+        return FragmentUtil.onTouchSetColorFilter(v, event);
     }
 
     /**

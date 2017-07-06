@@ -1,8 +1,10 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.util;
 
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TableLayout;
@@ -206,6 +208,30 @@ public class FragmentUtil {
     public static String getEtVal(View rootView, int etId){
 
         return ((EditText)rootView.findViewById(etId)).getText().toString().trim();
+    }
+
+    /**
+     * 버튼을 눌렀을 때, 누른 표시가 나게 하기 위해서 touch event에 color filter를 걸어주었음.
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    public static boolean onTouchSetColorFilter(View v, MotionEvent event) {
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN: {
+                v.getBackground().setColorFilter(0xe02A5981, PorterDuff.Mode.SRC_ATOP); // 파란색에 대한 음영색을 적당히 고름
+                v.invalidate();
+                break;
+            }
+            case MotionEvent.ACTION_UP: {
+                v.getBackground().clearColorFilter();
+                v.invalidate();
+                break;
+            }
+        }
+        return false;
     }
 
 }

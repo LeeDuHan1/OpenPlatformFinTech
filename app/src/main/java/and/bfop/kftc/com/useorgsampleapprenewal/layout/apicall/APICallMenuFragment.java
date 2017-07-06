@@ -3,6 +3,7 @@ package and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +14,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 
 /**
  * API거래기능 메뉴 Fragment
@@ -62,6 +64,18 @@ public class APICallMenuFragment extends BaseFragment {
             default:
                 break;
         }
+    }
+
+    /**
+     * 버튼 onTouch 이벤트 핸들러
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    @OnTouch({R.id.btnInqrBlnc, R.id.btnInqrTranRec, R.id.btnInqrRealName, R.id.btnTrnsDP, R.id.btnTrnsWD})
+    public boolean onTouch(View v, MotionEvent event) {
+        return FragmentUtil.onTouchSetColorFilter(v, event);
     }
 
     /**

@@ -2,12 +2,15 @@ package and.bfop.kftc.com.useorgsampleapprenewal.layout.common;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 
 /**
  * WebView를 탑재한 Fragment들의 공통 부모 클래스
@@ -39,6 +42,18 @@ public abstract class BaseWebFragment extends BaseFragment {
             edt.setSingleLine(true);
             btn.setText(Constants.BTN_NAME_UNFOLD);
         }
+    }
+
+    /**
+     * 버튼 onTouch 이벤트 핸들러
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    @OnTouch(R.id.btnFold)
+    public boolean onTouch(View v, MotionEvent event) {
+        return FragmentUtil.onTouchSetColorFilter(v, event);
     }
 
 }

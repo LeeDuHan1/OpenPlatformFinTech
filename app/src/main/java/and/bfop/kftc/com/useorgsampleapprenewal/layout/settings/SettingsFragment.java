@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
@@ -27,6 +28,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 
 /**
  * 설정 페이지 Fragment
@@ -99,6 +101,18 @@ public class SettingsFragment extends BaseFragment {
             default:
                 break;
         }
+    }
+
+    /**
+     * 버튼 onTouch 이벤트 핸들러
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    @OnTouch({ R.id.radioSvr_TEST, R.id.radioSvr_PRD, R.id.btnSaveSettings, R.id.btnResetSettings, R.id.btnRemoveSession })
+    public boolean onTouch(View v, MotionEvent event) {
+        return FragmentUtil.onTouchSetColorFilter(v, event);
     }
 
     /**

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,6 +23,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 
 
 /**
@@ -69,6 +71,18 @@ public class AuthOldAppMenuFragment extends BaseFragment {
                 break;
         }
 
+    }
+
+    /**
+     * 버튼 onTouch 이벤트 핸들러
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    @OnTouch({ R.id.btnAuthOldApp, R.id.btnRegAcntOldApp })
+    public boolean onTouch(View v, MotionEvent event) {
+        return FragmentUtil.onTouchSetColorFilter(v, event);
     }
 
     /**

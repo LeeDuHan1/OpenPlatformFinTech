@@ -3,6 +3,7 @@ package and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -12,6 +13,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 
 /**
  ** 사용자인증 개선버전 Fragment (Case1)
@@ -66,6 +68,18 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
     public void onClick(View v) {
 
         invokeAuth();
+    }
+
+    /**
+     * 버튼 onTouch 이벤트 핸들러
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    @OnTouch(R.id.btnAuthNewWebAuth2Case1)
+    public boolean onTouch(View v, MotionEvent event) {
+        return FragmentUtil.onTouchSetColorFilter(v, event);
     }
 
 }
