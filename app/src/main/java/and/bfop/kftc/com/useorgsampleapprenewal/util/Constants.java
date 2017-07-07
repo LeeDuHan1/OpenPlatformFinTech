@@ -47,13 +47,15 @@ public interface Constants {
     /**
      * 오픈플랫폼에서 발급한 이용기관의 앱의 Key 기본값
      */
-    String APP_KEY_TEST = "l7xx2387628cf42a4845b221f88029ea5a0a"; // kftcedu00
+//    String APP_KEY_TEST = "l7xx2387628cf42a4845b221f88029ea5a0a"; // kftcedu00
+    String APP_KEY_TEST = "l7xx114ed615a629457bab1ac3719dadf544"; // sim0003
     String APP_KEY_PRD = "l7xx2387628cf42a4845b221f88029ea5a0a"; // kftcedu00
 
     /**
      * 오픈플랫폼에서 발급한 이용기관의 앱 Client Secret 기본값
      */
-    String APP_SECRET_TEST = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
+//    String APP_SECRET_TEST = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
+    String APP_SECRET_TEST = "b6604742ab2247189bcca27e06906c0b"; // sim0003
     String APP_SECRET_PRD = "75518cc321b841059889d0e40f4d1f0b"; // kftcedu00
 
     /**

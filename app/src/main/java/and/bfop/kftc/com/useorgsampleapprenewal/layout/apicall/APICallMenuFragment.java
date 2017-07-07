@@ -56,6 +56,7 @@ public class APICallMenuFragment extends BaseFragment {
                 fragmentClass = APICallPageBalanceInquiryFragment.class;
                 break;
             case R.id.btnInqrTranRecPage:
+                fragmentClass = APICallPageTransactionRecordInquiryFragment.class;
                 break;
             case R.id.btnInqrRealNamePage:
                 fragmentClass = APICallPageRealNameInquiryFragment.class;

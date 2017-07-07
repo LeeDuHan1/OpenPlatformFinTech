@@ -48,6 +48,15 @@ public interface RetrofitInterface {
     Call<Map> accountBalance(@Header("Authorization") String token, @QueryMap Map<String, String> params);
 
     /**
+     * 거래내역조회
+     *
+     * @param params
+     * @return
+     */
+    @GET("/v1.0/account/transaction_list")
+    Call<Map> accountTrasactionList(@Header("Authorization") String token, @QueryMap Map<String, String> params);
+
+    /**
      * 계좌실명조회
      *
      * @param params
