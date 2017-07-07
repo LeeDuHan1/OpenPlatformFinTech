@@ -63,7 +63,7 @@ public class APICallMenuFragment extends BaseFragment {
             case R.id.btnTrnsWD:
                 break;
             case R.id.btnUserInfo:
-                fragmentClass = APICallWebPageUserInfoFragment.class;
+                fragmentClass = APICallPageUserInfoFragment.class;
                 break;
             default:
                 break;

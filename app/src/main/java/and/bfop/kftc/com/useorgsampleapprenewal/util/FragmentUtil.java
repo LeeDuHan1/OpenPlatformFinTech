@@ -21,7 +21,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallMenuFragment;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallWebPageUserInfoFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallPageUserInfoFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebCommonWebViewFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebMenuFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebPageAuthorize2Case1Fragment;
@@ -60,7 +60,7 @@ public class FragmentUtil {
         map.put(AuthOldAppMenuFragment.class, "사용자인증 기존버전 (앱 방식)");
         map.put(AuthOldWebMenuFragment.class, "사용자인증 기존버전 (웹 방식)");
         map.put(APICallMenuFragment.class, "API 거래기능");
-        map.put(APICallWebPageUserInfoFragment.class, "사용자정보조회 API");
+        map.put(APICallPageUserInfoFragment.class, "사용자정보조회 API");
         map.put(SettingsFragment.class, "설정");
         map.put(AuthNewWebPageAuthorize2TabFragment.class, "사용자인증 개선버전");
         map.put(AuthNewWebPageAuthorize2Case1Fragment.class, "사용자인증 개선버전 (Case1)");
@@ -243,14 +243,14 @@ public class FragmentUtil {
      * 새 DialogFragment를 생성하여 API 호출 결과를 출력한다.
      *
      * @param activity
-     * @param jsonRsp
+     * @param rspJson
      */
-    public static void createResultFragmentAndShowResult(FragmentActivity activity, String jsonRsp) {
+    public static void createResultFragmentAndShowResult(FragmentActivity activity, String rspJson) {
 
         FragmentManager fm = activity.getSupportFragmentManager();
         APICallResultFragment dialogFragment = new APICallResultFragment();
         Bundle args = new Bundle();
-        args.putString(Constants.RSP_JSON, jsonRsp); // 결과값 전달
+        args.putString(Constants.RSP_JSON, rspJson); // 결과값 전달
         dialogFragment.setArguments(args);
         dialogFragment.show(fm, null);
     }

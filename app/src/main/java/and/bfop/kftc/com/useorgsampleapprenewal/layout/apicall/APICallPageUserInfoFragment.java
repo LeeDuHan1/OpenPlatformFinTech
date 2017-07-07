@@ -32,7 +32,7 @@ import retrofit2.Response;
 /**
  * 사용자정보조회 API호출 Fragment
  */
-public class APICallWebPageUserInfoFragment extends BaseFragment {
+public class APICallPageUserInfoFragment extends BaseFragment {
 
     /**
      * NameSpace
