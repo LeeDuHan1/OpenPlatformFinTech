@@ -93,7 +93,7 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
                 t.printStackTrace();
             }
         });
-        saveInputValues(); // 입력값을 SharedPreferences 에 저장
+        saveInputValues();
     }
 
     /**
@@ -109,7 +109,7 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
     }
 
     /**
-     * SharedPreferences 에 저장된 입력값들을 UI에 채워 넣는다.
+     * SharedPreferences 에 저장된 입력값들을 UI에 채워 넣음
      */
     private void loadInputValues(){
 
