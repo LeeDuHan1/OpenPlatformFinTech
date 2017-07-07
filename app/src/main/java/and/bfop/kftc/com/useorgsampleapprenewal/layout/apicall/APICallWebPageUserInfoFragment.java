@@ -36,7 +36,7 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
 
     /**
      * NameSpace
-     *  - 입력폼의 값들을 SharedPreferences에 저장할 때, 각 업무별로 별도로 값을 저장하기 위해서 준 네임스페이스
+     *  - 입력폼의 값들을 SharedPreferences에 저장할 때, 각 업무별로 별도로 값을 저장하기 위해서 임의의 이름을 구분자로 줌
      */
     private static final String NS = "AUI";
 
