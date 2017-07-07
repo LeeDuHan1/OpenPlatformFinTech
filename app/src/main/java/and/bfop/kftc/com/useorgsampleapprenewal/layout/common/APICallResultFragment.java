@@ -8,7 +8,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 /**
@@ -41,6 +40,7 @@ public class APICallResultFragment extends DialogFragment {
 
         // 결과값 채우기
         ((TextView)view.findViewById(R.id.tvJsonResult)).setText(getArguments().getString("rspJson"));
+//        ((TextView)view.findViewById(R.id.tvJsonResult)).setText("@@@@@@@@@@@@@@@@@@");
 
         return dialog;
     }
@@ -49,10 +49,11 @@ public class APICallResultFragment extends DialogFragment {
     public void onResume() {
 
         // Dialog 사이즈 조정
-        WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-        params.height = WindowManager.LayoutParams.MATCH_PARENT;
-        getDialog().getWindow().setAttributes(params);
+        //  - 이렇게 해도 내용이 없으면 닫기 버튼이 위로 말려 올라가기 때문에 그닥 좋지는 않다. 내용이 없어도 TextView가 MATCH_PARENT가 되면 좋을텐데...
+//        WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
+//        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+//        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+//        getDialog().getWindow().setAttributes(params);
 
         super.onResume();
     }
