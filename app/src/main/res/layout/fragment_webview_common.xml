@@ -20,9 +20,13 @@
                 android:singleLine="true"/>
             <Button
                 android:id="@+id/btnFold"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="펼침"/>
+                style="@style/ButtonFold"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="3dp"
+                android:text="펼침"
+                />
         </TableRow>
     </TableLayout>
 

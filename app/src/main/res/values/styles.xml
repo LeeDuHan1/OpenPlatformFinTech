@@ -56,6 +56,14 @@
         <item name="android:background">@drawable/button_shape_03</item>
     </style>
 
+    <!-- 버튼 스타일 (주소창 옆 접음/펼침 버튼) -->
+    <style name="ButtonFold">
+        <item name="android:textColor">#F8F8F8</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:background">@drawable/button_shape_fold</item>
+    </style>
+
     <!-- 네비게이션 메뉴 스타일 -->
     <style name="NavMenu">
         <item name="android:textSize">16sp</item>
