@@ -106,6 +106,7 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
 
                 Log.d("##", "rspJson: "+rspJson);
 
+
                 // 조회 성공시 해당 내용을 TextView에 출력
 //                ((TextView)getView().findViewById(R.id.tvTokenResult)).setText(rspJson);
 

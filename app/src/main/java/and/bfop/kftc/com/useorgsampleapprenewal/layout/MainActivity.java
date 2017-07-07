@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
         // 레프트메뉴의 로고이미지에 이벤트 바인딩
         setNavLogoOnClickListener();
     }

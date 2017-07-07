@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    >-->
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,7 +15,15 @@
         android:paddingBottom="7dp"
         android:paddingLeft="7dp"
         android:paddingRight="7dp"
-        android:paddingTop="7dp">
+        android:paddingTop="7dp"
+        >
+
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
 
         <TextView
             android:id="@+id/tvJsonResult"
@@ -28,15 +37,21 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/border_01"
             android:padding="3dp"
+            android:longClickable="true"
+            android:textIsSelectable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.562"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        </ScrollView>
+
     </android.support.constraint.ConstraintLayout>
 
-</ScrollView>
+<!--</ScrollView>-->
 
 
 

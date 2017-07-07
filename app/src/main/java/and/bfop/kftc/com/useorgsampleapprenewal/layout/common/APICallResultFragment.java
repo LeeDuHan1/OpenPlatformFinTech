@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,7 +30,13 @@ public class APICallResultFragment extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
+
         View view = inflater.inflate(R.layout.fragment_apicall_result, null);
+
+//        TextView view = new TextView(getActivity());
+//        view.setTextIsSelectable(true);
+//        view.setText(getArguments().getString("rspJson"));
+
         builder.setView(view)
                 .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -42,10 +47,16 @@ public class APICallResultFragment extends DialogFragment {
 
         // TextView가 scroll 가능하도록 처리
         tvJsonResult = (TextView)view.findViewById(R.id.tvJsonResult);
-        tvJsonResult.setMovementMethod(new ScrollingMovementMethod());
+//        tvJsonResult.setMovementMethod(new ScrollingMovementMethod());
+
+
+//        ButterKnife.bind(this, view);
+//        registerForContextMenu(tvJsonResult);
+
 
         // 결과값 채우기
         tvJsonResult.setText(getArguments().getString("rspJson"));
+
 
         return dialog;
     }
@@ -62,5 +73,13 @@ public class APICallResultFragment extends DialogFragment {
         super.onResume();
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
+
+//    @OnLongClick(R.id.tvJsonResult)
+//    public boolean onLongClick(){
+//
+//        MessageUtil.showToast("@@@@@@@@@@@@@@@@@@");
+//
+//        return true;
+//    }
 
 }

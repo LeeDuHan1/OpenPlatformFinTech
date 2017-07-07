@@ -22,8 +22,9 @@ public class BeanUtil {
      * Gson 파서 초기화
      *
      *  - json beautify 처리 포함
+     *  - 변환후 일부 특수문자들이 유니코드화 되는 것을 막기 위해 (Base64의 == 라던가..) html ecsape 처리도 넣어줌.
      */
-    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    public static final Gson GSON = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
     /**
      * 클래스명 리턴
