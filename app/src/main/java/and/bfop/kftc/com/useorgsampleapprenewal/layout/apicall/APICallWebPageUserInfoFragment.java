@@ -2,7 +2,6 @@ package and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,7 +14,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.APICallResultFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitCustomAdapter;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
@@ -55,6 +53,33 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**
+     * 사용자정보조회
+     */
+    private void getUserMe(){
+
+        String token = Constants.TOKEN_PREFIX + "9c7186ef-385c-43f1-a2c1-a8c8ede3437c";
+
+        Map params = new LinkedHashMap<>();
+        params.put("user_seq_no", "1100002505");
+
+        Call<Map> call = RetrofitCustomAdapter.getInstance().userMe(token, params);
+
+        call.enqueue(new Callback<Map>() { // retrofit 비동기 호출 (동기호출시 NetworkOnMainThreadException 발생)
+            @Override
+            public void onResponse(Call<Map> call, Response<Map> response) {
+
+                // API 호출 결과 출력
+                FragmentUtil.createResultFragmentAndShowResult(getActivity(), BeanUtil.GSON.toJson(response.body()));
+            }
+            @Override
+            public void onFailure(Call<Map> call, Throwable t) {
+
+                t.printStackTrace();
+            }
+        });
+    }
+
+    /**
      * 버튼 onclick 이벤트핸들러
      *
      * @param v
@@ -84,45 +109,6 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
     }
 
     /**
-     * 사용자정보조회
-     */
-    private void getUserMe(){
-
-        String token = Constants.TOKEN_PREFIX + "9c7186ef-385c-43f1-a2c1-a8c8ede3437c";
-
-        Map params = new LinkedHashMap<>();
-        params.put("user_seq_no", "1100002505");
-
-        Call<Map> call = RetrofitCustomAdapter.getInstance().userMe(token, params);
-
-        call.enqueue(new Callback<Map>() { // retrofit 비동기 호출 (동기호출시 NetworkOnMainThreadException 발생)
-            @Override
-            public void onResponse(Call<Map> call, Response<Map> response) {
-
-//                Log.d("##", "onResponse() called!");
-                Map rspMap = response.body();
-//                Log.d("##", "rspMap: " + rspMap);
-                String rspJson = BeanUtil.GSON.toJson(rspMap);
-                Log.d("##", "rspJson: "+rspJson);
-
-                // DialogFragment에 호출 결과 출력
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                APICallResultFragment dialogFragment = new APICallResultFragment();
-                Bundle args = new Bundle();
-                args.putString("rspJson", rspJson); // 결과값 전달
-                dialogFragment.setArguments(args);
-                dialogFragment.show(fm, "");
-            }
-            @Override
-            public void onFailure(Call<Map> call, Throwable t) {
-
-                Log.d("##", "onFailure() called!");
-                t.printStackTrace();
-            }
-        });
-    }
-
-    /**
      * 뒤로가기 버튼을 눌렀을 때의 동작
      */
     @Override
@@ -130,4 +116,5 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
 
         FragmentUtil.replaceNewFragment(APICallMenuFragment.class);
     }
+
 }

@@ -3,6 +3,8 @@ package and.bfop.kftc.com.useorgsampleapprenewal.util;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,6 +33,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebMenu
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebPageAuthorizeAccountFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebPageAuthorizeFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebPageRegisterAccountFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.APICallResultFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.TokenRequestFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.settings.SettingsFragment;
@@ -234,6 +237,22 @@ public class FragmentUtil {
             }
         }
         return false;
+    }
+
+    /**
+     * 새 DialogFragment를 생성하여 API 호출 결과를 출력한다.
+     *
+     * @param activity
+     * @param jsonRsp
+     */
+    public static void createResultFragmentAndShowResult(FragmentActivity activity, String jsonRsp) {
+
+        FragmentManager fm = activity.getSupportFragmentManager();
+        APICallResultFragment dialogFragment = new APICallResultFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.RSP_JSON, jsonRsp); // 결과값 전달
+        dialogFragment.setArguments(args);
+        dialogFragment.show(fm, null);
     }
 
 }

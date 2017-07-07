@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+
 /**
  * API 호출 후 결과 JSON을 보여줄 목적으로 생성한 DialogFragment
  */
@@ -39,7 +41,7 @@ public class APICallResultFragment extends DialogFragment {
         Dialog dialog = builder.create();
 
         // 결과값 채우기
-        ((TextView)view.findViewById(R.id.tvJsonResult)).setText(getArguments().getString("rspJson"));
+        ((TextView)view.findViewById(R.id.tvJsonResult)).setText(getArguments().getString(Constants.RSP_JSON));
 
         return dialog;
     }

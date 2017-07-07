@@ -160,9 +160,19 @@ public interface Constants {
 
     //=========================================== 사용자정의 설정 기본값 (사용자인증 개선버전) - end ============================================
 
-
+    /**
+     * WebView가 있는 Fragment의 주소표시줄 옆의 버튼명
+     */
     String BTN_NAME_FOLD = "접음";
     String BTN_NAME_UNFOLD = "펼침";
 
+    /**
+     * API 호출시 토큰 전달에 사용하는 prefix
+     */
     String TOKEN_PREFIX = "Bearer ";
+
+    /**
+     * 데이터 전달시 사용하는 키값 모음
+     */
+    String RSP_JSON = "RSP_JSON";
 }
