@@ -27,18 +27,20 @@ import butterknife.OnTouch;
 
 
 /**
- * 잔액조회 API호출 Fragment
+ * 계좌실명조회 API호출 Fragment
  */
-public class APICallPageBalanceInquiryFragment extends BaseFragment {
+public class APICallPageRealNameInquiryFragment extends BaseFragment {
 
     /**
      * NameSpace
      *  - 입력폼의 값들을 SharedPreferences에 저장할 때, 각 업무별로 별도로 값을 저장하기 위해서 임의의 이름을 구분자로 줌
      */
-    private static final String NS = "ABI";
+    private static final String NS = "ARN";
 
     EditText etToken; // 토큰
-    EditText etFintechUseNum; // 핀테크일련번호
+    EditText etBankCodeStd; // 은행코드
+    EditText etAccountNum; // 계좌번호
+    EditText etAccountHolderInfo; // 계좌주정보
     EditText etTranDtime; // 거래일시
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
@@ -46,14 +48,16 @@ public class APICallPageBalanceInquiryFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_apicall_balance_inquiry, container, false);
+        View view = inflater.inflate(R.layout.fragment_apicall_realname_inquiry, container, false);
         super.initBaseFragment(view); // BaseFragment 초기화 수행
 
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
         etToken = (EditText)view.findViewById(R.id.etToken);
-        etFintechUseNum = (EditText)view.findViewById(R.id.etFintechUseNum);
+        etBankCodeStd = (EditText)view.findViewById(R.id.etBankCodeStd);
+        etAccountNum = (EditText)view.findViewById(R.id.etAccountNum);
+        etAccountHolderInfo = (EditText)view.findViewById(R.id.etAccountHolderInfo);
         etTranDtime = (EditText)view.findViewById(R.id.etTranDtime);
 
         loadInputValues();
@@ -70,10 +74,12 @@ public class APICallPageBalanceInquiryFragment extends BaseFragment {
         String token = Constants.TOKEN_PREFIX + etToken.getText().toString();
 
         Map params = new LinkedHashMap<>();
-        params.put("fintech_use_num", etFintechUseNum.getText().toString());
+        params.put("bank_code_std", etBankCodeStd.getText().toString());
+        params.put("account_num", etAccountNum.getText().toString());
+        params.put("account_holder_info", etAccountHolderInfo.getText().toString());
         params.put("tran_dtime", etTranDtime.getText().toString());
 
-        RetrofitUtil.callAsync(RetrofitCustomAdapter.getInstance().accountBalance(token, params), getActivity()); // rest client 호출
+        RetrofitUtil.callAsync(RetrofitCustomAdapter.getInstance().inquiryRealName(token, params), getActivity()); // rest client 호출
 
         saveInputValues();
     }
@@ -86,7 +92,9 @@ public class APICallPageBalanceInquiryFragment extends BaseFragment {
         SharedPreferences.Editor editor = App.getPref().edit();
         String es = App.getEnvSuffix(App.getEnv());
         editor.putString(NS + "token" + es, etToken.getText().toString());
-        editor.putString(NS + "fintech_use_num" + es, etFintechUseNum.getText().toString());
+        editor.putString(NS + "bank_code_std" + es, etBankCodeStd.getText().toString());
+        editor.putString(NS + "account_num" + es, etAccountNum.getText().toString());
+        editor.putString(NS + "account_holder_info" + es, etAccountHolderInfo.getText().toString());
         editor.putString(NS + "tran_dtime" + es, etTranDtime.getText().toString());
         editor.apply();
     }
@@ -98,7 +106,9 @@ public class APICallPageBalanceInquiryFragment extends BaseFragment {
 
         String es = App.getEnvSuffix(App.getEnv());
         etToken.setText(StringUtil.getPropString(NS + "token" + es));
-        etFintechUseNum.setText(StringUtil.getPropString(NS + "fintech_use_num" + es));
+        etBankCodeStd.setText(StringUtil.getPropString(NS + "bank_code_std" + es));
+        etAccountNum.setText(StringUtil.getPropString(NS + "account_num" + es));
+        etAccountHolderInfo.setText(StringUtil.getPropString(NS + "account_holder_info" + es));
         etTranDtime.setText(StringUtil.getPropString(NS + "tran_dtime" + es));
     }
 
@@ -107,11 +117,11 @@ public class APICallPageBalanceInquiryFragment extends BaseFragment {
      *
      * @param v
      */
-    @OnClick(R.id.btnInqrBlnc)
+    @OnClick(R.id.btnInqrRealName)
     public void onClick(View v) {
 
         switch(v.getId()){
-            case R.id.btnInqrBlnc:
+            case R.id.btnInqrRealName:
                 getUserMe();
                 break;
             default:
@@ -126,7 +136,7 @@ public class APICallPageBalanceInquiryFragment extends BaseFragment {
      * @param event
      * @return
      */
-    @OnTouch(R.id.btnInqrBlnc)
+    @OnTouch(R.id.btnInqrRealName)
     public boolean onTouch(View v, MotionEvent event) {
         return FragmentUtil.onTouchSetColorFilter(v, event);
     }

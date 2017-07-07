@@ -3,6 +3,7 @@ package and.bfop.kftc.com.useorgsampleapprenewal.restclient;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -46,4 +47,12 @@ public interface RetrofitInterface {
     @GET("/v1.0/account/balance")
     Call<Map> accountBalance(@Header("Authorization") String token, @QueryMap Map<String, String> params);
 
+    /**
+     * 계좌실명조회
+     *
+     * @param params
+     * @return
+     */
+    @POST("/v1.0/inquiry/real_name")
+    Call<Map> inquiryRealName(@Header("Authorization") String token, @Body Map<String, String> params);
 }

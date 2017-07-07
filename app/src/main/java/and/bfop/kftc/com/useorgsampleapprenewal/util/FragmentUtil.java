@@ -22,6 +22,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallMenuFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallPageBalanceInquiryFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallPageRealNameInquiryFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallPageUserInfoInquiryFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebCommonWebViewFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebMenuFragment;
@@ -62,6 +63,7 @@ public class FragmentUtil {
         map.put(AuthOldWebMenuFragment.class, "사용자인증 기존버전 (웹 방식)");
         map.put(APICallMenuFragment.class, "API 거래기능");
         map.put(APICallPageBalanceInquiryFragment.class, "잔액조회");
+        map.put(APICallPageRealNameInquiryFragment.class, "계좌실명조회");
         map.put(APICallPageUserInfoInquiryFragment.class, "사용자정보조회 API");
         map.put(SettingsFragment.class, "설정");
         map.put(AuthNewWebPageAuthorize2TabFragment.class, "사용자인증 개선버전");
