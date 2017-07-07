@@ -18,15 +18,12 @@ import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitCustomAdapter;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
+import and.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
 import butterknife.OnTouch;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 /**
@@ -79,20 +76,8 @@ public class APICallPageUserInfoFragment extends BaseFragment {
         Map params = new LinkedHashMap<>();
         params.put("user_seq_no", etUserSeqNo.getText().toString());
 
-        Call<Map> call = RetrofitCustomAdapter.getInstance().userMe(token, params);
-        call.enqueue(new Callback<Map>() { // retrofit 비동기 호출 (동기호출시 NetworkOnMainThreadException 발생)
-            @Override
-            public void onResponse(Call<Map> call, Response<Map> response) {
+        RetrofitUtil.callAsync(RetrofitCustomAdapter.getInstance().userMe(token, params), getActivity()); // rest client 호출
 
-                // API 호출 결과 출력
-                FragmentUtil.createResultFragmentAndShowResult(getActivity(), BeanUtil.GSON.toJson(response.body()));
-            }
-            @Override
-            public void onFailure(Call<Map> call, Throwable t) {
-
-                t.printStackTrace();
-            }
-        });
         saveInputValues();
     }
 

@@ -19,14 +19,11 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.authnewweb.AuthNewWebMenu
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdapp.AuthOldAppMenuFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb.AuthOldWebMenuFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitCustomAdapter;
-import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
+import and.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
 import butterknife.OnTouch;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 /**
@@ -117,21 +114,7 @@ public class TokenRequestFragment extends BaseFragment {
         params.put("redirect_uri", StringUtil.getPropStringForEnv(redirectUriKey));
         params.put("grant_type", "authorization_code");
 
-        Call<Map> call = RetrofitCustomAdapter.getInstance().token(params);
-
-        call.enqueue(new Callback<Map>() { // retrofit 비동기 호출 (동기호출시 NetworkOnMainThreadException 발생)
-            @Override
-            public void onResponse(Call<Map> call, Response<Map> response) {
-
-                // API 호출 결과 출력
-                FragmentUtil.createResultFragmentAndShowResult(getActivity(), BeanUtil.GSON.toJson(response.body()));
-            }
-            @Override
-            public void onFailure(Call<Map> call, Throwable t) {
-
-                t.printStackTrace();
-            }
-        });
+        RetrofitUtil.callAsync(RetrofitCustomAdapter.getInstance().token(params), getActivity()); // rest client 호출
     }
 
     /**
