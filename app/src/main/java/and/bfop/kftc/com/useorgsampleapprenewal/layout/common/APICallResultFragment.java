@@ -40,7 +40,6 @@ public class APICallResultFragment extends DialogFragment {
 
         // 결과값 채우기
         ((TextView)view.findViewById(R.id.tvJsonResult)).setText(getArguments().getString("rspJson"));
-//        ((TextView)view.findViewById(R.id.tvJsonResult)).setText("@@@@@@@@@@@@@@@@@@");
 
         return dialog;
     }

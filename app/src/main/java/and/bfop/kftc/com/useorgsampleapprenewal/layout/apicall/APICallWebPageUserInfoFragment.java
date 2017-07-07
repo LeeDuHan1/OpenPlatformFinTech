@@ -99,16 +99,11 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
             @Override
             public void onResponse(Call<Map> call, Response<Map> response) {
 
-                Log.d("##", "onResponse() called!");
+//                Log.d("##", "onResponse() called!");
                 Map rspMap = response.body();
-                Log.d("##", "token() rspMap: " + rspMap);
+//                Log.d("##", "rspMap: " + rspMap);
                 String rspJson = BeanUtil.GSON.toJson(rspMap);
-
                 Log.d("##", "rspJson: "+rspJson);
-
-
-                // 조회 성공시 해당 내용을 TextView에 출력
-//                ((TextView)getView().findViewById(R.id.tvTokenResult)).setText(rspJson);
 
                 // DialogFragment에 호출 결과 출력
                 FragmentManager fm = getActivity().getSupportFragmentManager();
@@ -116,7 +111,7 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
                 Bundle args = new Bundle();
                 args.putString("rspJson", rspJson); // 결과값 전달
                 dialogFragment.setArguments(args);
-                dialogFragment.show(fm, "fragment_dialog_test");
+                dialogFragment.show(fm, "");
             }
             @Override
             public void onFailure(Call<Map> call, Throwable t) {
