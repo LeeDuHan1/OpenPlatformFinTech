@@ -16,7 +16,6 @@ import android.widget.TextView;
  */
 public class APICallResultFragment extends DialogFragment {
 
-    TextView tvJsonResult;
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     /**
@@ -32,11 +31,6 @@ public class APICallResultFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         View view = inflater.inflate(R.layout.fragment_apicall_result, null);
-
-//        TextView view = new TextView(getActivity());
-//        view.setTextIsSelectable(true);
-//        view.setText(getArguments().getString("rspJson"));
-
         builder.setView(view)
                 .setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -45,18 +39,8 @@ public class APICallResultFragment extends DialogFragment {
                 });
         Dialog dialog = builder.create();
 
-        // TextView가 scroll 가능하도록 처리
-        tvJsonResult = (TextView)view.findViewById(R.id.tvJsonResult);
-//        tvJsonResult.setMovementMethod(new ScrollingMovementMethod());
-
-
-//        ButterKnife.bind(this, view);
-//        registerForContextMenu(tvJsonResult);
-
-
         // 결과값 채우기
-        tvJsonResult.setText(getArguments().getString("rspJson"));
-
+        ((TextView)view.findViewById(R.id.tvJsonResult)).setText(getArguments().getString("rspJson"));
 
         return dialog;
     }
@@ -73,13 +57,5 @@ public class APICallResultFragment extends DialogFragment {
         super.onResume();
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
-
-//    @OnLongClick(R.id.tvJsonResult)
-//    public boolean onLongClick(){
-//
-//        MessageUtil.showToast("@@@@@@@@@@@@@@@@@@");
-//
-//        return true;
-//    }
 
 }

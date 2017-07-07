@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >-->
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="7dp"
+    android:paddingLeft="7dp"
+    android:paddingRight="7dp"
+    android:paddingTop="7dp"
+    >
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="7dp"
-        android:paddingLeft="7dp"
-        android:paddingRight="7dp"
-        android:paddingTop="7dp"
-        >
-
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <!-- 텍스트뷰에 스크롤을 주면서 관성스크롤등의 기능을 사용하기 위해 ScrollView로 감쌌다 -->
+    <!-- ScrollView가 최외각에 존재할 경우, TextView 에서 문자열 선택이 안되는 등의 문제가 발생하므로 주의할 것 -->
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
@@ -37,57 +32,13 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/border_01"
             android:padding="3dp"
-            android:longClickable="true"
             android:textIsSelectable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.562"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        </ScrollView>
+    </ScrollView>
 
-    </android.support.constraint.ConstraintLayout>
-
-<!--</ScrollView>-->
-
-
-
-
-<!-- 원래 ScrollView를 사용하지 않고 이렇게 하려고 했었으나, 관성스크롤이 안되는 관계로 접었었다 -->
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:paddingBottom="10dp"
-android:paddingLeft="10dp"
-android:paddingRight="10dp"
-android:paddingTop="5dp">
-
-&lt;!&ndash; 스크롤이 가능하게 하기 위해서 maxLines 와 scrollbars 속성을 줌 &ndash;&gt;
-<TextView
-    android:id="@+id/tvJsonResult"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginTop="5dp"
-    android:background="@drawable/border_01"
-    android:maxLines="1000000"
-    android:scrollbars="vertical"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintHorizontal_bias="0.562"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:layout_editor_absoluteX="95dp"
-    tools:layout_editor_absoluteY="122dp" />
-
-</android.support.constraint.ConstraintLayout>-->
+</android.support.constraint.ConstraintLayout>
