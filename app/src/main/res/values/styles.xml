@@ -91,4 +91,11 @@
         <item name="android:textColor">#222222</item>
     </style>
 
+    <!-- TextView (API호출결과 Dialog) -->
+    <style name="TextViewAPIResult">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#222222</item>
+    </style>
+
 </resources>
