@@ -226,7 +226,7 @@ public class FragmentUtil {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
-                v.getBackground().setColorFilter(0xe02A5981, PorterDuff.Mode.SRC_ATOP); // 파란색에 대한 음영색을 적당히 고름
+                v.getBackground().setColorFilter(0xe02D4B64, PorterDuff.Mode.SRC_ATOP); // 파란색에 대한 음영색을 적당히 고름
                 v.invalidate();
                 break;
             }
