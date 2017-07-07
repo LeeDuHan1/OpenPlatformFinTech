@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -61,7 +60,7 @@ public class TokenRequestFragment extends BaseFragment {
         // EditText 에 authcode 등을 바인딩한다.
         Bundle args = this.getArguments();
         authcode = StringUtil.defaultString(args.getString("authcode"));
-        scope = StringUtil.defaultString(args.getString("scope"));
+        scope = StringUtil.urlDecode(StringUtil.defaultString(args.getString("scope"))); // 다중스코프에서 space가 +기호가 되지 않도록 URLDecode 처리
         invokerType = StringUtil.defaultString(args.getString("invokerType"));
         Log.d("##", "TokenRequestFragment > authcode:["+authcode+"], scope:["+scope+"], invokerType:["+invokerType+"]");
 
@@ -124,18 +123,12 @@ public class TokenRequestFragment extends BaseFragment {
             @Override
             public void onResponse(Call<Map> call, Response<Map> response) {
 
-                Log.d("##", "onResponse() called!");
-                Map rspMap = response.body();
-                Log.d("##", "token() rspMap: " + rspMap);
-                String rspJson = BeanUtil.GSON.toJson(rspMap);
-
-                // 조회 성공시 해당 내용을 TextView에 출력
-                ((TextView)getView().findViewById(R.id.tvTokenResult)).setText(rspJson);
+                // API 호출 결과 출력
+                FragmentUtil.createResultFragmentAndShowResult(getActivity(), BeanUtil.GSON.toJson(response.body()));
             }
             @Override
             public void onFailure(Call<Map> call, Throwable t) {
 
-                Log.d("##", "onFailure() called!");
                 t.printStackTrace();
             }
         });

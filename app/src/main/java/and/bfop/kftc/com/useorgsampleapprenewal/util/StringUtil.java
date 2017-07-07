@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
@@ -190,6 +191,23 @@ public class StringUtil {
         String ret = "";
         try {
             ret = URLEncoder.encode(StringUtil.defaultString(src), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    /**
+     * URL decoding wrapper
+     *
+     * @param src
+     * @return
+     */
+    public static String urlDecode(String src){
+
+        String ret = "";
+        try {
+            ret = URLDecoder.decode(StringUtil.defaultString(src), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

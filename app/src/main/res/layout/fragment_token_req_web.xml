@@ -23,11 +23,12 @@
             android:padding="5dip">
 
             <TextView
+                style="@style/FormLabel02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center_vertical|end"
-                android:text="AuthorizationCode : "/>
+                android:text="AuthorizationCode : " />
 
             <EditText
                 android:id="@+id/etAuthorizationCode"
@@ -44,11 +45,12 @@
             android:padding="5dip">
 
             <TextView
+                style="@style/FormLabel02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center_vertical|end"
-                android:text="Scope : "/>
+                android:text="Scope : " />
 
             <EditText
                 android:id="@+id/etScope"
@@ -62,27 +64,16 @@
 
     <!--================== 토큰 발급 버튼 ==================-->
     <Button
+        android:id="@+id/btnToken"
+        style="@style/Button02"
         android:layout_width="244dp"
         android:layout_height="48dp"
-        android:text="토큰 발급"
-        android:id="@+id/btnToken"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="15dp"
+        android:text="토큰 발급"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout1" />
 
-    <TextView
-        android:id="@+id/tvTokenResult"
-        android:layout_width="346dp"
-        android:layout_height="293dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="29dp"
-        android:background="#e6e6fa"
-        android:textColor="#333333"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnToken" />
     <!--//================= 토큰 발급 버튼 ==================-->
 
 </android.support.constraint.ConstraintLayout>
