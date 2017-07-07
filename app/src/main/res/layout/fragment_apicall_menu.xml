@@ -8,7 +8,7 @@
     >
 
     <Button
-        android:id="@+id/btnInqrBlnc"
+        android:id="@+id/btnInqrBlncPage"
         style="@style/Button01"
         android:layout_width="280dp"
         android:layout_height="50dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnInqrTranRec"
+        android:id="@+id/btnInqrTranRecPage"
         style="@style/Button01"
         android:layout_width="280dp"
         android:layout_height="50dp"
@@ -35,10 +35,10 @@
         android:text="거래내역조회"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInqrBlnc" />
+        app:layout_constraintTop_toBottomOf="@+id/btnInqrBlncPage" />
 
     <Button
-        android:id="@+id/btnInqrRealName"
+        android:id="@+id/btnInqrRealNamePage"
         style="@style/Button01"
         android:layout_width="280dp"
         android:layout_height="50dp"
@@ -50,10 +50,10 @@
         android:text="계좌실명조회"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInqrTranRec" />
+        app:layout_constraintTop_toBottomOf="@+id/btnInqrTranRecPage" />
 
     <Button
-        android:id="@+id/btnTrnsDP"
+        android:id="@+id/btnTrnsDPPage"
         style="@style/Button01"
         android:layout_width="280dp"
         android:layout_height="50dp"
@@ -65,10 +65,10 @@
         android:text="입금이체"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInqrRealName" />
+        app:layout_constraintTop_toBottomOf="@+id/btnInqrRealNamePage" />
 
     <Button
-        android:id="@+id/btnTrnsWD"
+        android:id="@+id/btnTrnsWDPage"
         style="@style/Button01"
         android:layout_width="280dp"
         android:layout_height="50dp"
@@ -80,10 +80,10 @@
         android:text="출금이체"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrnsDP" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTrnsDPPage" />
 
     <Button
-        android:id="@+id/btnUserInfo"
+        android:id="@+id/btnInqrUserInfoPage"
         style="@style/Button03"
         android:layout_width="280dp"
         android:layout_height="50dp"
@@ -96,6 +96,6 @@
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrnsWD" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTrnsWDPage" />
 
 </android.support.constraint.ConstraintLayout>

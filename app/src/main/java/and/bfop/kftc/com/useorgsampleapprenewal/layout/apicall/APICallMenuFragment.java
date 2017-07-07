@@ -47,23 +47,24 @@ public class APICallMenuFragment extends BaseFragment {
      *
      * @param v
      */
-    @OnClick({ R.id.btnInqrBlnc, R.id.btnInqrTranRec, R.id.btnInqrRealName, R.id.btnTrnsDP, R.id.btnTrnsWD, R.id.btnUserInfo })
+    @OnClick({ R.id.btnInqrBlncPage, R.id.btnInqrTranRecPage, R.id.btnInqrRealNamePage, R.id.btnTrnsDPPage, R.id.btnTrnsWDPage, R.id.btnInqrUserInfoPage})
     public void onClick(View v) {
 
         Class fragmentClass = null;
         switch(v.getId()){
-            case R.id.btnInqrBlnc:
+            case R.id.btnInqrBlncPage:
+                fragmentClass = APICallPageBalanceInquiryFragment.class;
                 break;
-            case R.id.btnInqrTranRec:
+            case R.id.btnInqrTranRecPage:
                 break;
-            case R.id.btnInqrRealName:
+            case R.id.btnInqrRealNamePage:
                 break;
-            case R.id.btnTrnsDP:
+            case R.id.btnTrnsDPPage:
                 break;
-            case R.id.btnTrnsWD:
+            case R.id.btnTrnsWDPage:
                 break;
-            case R.id.btnUserInfo:
-                fragmentClass = APICallPageUserInfoFragment.class;
+            case R.id.btnInqrUserInfoPage:
+                fragmentClass = APICallPageUserInfoInquiryFragment.class;
                 break;
             default:
                 break;
@@ -80,7 +81,7 @@ public class APICallMenuFragment extends BaseFragment {
      * @param event
      * @return
      */
-    @OnTouch({ R.id.btnInqrBlnc, R.id.btnInqrTranRec, R.id.btnInqrRealName, R.id.btnTrnsDP, R.id.btnTrnsWD, R.id.btnUserInfo })
+    @OnTouch({ R.id.btnInqrBlncPage, R.id.btnInqrTranRecPage, R.id.btnInqrRealNamePage, R.id.btnTrnsDPPage, R.id.btnTrnsWDPage, R.id.btnInqrUserInfoPage})
     public boolean onTouch(View v, MotionEvent event) {
         return FragmentUtil.onTouchSetColorFilter(v, event);
     }

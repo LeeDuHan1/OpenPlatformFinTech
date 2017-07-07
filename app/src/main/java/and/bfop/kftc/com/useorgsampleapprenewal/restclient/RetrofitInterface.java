@@ -34,7 +34,16 @@ public interface RetrofitInterface {
      * @param params
      * @return
      */
-    @GET("/user/me")
+    @GET("/v1.0/user/me")
     Call<Map> userMe(@Header("Authorization") String token, @QueryMap Map<String, String> params);
+
+    /**
+     * 잔액조회
+     *
+     * @param params
+     * @return
+     */
+    @GET("/v1.0/account/balance")
+    Call<Map> accountBalance(@Header("Authorization") String token, @QueryMap Map<String, String> params);
 
 }

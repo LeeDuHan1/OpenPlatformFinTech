@@ -27,18 +27,19 @@ import butterknife.OnTouch;
 
 
 /**
- * 사용자정보조회 API호출 Fragment
+ * 잔액조회 API호출 Fragment
  */
-public class APICallPageUserInfoFragment extends BaseFragment {
+public class APICallPageBalanceInquiryFragment extends BaseFragment {
 
     /**
      * NameSpace
      *  - 입력폼의 값들을 SharedPreferences에 저장할 때, 각 업무별로 별도로 값을 저장하기 위해서 임의의 이름을 구분자로 줌
      */
-    private static final String NS = "AUI";
+    private static final String NS = "ABI";
 
     EditText etToken; // 토큰
-    EditText etUserSeqNo; // 사용자일련번호
+    EditText etFintechUseNum; // 핀테크일련번호
+    EditText etTranDtime; // 요청일시
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
@@ -51,14 +52,15 @@ public class APICallPageUserInfoFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_apicall_userinfo, container, false);
+        View view = inflater.inflate(R.layout.fragment_apicall_balance_inquiry, container, false);
         super.initBaseFragment(view); // BaseFragment 초기화 수행
 
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
         etToken = (EditText)view.findViewById(R.id.etToken);
-        etUserSeqNo = (EditText)view.findViewById(R.id.etUserSeqNo);
+        etFintechUseNum = (EditText)view.findViewById(R.id.etFintechUseNum);
+        etTranDtime = (EditText)view.findViewById(R.id.etTranDtime);
 
         loadInputValues();
 
@@ -74,9 +76,10 @@ public class APICallPageUserInfoFragment extends BaseFragment {
         String token = Constants.TOKEN_PREFIX + etToken.getText().toString();
 
         Map params = new LinkedHashMap<>();
-        params.put("user_seq_no", etUserSeqNo.getText().toString());
+        params.put("fintech_use_num", etFintechUseNum.getText().toString());
+        params.put("tran_dtime", etTranDtime.getText().toString());
 
-        RetrofitUtil.callAsync(RetrofitCustomAdapter.getInstance().userMe(token, params), getActivity()); // rest client 호출
+        RetrofitUtil.callAsync(RetrofitCustomAdapter.getInstance().accountBalance(token, params), getActivity()); // rest client 호출
 
         saveInputValues();
     }
@@ -89,7 +92,8 @@ public class APICallPageUserInfoFragment extends BaseFragment {
         SharedPreferences.Editor editor = App.getPref().edit();
         String es = App.getEnvSuffix(App.getEnv());
         editor.putString(NS + "token" + es, etToken.getText().toString());
-        editor.putString(NS + "user_seq_no" + es, etUserSeqNo.getText().toString());
+        editor.putString(NS + "fintech_use_num" + es, etFintechUseNum.getText().toString());
+        editor.putString(NS + "tran_dtime" + es, etTranDtime.getText().toString());
         editor.apply();
     }
 
@@ -100,7 +104,8 @@ public class APICallPageUserInfoFragment extends BaseFragment {
 
         String es = App.getEnvSuffix(App.getEnv());
         etToken.setText(StringUtil.getPropString(NS + "token" + es));
-        etUserSeqNo.setText(StringUtil.getPropString(NS + "user_seq_no" + es));
+        etFintechUseNum.setText(StringUtil.getPropString(NS + "fintech_use_num" + es));
+        etTranDtime.setText(StringUtil.getPropString(NS + "tran_dtime" + es));
     }
 
     /**
@@ -108,11 +113,11 @@ public class APICallPageUserInfoFragment extends BaseFragment {
      *
      * @param v
      */
-    @OnClick(R.id.btnUserInfo)
+    @OnClick(R.id.btnInqrBlnc)
     public void onClick(View v) {
 
         switch(v.getId()){
-            case R.id.btnUserInfo:
+            case R.id.btnInqrBlnc:
                 getUserMe();
                 break;
             default:
@@ -127,7 +132,7 @@ public class APICallPageUserInfoFragment extends BaseFragment {
      * @param event
      * @return
      */
-    @OnTouch(R.id.btnUserInfo)
+    @OnTouch(R.id.btnInqrBlnc)
     public boolean onTouch(View v, MotionEvent event) {
         return FragmentUtil.onTouchSetColorFilter(v, event);
     }
