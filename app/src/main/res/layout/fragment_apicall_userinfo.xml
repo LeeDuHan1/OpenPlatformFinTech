@@ -59,9 +59,10 @@
                 android:layout_weight="3"
                 android:gravity="center_vertical|end"
                 android:text="user_seq_no : " />
+
             <EditText
+                android:id="@+id/etUserSeqNo"
                 style="@style/FormValue02"
-                android:id="@+id/etAppSecret"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"

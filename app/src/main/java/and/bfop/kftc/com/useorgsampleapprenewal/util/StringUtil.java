@@ -112,9 +112,11 @@ public class StringUtil {
             field = Constants.class.getDeclaredField(constantsFieldName);
             field.setAccessible(true);
             value = field.get(null);
-        } catch (IllegalAccessException | NoSuchFieldException | SecurityException e) {
-//            e.printStackTrace();
-            Log.e("##", "Constants 에 해당 필드["+constantsFieldName+"]가 존재하지 않습니다.");
+        } catch (NoSuchFieldException e) {
+            Log.i("##", "Constants 에 해당 필드["+constantsFieldName+"]가 존재하지 않습니다.");
+
+        } catch (IllegalAccessException | SecurityException e) {
+            e.printStackTrace();
         }
         String ret = StringUtil.defaultString(value);
         Log.d("##", "ret:" + ret);

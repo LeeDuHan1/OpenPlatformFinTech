@@ -1,24 +1,27 @@
 package and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall;
 
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import and.bfop.kftc.com.useorgsampleapprenewal.App;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitCustomAdapter;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
 import butterknife.OnTouch;
 import retrofit2.Call;
@@ -30,6 +33,15 @@ import retrofit2.Response;
  * 사용자정보조회 API호출 Fragment
  */
 public class APICallWebPageUserInfoFragment extends BaseFragment {
+
+    /**
+     * NameSpace
+     *  - 입력폼의 값들을 SharedPreferences에 저장할 때, 각 업무별로 별도로 값을 저장하기 위해서 준 네임스페이스
+     */
+    private static final String NS = "AUI";
+
+    EditText etToken; // 토큰
+    EditText etUserSeqNo; // 사용자일련번호
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
@@ -48,6 +60,11 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
         // Fragment 초기화 이벤트를 EventBus를 통해서 post (액션바 햄버거메뉴와 뒤로가기 화살표버튼을 상호 교체하기 위해서 수행)
         EventBus.getDefault().post(new FragmentInitEvent(this.getClass(), true));
 
+        etToken = (EditText)view.findViewById(R.id.etToken);
+        etUserSeqNo = (EditText)view.findViewById(R.id.etUserSeqNo);
+
+        loadInputValues();
+
         return view;
     }
     //===================================== Fragment Lifecycle Callbacks - end =======================================
@@ -57,13 +74,12 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
      */
     private void getUserMe(){
 
-        String token = Constants.TOKEN_PREFIX + "9c7186ef-385c-43f1-a2c1-a8c8ede3437c";
+        String token = Constants.TOKEN_PREFIX + etToken.getText().toString();
 
         Map params = new LinkedHashMap<>();
-        params.put("user_seq_no", "1100002505");
+        params.put("user_seq_no", etUserSeqNo.getText().toString());
 
         Call<Map> call = RetrofitCustomAdapter.getInstance().userMe(token, params);
-
         call.enqueue(new Callback<Map>() { // retrofit 비동기 호출 (동기호출시 NetworkOnMainThreadException 발생)
             @Override
             public void onResponse(Call<Map> call, Response<Map> response) {
@@ -77,6 +93,29 @@ public class APICallWebPageUserInfoFragment extends BaseFragment {
                 t.printStackTrace();
             }
         });
+        saveInputValues(); // 입력값을 SharedPreferences 에 저장
+    }
+
+    /**
+     * 입력값을 SharedPreferences 에 저장
+     */
+    private void saveInputValues() {
+
+        SharedPreferences.Editor editor = App.getPref().edit();
+        String es = App.getEnvSuffix(App.getEnv());
+        editor.putString(NS + "token" + es, etToken.getText().toString());
+        editor.putString(NS + "user_seq_no" + es, etUserSeqNo.getText().toString());
+        editor.apply();
+    }
+
+    /**
+     * SharedPreferences 에 저장된 입력값들을 UI에 채워 넣는다.
+     */
+    private void loadInputValues(){
+
+        String es = App.getEnvSuffix(App.getEnv());
+        etToken.setText(StringUtil.getPropString(NS + "token" + es));
+        etUserSeqNo.setText(StringUtil.getPropString(NS + "user_seq_no" + es));
     }
 
     /**
