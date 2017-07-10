@@ -216,7 +216,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * 페이지 이동
+     * 1 depth 메뉴 이동
+     *
+     *  - NavigationDrawer 에서도 호출하므로 Activity에 정의함.
      *
      * @param id
      */
