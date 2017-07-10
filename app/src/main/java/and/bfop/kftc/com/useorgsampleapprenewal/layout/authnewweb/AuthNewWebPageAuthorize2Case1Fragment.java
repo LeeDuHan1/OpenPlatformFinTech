@@ -22,12 +22,6 @@ public class AuthNewWebPageAuthorize2Case1Fragment extends AuthNewWebPageBaseFra
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view  = super.initView(inflater, container, R.layout.fragment_authnewweb_authorize2_case1);

@@ -24,12 +24,6 @@ public class MainFragment extends BaseFragment {
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 //        MessageUtil.showToast(BeanUtil.getClassName(this) + ".onCreateView called!");

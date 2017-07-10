@@ -33,12 +33,6 @@ public class AuthOldWebPageAuthorizeFragment extends BaseWebFragment implements 
 
     //===================================== Fragment Lifecycle Callbacks - start =====================================
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
