@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
 //        MessageUtil.showToast(BeanUtil.getClassName(this)+".onResume() called!");
 
-        // 오픈플랫폼 앱 호출후 결과를 받는 부분(ex: 사용자로그인연결 결과)에 대한 처리를 여기서 하자.
+        //=============== 오픈플랫폼 앱 호출후 결과를 받는 부분(ex: 사용자로그인연결 결과)에 대한 처리 - start ===============
         Intent intent = getIntent();
 //        MessageUtil.showToast("## intent:"+intent);
 //        MessageUtil.showToast("## intent.getData():"+intent.getData());
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             args.putString("invokerType", "APP"); // 앱에서의 요청과 웹에서의 요청을 구분해 주기 위해서 추가
             replaceFragment(fragment);
         }
-
+        //=============== 오픈플랫폼 앱 호출후 결과를 받는 부분(ex: 사용자로그인연결 결과)에 대한 처리 - end =================
     }
 
     @Override
