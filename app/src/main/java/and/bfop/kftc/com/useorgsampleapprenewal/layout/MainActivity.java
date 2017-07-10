@@ -42,6 +42,12 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.settings.SettingsFragment
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 
+/**
+ * 메인 Activity 클래스
+ *
+ *  - 본 앱은 1 Activity - multi Fragment 형태로 구성되어 있음.
+ *  - 프로그램의 결합도를 낮추기 위해서 각 Fragment 에서 MainActivity의 기능이 필요할 경우, 직접 호출하지 않고 EventBus를 사용하도록 설계함.
+ */
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle drawerToggle;
