@@ -83,7 +83,7 @@ public class APICallPageDeposit2TransferFragment extends BaseFragment {
     /**
      * 입금이체
      */
-    private void transferDeposit(){
+    private void transferDeposit2(){
 
         // 입금이체(계좌번호) 파라미터 형태
         /*
@@ -178,7 +178,7 @@ public class APICallPageDeposit2TransferFragment extends BaseFragment {
 
         switch(v.getId()){
             case R.id.btnTrnsDP2:
-                transferDeposit();
+                transferDeposit2();
                 break;
             default:
                 break;

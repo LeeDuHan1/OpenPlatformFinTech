@@ -67,9 +67,9 @@ public class APICallPageRealNameInquiryFragment extends BaseFragment {
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**
-     * 사용자정보조회
+     * 계좌실명조회
      */
-    private void getUserMe(){
+    private void inquiryRealName(){
 
         String token = Constants.TOKEN_PREFIX + etToken.getText().toString();
 
@@ -122,7 +122,7 @@ public class APICallPageRealNameInquiryFragment extends BaseFragment {
 
         switch(v.getId()){
             case R.id.btnInqrRealName:
-                getUserMe();
+                inquiryRealName();
                 break;
             default:
                 break;

@@ -76,9 +76,9 @@ public class APICallPageTransactionRecordInquiryFragment extends BaseFragment {
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**
-     * 사용자정보조회
+     * 거래내역조회
      */
-    private void getUserMe(){
+    private void accountTrasactionList(){
 
         String token = Constants.TOKEN_PREFIX + etToken.getText().toString();
 
@@ -143,7 +143,7 @@ public class APICallPageTransactionRecordInquiryFragment extends BaseFragment {
 
         switch(v.getId()){
             case R.id.btnInqrTranRec:
-                getUserMe();
+                accountTrasactionList();
                 break;
             default:
                 break;

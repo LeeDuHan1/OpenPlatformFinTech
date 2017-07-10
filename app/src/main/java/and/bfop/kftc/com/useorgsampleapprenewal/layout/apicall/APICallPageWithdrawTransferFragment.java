@@ -71,9 +71,9 @@ public class APICallPageWithdrawTransferFragment extends BaseFragment {
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**
-     * 사용자정보조회
+     * 출금이체
      */
-    private void getUserMe(){
+    private void trasnferWithdraw(){
 
         String token = Constants.TOKEN_PREFIX + etToken.getText().toString();
 
@@ -132,7 +132,7 @@ public class APICallPageWithdrawTransferFragment extends BaseFragment {
 
         switch(v.getId()){
             case R.id.btnTrnsWD:
-                getUserMe();
+                trasnferWithdraw();
                 break;
             default:
                 break;

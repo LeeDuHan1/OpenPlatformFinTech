@@ -63,9 +63,9 @@ public class APICallPageBalanceInquiryFragment extends BaseFragment {
     //===================================== Fragment Lifecycle Callbacks - end =======================================
 
     /**
-     * 사용자정보조회
+     * 잔액조회
      */
-    private void getUserMe(){
+    private void accountBalance(){
 
         String token = Constants.TOKEN_PREFIX + etToken.getText().toString();
 
@@ -112,7 +112,7 @@ public class APICallPageBalanceInquiryFragment extends BaseFragment {
 
         switch(v.getId()){
             case R.id.btnInqrBlnc:
-                getUserMe();
+                accountBalance();
                 break;
             default:
                 break;
