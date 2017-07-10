@@ -5,11 +5,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainActivity;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
+import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.MessageUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.ButterKnife;
@@ -25,6 +29,7 @@ public abstract class BaseFragment extends Fragment {
     public ActionBarDrawerToggle drawerToggle;
     protected View thisFragmentView;
 
+
     /**
      * 초기화 수행
      *
@@ -36,7 +41,12 @@ public abstract class BaseFragment extends Fragment {
         actionBar = mainActivity.getSupportActionBar();
         drawerToggle = mainActivity.getDrawerToggle();
         thisFragmentView = view;
-        ButterKnife.bind(this, view); // ButterKnife의 전체 view 바인딩
+
+        // ButterKnife의 전체 view 바인딩 (각 Fragment 내에서 ButterKnife의 Annotation을 사용할 수 있도록 하기 위해)
+        ButterKnife.bind(this, view);
+
+        // 버튼을 눌렀을 때 눌린 효과를 표현하기 위한 이벤트 바인딩
+        bindButtonOnTouchEffect(view);
     }
 
     /**
@@ -60,6 +70,33 @@ public abstract class BaseFragment extends Fragment {
         // this.getActivity().getSupportFragmentManager().popBackStackImmediate(); // backstack 호출
 
         MessageUtil.showToast(BeanUtil.getClassName(this)+" 에서의 뒤로가기 버튼 동작을 정의해 주십시오.");
+    }
+
+    /**
+     * 각 화면 내의 버튼을 눌렀을 때, 눌린 모습을 시각적으로 표현해 주기 위해 OnTouch 이벤트 자동 바인딩 처리
+     *
+     * @param view
+     */
+    private void bindButtonOnTouchEffect(View view) {
+
+        ViewGroup vg = (ViewGroup)view.findViewWithTag("buttonParent"); // 각 버튼을 포함하는 부모 엘리먼트에 해당 이름의 tag를 주었다.
+        Log.d("##", "@@ vg: "+vg);
+        if (vg != null) {
+            View v; Button btn;
+            for(int i=0; i<vg.getChildCount(); i++){
+                v = vg.getChildAt(i);
+                if(v instanceof Button){
+                    btn = (Button) v;
+                    Log.d("##", "@@ btn: "+v);
+                    btn.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            return FragmentUtil.onTouchSetColorFilter(v, event);
+                        }
+                    });
+                }
+            }
+        }
     }
 
     @Override

@@ -4,7 +4,6 @@ import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -23,7 +22,6 @@ import and.bfop.kftc.com.useorgsampleapprenewal.restclient.RetrofitUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
 import butterknife.OnClick;
-import butterknife.OnTouch;
 
 
 /**
@@ -85,18 +83,6 @@ public class TokenRequestFragment extends BaseFragment {
             default:
                 break;
         }
-    }
-
-    /**
-     * 버튼 onTouch 이벤트 핸들러
-     *
-     * @param v
-     * @param event
-     * @return
-     */
-    @OnTouch(R.id.btnToken)
-    public boolean onTouch(View v, MotionEvent event) {
-        return FragmentUtil.onTouchSetColorFilter(v, event);
     }
 
     /**

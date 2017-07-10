@@ -4,7 +4,6 @@ import android.Manifest;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,7 +18,6 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.ActivityUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import butterknife.OnClick;
-import butterknife.OnTouch;
 
 /**
  * 사용자인증 개선버전 메뉴 Fragment
@@ -102,18 +100,6 @@ public class AuthNewWebMenuFragment extends BaseFragment {
             fragment.getArguments().putSerializable("TYPE_MAP", typeMap);
             FragmentUtil.replaceFragment(fragment);
         }
-    }
-
-    /**
-     * 버튼 onTouch 이벤트 핸들러
-     *
-     * @param v
-     * @param event
-     * @return
-     */
-    @OnTouch({ R.id.btnAuthNewWebAuth2, R.id.btnAuthNewWebAuthAcnt2 })
-    public boolean onTouch(View v, MotionEvent event) {
-        return FragmentUtil.onTouchSetColorFilter(v, event);
     }
 
     /**

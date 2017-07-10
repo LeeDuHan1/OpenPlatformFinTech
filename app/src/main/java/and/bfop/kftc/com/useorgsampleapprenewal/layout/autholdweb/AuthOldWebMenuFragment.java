@@ -3,7 +3,6 @@ package and.bfop.kftc.com.useorgsampleapprenewal.layout.autholdweb;
 import android.bfop.kftc.com.useorgsampleapprenewal.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,7 +13,6 @@ import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
 import butterknife.OnClick;
-import butterknife.OnTouch;
 
 
 /**
@@ -62,18 +60,6 @@ public class AuthOldWebMenuFragment extends BaseFragment {
         if(fragmentClass != null){
             FragmentUtil.replaceNewFragment(fragmentClass);
         }
-    }
-
-    /**
-     * 버튼 onTouch 이벤트 핸들러
-     *
-     * @param v
-     * @param event
-     * @return
-     */
-    @OnTouch({ R.id.btnAuthOldWebAuth, R.id.btnAuthOldWebRegAcnt, R.id.btnAuthOldWebAuthAcnt })
-    public boolean onTouch(View v, MotionEvent event) {
-        return FragmentUtil.onTouchSetColorFilter(v, event);
     }
 
     /**
