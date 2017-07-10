@@ -80,14 +80,14 @@ public abstract class BaseFragment extends Fragment {
     private void bindButtonOnTouchEffect(View view) {
 
         ViewGroup vg = (ViewGroup)view.findViewWithTag("buttonParent"); // 각 버튼을 포함하는 부모 엘리먼트에 해당 이름의 tag를 주었다.
-        Log.d("##", "@@ vg: "+vg);
+//        Log.d("##", "@@ vg: "+vg);
         if (vg != null) {
             View v; Button btn;
             for(int i=0; i<vg.getChildCount(); i++){
                 v = vg.getChildAt(i);
                 if(v instanceof Button){
                     btn = (Button) v;
-                    Log.d("##", "@@ btn: "+v);
+//                    Log.d("##", "@@ btn: "+v);
                     btn.setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
