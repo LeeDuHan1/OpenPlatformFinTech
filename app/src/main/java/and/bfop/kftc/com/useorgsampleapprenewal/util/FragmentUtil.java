@@ -22,6 +22,8 @@ import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallMenuFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallPageBalanceInquiryFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallPageDeposit2TransferFragment;
+import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallPageDepositTransferFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallPageRealNameInquiryFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallPageTransactionRecordInquiryFragment;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallPageUserInfoInquiryFragment;
@@ -68,6 +70,8 @@ public class FragmentUtil {
         map.put(APICallPageRealNameInquiryFragment.class, "계좌실명조회");
         map.put(APICallPageTransactionRecordInquiryFragment.class, "거래내역조회");
         map.put(APICallPageWithdrawTransferFragment.class, "출금이체");
+        map.put(APICallPageDepositTransferFragment.class, "입금이체(핀테크이용번호)");
+        map.put(APICallPageDeposit2TransferFragment.class, "입금이체(계좌번호)");
         map.put(APICallPageUserInfoInquiryFragment.class, "사용자정보조회 API");
         map.put(SettingsFragment.class, "설정");
         map.put(AuthNewWebPageAuthorize2TabFragment.class, "사용자인증 개선버전");

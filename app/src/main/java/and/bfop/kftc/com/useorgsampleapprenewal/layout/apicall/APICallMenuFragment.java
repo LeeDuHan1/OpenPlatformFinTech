@@ -47,7 +47,7 @@ public class APICallMenuFragment extends BaseFragment {
      *
      * @param v
      */
-    @OnClick({ R.id.btnInqrBlncPage, R.id.btnInqrTranRecPage, R.id.btnInqrRealNamePage, R.id.btnTrnsDPPage, R.id.btnTrnsWDPage, R.id.btnInqrUserInfoPage})
+    @OnClick({ R.id.btnInqrBlncPage, R.id.btnInqrTranRecPage, R.id.btnInqrRealNamePage, R.id.btnTrnsDPPage, R.id.btnTrnsDP2Page, R.id.btnTrnsWDPage, R.id.btnInqrUserInfoPage})
     public void onClick(View v) {
 
         Class fragmentClass = null;
@@ -62,6 +62,10 @@ public class APICallMenuFragment extends BaseFragment {
                 fragmentClass = APICallPageRealNameInquiryFragment.class;
                 break;
             case R.id.btnTrnsDPPage:
+                fragmentClass = APICallPageDepositTransferFragment.class;
+                break;
+            case R.id.btnTrnsDP2Page:
+                fragmentClass = APICallPageDeposit2TransferFragment.class;
                 break;
             case R.id.btnTrnsWDPage:
                 fragmentClass = APICallPageWithdrawTransferFragment.class;

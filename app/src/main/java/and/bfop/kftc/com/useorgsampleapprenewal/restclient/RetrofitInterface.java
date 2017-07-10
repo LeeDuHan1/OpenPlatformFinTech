@@ -73,4 +73,22 @@ public interface RetrofitInterface {
      */
     @POST("/v1.0/transfer/withdraw")
     Call<Map> trasnferWithdraw(@Header("Authorization") String token, @Body Map<String, String> params);
+
+    /**
+     * 입금이체(핀테크이용번호)
+     *
+     * @param params
+     * @return
+     */
+    @POST("/v1.0/transfer/deposit")
+    Call<Map> transferDeposit(@Header("Authorization") String token, @Body Map<String, String> params);
+
+    /**
+     * 입금이체(계좌번호)
+     *
+     * @param params
+     * @return
+     */
+    @POST("/v1.0/transfer/deposit2")
+    Call<Map> transferDeposit2(@Header("Authorization") String token, @Body Map<String, String> params);
 }
