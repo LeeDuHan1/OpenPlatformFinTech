@@ -10,6 +10,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMainEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.GoPageInMainActivityEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.common.BaseFragment;
 import butterknife.OnClick;
 
@@ -44,9 +45,8 @@ public class MainFragment extends BaseFragment {
     @OnClick({ R.id.btnAuthNewMenu, R.id.btnAuthOldAppMenu, R.id.btnAuthOldWebMenu, R.id.btnAPICallMenu, R.id.btnSettings })
     public void onClick(View v) {
 
-        mainActivity.goPage(v.getId());
+        EventBus.getDefault().post(new GoPageInMainActivityEvent(v.getId()));
     }
-
 
     /**
      * 뒤로가기 버튼을 눌렀을 때의 기본동작

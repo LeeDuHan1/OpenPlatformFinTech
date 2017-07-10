@@ -2,15 +2,12 @@ package and.bfop.kftc.com.useorgsampleapprenewal.layout.common;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import and.bfop.kftc.com.useorgsampleapprenewal.layout.MainActivity;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.BeanUtil;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.Constants;
 import and.bfop.kftc.com.useorgsampleapprenewal.util.FragmentUtil;
@@ -24,23 +21,12 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseFragment extends Fragment {
 
-    protected MainActivity mainActivity; // TODO: MainActivity 의존성 제거
-    protected ActionBar actionBar;
-    public ActionBarDrawerToggle drawerToggle;
-    protected View thisFragmentView;
-
-
     /**
      * 초기화 수행
      *
      * @param view
      */
     public void initBaseFragment(View view){
-
-        mainActivity = ((MainActivity)this.getActivity());
-        actionBar = mainActivity.getSupportActionBar();
-        drawerToggle = mainActivity.getDrawerToggle();
-        thisFragmentView = view;
 
         // ButterKnife의 전체 view 바인딩 (각 Fragment 내에서 ButterKnife의 Annotation을 사용할 수 있도록 하기 위해)
         ButterKnife.bind(this, view);

@@ -29,6 +29,7 @@ import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.ActionBarChangeEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.BackButtonPressedInMainEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentInitEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.FragmentReplaceEvent;
+import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.GoPageInMainActivityEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.eventbus.SMSReceiveEvent;
 import and.bfop.kftc.com.useorgsampleapprenewal.handler.BackPressCloseHandler;
 import and.bfop.kftc.com.useorgsampleapprenewal.layout.apicall.APICallMenuFragment;
@@ -424,6 +425,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (backStackCnt <= 1) {
             backPressCloseHandler.onBackPressed();
         }
+    }
+
+    /**
+     * GoPageInMainActivityEvent 에 대한 EventBus Subscriber
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBackButtonPressedInMain(GoPageInMainActivityEvent event){
+
+        goPage(event.getId());
     }
     //======================================== EventBus Subscriber - end ==========================================
 
