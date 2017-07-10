@@ -64,6 +64,7 @@ public class APICallMenuFragment extends BaseFragment {
             case R.id.btnTrnsDPPage:
                 break;
             case R.id.btnTrnsWDPage:
+                fragmentClass = APICallPageWithdrawTransferFragment.class;
                 break;
             case R.id.btnInqrUserInfoPage:
                 fragmentClass = APICallPageUserInfoInquiryFragment.class;

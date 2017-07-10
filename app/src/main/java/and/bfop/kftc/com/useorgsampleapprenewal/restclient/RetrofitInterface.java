@@ -64,4 +64,13 @@ public interface RetrofitInterface {
      */
     @POST("/v1.0/inquiry/real_name")
     Call<Map> inquiryRealName(@Header("Authorization") String token, @Body Map<String, String> params);
+
+    /**
+     * 출금이체
+     *
+     * @param params
+     * @return
+     */
+    @POST("/v1.0/transfer/withdraw")
+    Call<Map> trasnferWithdraw(@Header("Authorization") String token, @Body Map<String, String> params);
 }
