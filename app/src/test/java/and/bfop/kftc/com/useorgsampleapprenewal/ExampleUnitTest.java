@@ -2,7 +2,12 @@ package and.bfop.kftc.com.useorgsampleapprenewal;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
+import and.bfop.kftc.com.useorgsampleapprenewal.util.StringUtil;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -22,4 +27,16 @@ public class ExampleUnitTest {
         String ret = s.replaceAll("(.*)(\\d{6})(.*)", "$2");
         System.out.println("["+ret+"]");
     }
+
+    @Test
+    public void test02() throws UnsupportedEncodingException {
+
+        String s = "%B0%A1%20%C0%AF%C8%BF%C7%CF%C1%F6%20%BE%CA%C0%BA%20%B0%E6%BF%EC";
+        String d = URLDecoder.decode(StringUtil.defaultString(s), "EUC-KR");
+        System.out.println(d);
+    }
+
+
+
+
 }
