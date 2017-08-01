@@ -441,7 +441,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * @param event
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onBackButtonPressedInMain(GoPageInMainActivityEvent event){
+    public void onGoPageInMainActivity(GoPageInMainActivityEvent event){
 
         goPage(event.getId());
     }
