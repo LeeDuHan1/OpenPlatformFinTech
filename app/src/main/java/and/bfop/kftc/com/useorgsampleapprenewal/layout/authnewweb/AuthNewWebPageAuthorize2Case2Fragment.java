@@ -51,10 +51,12 @@ public class AuthNewWebPageAuthorize2Case2Fragment extends AuthNewWebPageBaseFra
         headerMap.put("Kftc-Bfop-UserInfo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_INFO));
         headerMap.put("Kftc-Bfop-UserCellNo", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_CELL_NO));
         headerMap.put("Kftc-Bfop-UserEmail", FragmentUtil.getEtVal(v, R.id.et_ANW_USER_EMAIL));
+        headerMap.put("Kftc-Bfop-BankCodeStd", FragmentUtil.getEtVal(v, R.id.et_ANW_BANK_CODE_STD));
+        headerMap.put("Kftc-Bfop-AccountNum", FragmentUtil.getEtVal(v, R.id.et_ANW_ACCOUNT_NUM));
 
         // querystring 을 구성할 파라미터 Map
         Map<String, String> paramMap = super.getDefaultParamMap(v);
-        paramMap.put("auth_type", "1"); // 고정값 (1 ==Case2)
+        paramMap.put("auth_type", "1"); // 고정값 (1 == Case2)
 
         // 호출 URL (querystring 포함)
         String urlToLoad = App.getApiBaseUrl() + super.typeMap.get("URI") + "?" + StringUtil.convertMapToQuerystring(paramMap);

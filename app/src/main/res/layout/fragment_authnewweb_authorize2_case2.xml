@@ -275,6 +275,48 @@
                     android:textSize="16dp" />
             </TableRow>
 
+            <TableRow
+                android:id="@+id/tableRow13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dip">
+                <TextView
+                    style="@style/FormLabel01"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical|end"
+                    android:text="BankCodeStd : " />
+                <EditText
+                    style="@style/FormValue01"
+                    android:id="@+id/et_ANW_BANK_CODE_STD"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="16dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dip">
+                <TextView
+                    style="@style/FormLabel01"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical|end"
+                    android:text="AccountNum : " />
+                <EditText
+                    style="@style/FormValue01"
+                    android:id="@+id/et_ANW_ACCOUNT_NUM"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="16dp" />
+            </TableRow>
+
         </TableLayout>
 
         <Button
